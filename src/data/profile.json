@@ -1,6 +1,6 @@
 {
   "site": {
-    "title": "Guilherme Castelo | Full Stack & Angular Specialist",
+    "title": "Guilherme Castelo",
     "description": "Guilherme Castelo - Full Stack Engineer & Angular Expert specializing in high-performance web applications.",
     "cta": "Vamos construir o próximo sistema?",
     "ctaSub": "Disponível para discutir arquiteturas complexas, desafios técnicos de escala ou parcerias estratégicas.",
@@ -11,7 +11,8 @@
       { "label": "Sobre", "anchor": "#about" },
       { "label": "Stack", "anchor": "#skills" },
       { "label": "Trajetória", "anchor": "#experience" },
-      { "label": "Soluções", "anchor": "#projects" }
+      { "label": "Soluções", "anchor": "#projects" },
+      { "label": "Educação", "anchor": "#education-section" }
     ],
     "sections": {
       "about": { "number": "01", "title": "Engineering Mindset" },
@@ -24,10 +25,10 @@
   "profile": {
     "name": "Guilherme Castelo",
     "nickname": "GC",
-    "title": "Engenheiro Full Stack | Especialista em Arquiteturas Reativas com Angular 18/19",
+    "title": "Desenvolvedor Full Stack | Especialista em Soluções com Angular | Analista de Sistemas",
     "heroEyebrow": "Software Engineer Specialist",
     "location": "Brasil - Remoto",
-    "summary": "Especialista em ecossistema Angular moderno (v18/19), focado na construção de SPAs escaláveis com Signals, Standalone Components e arquiteturas modulares. Minha expertise reside em otimizar a performance de sistemas complexos e garantir a manutenibilidade através de padrões de design sólidos, Clean Code e reatividade granular. Resolvo gargalos críticos de negócio transformando dados legados em interfaces fluidas, seguras e orientadas a resultados.",
+    "summary": "Especialista em ecossistema Angular moderno, focado na construção de SPAs escaláveis com Signals, Standalone Components e arquiteturas modulares. Minha expertise reside em otimizar a performance de sistemas complexos e garantir a manutenibilidade através de padrões de design sólidos, Clean Code e reatividade granular. Resolvo gargalos críticos de negócio transformando dados legados em interfaces fluidas, seguras e orientadas a resultados.",
     "contacts": [
       {
         "type": "email",
@@ -128,7 +129,8 @@
         "decision": "Uso de Angular 18 com Signals e Standalone Components para garantir um bundle leve e renderização reativa ultra-rápida.",
         "architecture": "Arquitetura baseada em Clean Architecture no backend (Spring Boot) servindo como uma camada de abstração (ACL) para o legado Oracle.",
         "benefit": "Redução de 90% na latência de dados e centralização de fluxos que antes exigiam 3 telas diferentes em uma única SPA mobile-friendly."
-      }
+      },
+      "link": "https://github.com/guilherme-castelo"
     },
     {
       "name": "Metrics Engine Dashboard",
@@ -139,19 +141,25 @@
         "decision": "Implementação de WebWorkers para processamento paralelo e estratégias de OnPush Change Detection para manter 60fps constantes.",
         "architecture": "Frontend Angular 19 modularizado com State Management leve e Backend Node.js otimizado para streaming de dados JSON.",
         "benefit": "Visualização fluida de KPIs em tempo real, permitindo ajustes rápidos de estratégia comercial baseados em dados vivos."
-      }
+      },
+      "link": "https://github.com/guilherme-castelo"
     }
   ],
   "education": [
     {
       "degree": "MBA em Gerenciamento de Projetos de TI",
       "institution": "Faveni",
-      "year": "2025"
+      "year": "2024 - 2025"
     },
     {
       "degree": "Análise e Desenvolvimento de Sistemas",
-      "institution": "Unicesumar",
-      "year": "2023"
+      "institution": "Unicesumar - Centro Universitário de Maringá",
+      "year": "2020 - 2023"
+    },
+    {
+      "degree": "Manutenção e Suporte de Informática",
+      "institution": "IFRO - Instituto Federal de Rondônia Campus Ariquemes",
+      "year": "2016 - 2018"
     }
   ]
 }

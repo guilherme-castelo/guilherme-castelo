@@ -193,11 +193,11 @@ export function renderProjects(projects) {
             <div class="space-y-2">
                  <div class="flex justify-between items-start">
                     <span class="text-blue-500 text-[10px] font-black uppercase tracking-[0.2em]">${project.tag}</span>
-                    <div class="w-10 h-10 rounded-full glass flex justify-center items-center group-hover:bg-white group-hover:text-black transition-all">
+                    <a href="${project.link}" target="_blank" class="w-10 h-10 rounded-full glass flex justify-center items-center group-hover:bg-white group-hover:text-black transition-all">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-label="View Project">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
                         </svg>
-                    </div>
+                    </a>
                  </div>
                 <h4 class="text-4xl font-black text-white tracking-tighter">${project.name}</h4>
             </div>
