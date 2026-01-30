@@ -94,7 +94,7 @@
     ],
     "database": [
       "Oracle (PL/SQL)",
-      "Otimização de Queries MySQL",
+      "Gerenciamento de Banco de Dados MySQL",
       "PostgreSQL"
     ],
     "others": [
