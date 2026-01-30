@@ -1,0 +1,12 @@
+{
+  "name": "guilherme-castelo",
+  "version": "1.0.0",
+  "description": "Professional Portfolio with modular architecture",
+  "main": "src/scripts/main.js",
+  "scripts": {
+    "start": "npx serve ."
+  },
+  "keywords": [],
+  "author": "Guilherme Castelo",
+  "license": "ISC"
+}
