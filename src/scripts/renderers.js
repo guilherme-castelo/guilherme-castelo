@@ -35,6 +35,156 @@ export function renderNavigation(site) {
   if (contactBtn) contactBtn.innerText = site.contactBtn;
 }
 
+function renderDinamicHeader() {
+  const randomId = `${Math.floor(Math.random() * 1000)}${Math.random().toString(16).slice(2, 6)}`;
+  const routes = [
+    "/",
+    "/home",
+    "/about",
+    "/contact",
+
+    // Auth
+    "/login",
+    "/logout",
+    "/register",
+    "/auth/refresh-token",
+    "/auth/forgot-password",
+
+    // API v1
+    "/api/v1/users",
+    `/api/v1/users/${randomId}`,
+    "/api/v1/projects",
+    "/api/v1/projects/active",
+    "/api/v1/products",
+    `/api/v1/products/${randomId}`,
+    "/api/v1/orders",
+    `/api/v1/orders/${randomId}`,
+    `/api/v1/invoices/${randomId}`,
+    "/api/v1/payments",
+
+    // Dashboard / Admin
+    "/dashboard",
+    "/admin",
+    "/admin/users",
+    `/admin/users/${randomId}`,
+    "/admin/settings",
+    "/admin/logs",
+
+    // SaaS / Multi-tenant
+    "/tenant/ativa-suprimentos",
+    "/tenant/empresa-x/settings",
+    "/workspace/default",
+    "/workspace/devlab",
+
+    // Webhooks / integrações
+    "/webhooks/stripe",
+    "/webhooks/github",
+    "/integrations/nuvemshop",
+    "/integrations/erp",
+
+    // Infra / monitoramento
+    "/health",
+    "/status",
+    "/metrics",
+    "/uptime",
+    "/deploy",
+    "/rollback",
+
+    // Arquivos
+    "/uploads/avatar.png",
+    "/uploads/invoice-1024.pdf",
+    "/storage/reports/weekly.csv",
+
+    // Docs
+    "/docs",
+    "/docs/api",
+    "/swagger",
+  ];
+
+
+  const methods = ["GET", "POST", "PUT", "DELETE", "PATCH"];
+  const statusCodes = [200, 201, 204, 203, 301, 400, 401, 403, 404, 500];
+
+  const randomRoute = routes[Math.floor(Math.random() * routes.length)];
+  const randomMethod = methods[Math.floor(Math.random() * methods.length)];
+  const randomStatus = statusCodes[Math.floor(Math.random() * statusCodes.length)];
+  const latency = Math.floor(Math.random() * 120) + 10;
+
+  const timestamp = new Date().toLocaleString();
+
+  let statusColor = "text-green-400";
+
+  if (randomStatus >= 500) {
+    statusColor = "text-red-500";
+  } else if (randomStatus >= 400) {
+    statusColor = "text-yellow-400";
+  } else if (randomStatus >= 300) {
+    statusColor = "text-yellow-300";
+  }
+
+  return `
+    <span class="text-[10px] md:text-sm text-gray-500">user@server:~$</span> 
+    <span class="text-[10px] md:text-sm text-gray-400">${timestamp}</span> 
+    <span class="text-[10px] md:text-sm text-blue-400">${randomMethod}</span> 
+    <span class="text-[10px] md:text-sm text-white">${randomRoute}</span> 
+    <span class="text-[10px] md:text-sm ${statusColor} font-semibold">${randomStatus}</span> 
+    <span class="text-[10px] md:text-sm text-gray-500">${latency}ms</span>
+  `;
+}
+
+
+function typeLine(container, html, speed = 10) {
+  const wrapper = document.createElement("div");
+  wrapper.className = "font-mono p-0 leading-relaxed p-0 text-[10px] md:text-sm";
+  container.prepend(wrapper);
+
+  const temp = document.createElement("p");
+  temp.innerHTML = html;
+
+  const fullText = temp.innerText; // usa texto puro
+  let i = 0;
+
+  function type() {
+    if (i < fullText.length) {
+      wrapper.innerHTML =
+        fullText.slice(0, i) +
+        `<span class="terminal-cursor">█</span>`;
+      i++;
+      setTimeout(type, speed);
+    } else {
+      wrapper.innerHTML = html; // restaura html com cores
+    }
+  }
+
+  type();
+}
+
+
+let terminalInterval;
+
+function startTerminalLogs() {
+  const container = document.getElementById("user-header");
+  if (!container) return;
+
+  container.innerHTML = "";
+  container.className = "space-y-1 p-0 font-mono text-left text-[10px] md:text-sm";
+
+  function addLine() {
+    const log = renderDinamicHeader();
+    typeLine(container, log);
+
+    if (container.children.length > 8) {
+      container.removeChild(container.lastChild);
+    }
+  }
+
+  addLine();
+
+  if (terminalInterval) clearInterval(terminalInterval);
+  terminalInterval = setInterval(addLine, 2000);
+}
+
+
 export function renderProfile(profile) {
   const eyebrowEl = document.querySelector("#hero h2");
   if (eyebrowEl) {
@@ -43,13 +193,16 @@ export function renderProfile(profile) {
     eyebrowEl.innerHTML = `${decorator ? decorator.outerHTML : ""} ${profile.heroEyebrow}`;
   }
 
+  const imgContainer = document.getElementById("user-img")
   const nameEl = document.getElementById("user-name");
   const titleEl = document.getElementById("user-title");
   const summaryEl = document.getElementById("user-summary");
 
+  if (imgContainer) imgContainer.innerHTML = `<img src="${profile.avatar}" class="z-10 w-48 h-48 rounded-full overflow-hidden border-4 border-blue-500/30 object-cover" alt="">`;
   if (nameEl) nameEl.innerText = profile.name;
   if (titleEl) titleEl.innerText = profile.title;
   if (summaryEl) summaryEl.innerText = profile.summary;
+  startTerminalLogs();
 }
 
 export function renderSocials(socials) {
@@ -129,15 +282,15 @@ export function renderSkills(skills) {
                 <h4 class="text-${cat.color}-500 text-[10px] font-black uppercase tracking-[0.2em]">${cat.label}</h4>
                 <div class="flex flex-wrap gap-2">
                     ${skills[cat.key]
-                      .map(
-                        (s) => `
-                        <span class="text-white/80 text-sm font-medium flex items-center gap-2">
+          .map(
+            (s) => `
+                        <p class="text-white/80 text-sm font-medium flex items-center gap-2">
                             <span class="w-1 h-1 bg-${cat.color}-500 rounded-full"></span>
                             ${s}
-                        </span>
+                        </p>
                     `,
-                      )
-                      .join("")}
+          )
+          .join("")}
                 </div>
             </div>
         </div>
@@ -163,8 +316,8 @@ export function renderExperience(experience) {
                 <p class="text-gray-400 text-lg font-light leading-relaxed italic border-l-2 border-blue-500/20 pl-6">${exp.description}</p>
                 <ul class="grid md:grid-cols-1 gap-4">
                     ${exp.achievements
-                      .map(
-                        (a) => `
+          .map(
+            (a) => `
                         <li class="flex items-start gap-3 p-4 rounded-2xl glass border-white/5 hover:border-white/10 transition-all">
                             <svg class="w-5 h-5 text-blue-500 mt-1 flex-shrink-0" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path>
@@ -172,8 +325,8 @@ export function renderExperience(experience) {
                             <span class="text-gray-300 text-sm leading-relaxed">${a}</span>
                         </li>
                     `,
-                      )
-                      .join("")}
+          )
+          .join("")}
                 </ul>
             </div>
         </article>

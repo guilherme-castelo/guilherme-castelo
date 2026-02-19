@@ -151,3 +151,13 @@ body {
 .btn-instagram:hover {
   box-shadow: 0 15px 30px -10px rgba(220, 39, 67, 0.5);
 }
+
+.terminal-cursor {
+  animation: blink 1s infinite;
+  color: #22c55e;
+}
+
+@keyframes blink {
+  0%, 50%, 100% { opacity: 1; }
+  25%, 75% { opacity: 0; }
+}

@@ -1,41 +1,76 @@
 {
   "site": {
     "title": "Guilherme Castelo",
-    "description": "Guilherme Castelo - Full Stack Engineer & Angular Expert specializing in high-performance web applications.",
-    "cta": "Vamos construir o próximo sistema?",
-    "ctaSub": "Disponível para discutir arquiteturas complexas, desafios técnicos de escala ou parcerias estratégicas.",
+    "description": "Guilherme Castelo - Desenvolvedor de Software com foco em backend, integração de sistemas, ERPs e automação de processos.",
+    "cta": "Guilherme Castelo",
+    "ctaSub": "Desenvolvedor de Software com foco em backend, integração de sistemas, ERPs e automação de processos.",
     "skipLink": "Pular para o conteúdo principal",
     "contactBtn": "Contato",
-    "footerCopyright": "Guilherme Castelo © 2025 • Engineered for Performance",
+    "footerCopyright": "Guilherme Castelo © 2026 • solution developer",
     "nav": [
-      { "label": "Sobre", "anchor": "#about" },
-      { "label": "Stack", "anchor": "#skills" },
-      { "label": "Trajetória", "anchor": "#experience" },
-      { "label": "Soluções", "anchor": "#projects" },
-      { "label": "Educação", "anchor": "#education-section" }
+      {
+        "label": "Sobre",
+        "anchor": "#about"
+      },
+      {
+        "label": "Stack",
+        "anchor": "#skills"
+      },
+      {
+        "label": "Trajetória",
+        "anchor": "#experience"
+      },
+      {
+        "label": "Projetos",
+        "anchor": "#projects"
+      },
+      {
+        "label": "Formação",
+        "anchor": "#education-section"
+      }
     ],
     "sections": {
-      "about": { "number": "01", "title": "Engineering Mindset" },
-      "skills": { "number": "02", "title": "Technical Matrix" },
-      "experience": { "number": "03", "title": "Career & Impact" },
-      "projects": { "number": "04", "title": "Case Gallery" },
-      "education-section": { "number": "05", "title": "Education" }
+      "about": {
+        "number": "01",
+        "title": "Sobre Mim"
+      },
+      "skills": {
+        "number": "02",
+        "title": "Tecnologias"
+      },
+      "experience": {
+        "number": "03",
+        "title": "Experiência"
+      },
+      "projects": {
+        "number": "04",
+        "title": "Projetos"
+      },
+      "education-section": {
+        "number": "05",
+        "title": "Formação Acadêmica"
+      }
     }
   },
   "profile": {
     "name": "Guilherme Castelo",
+    "avatar": "/src/img/perfil.jpg",
     "nickname": "GC",
-    "title": "Desenvolvedor Full Stack | Especialista em Soluções com Angular | Analista de Sistemas",
-    "heroEyebrow": "Software Engineer Specialist",
+    "title": "Desenvolvedor de Software | Backend com foco em APIs, Banco de Dados e Integração de Sistemas",
+    "heroEyebrow": "Backend, ERPs e Automação de Processos",
     "location": "Brasil - Remoto",
-    "summary": "Especialista em ecossistema Angular moderno, focado na construção de SPAs escaláveis com Signals, Standalone Components e arquiteturas modulares. Minha expertise reside em otimizar a performance de sistemas complexos e garantir a manutenibilidade através de padrões de design sólidos, Clean Code e reatividade granular. Resolvo gargalos críticos de negócio transformando dados legados em interfaces fluidas, seguras e orientadas a resultados.",
+    "summary": "Atuo no desenvolvimento de sistemas voltados para negócio, com foco em backend, integrações com ERP, APIs REST e banco de dados SQL. Tenho experiência prática na modernização e manutenção de sistemas legados, automação de rotinas internas e construção de aplicações web utilizando Angular no frontend e Node.js no backend. Gosto de resolver problemas reais da operação, transformando processos manuais em soluções digitais mais rápidas, seguras e organizadas.",
     "contacts": [
       {
         "type": "email",
         "label": "guilhermecastelo.mail@gmail.com",
         "value": "guilhermecastelo.mail@gmail.com"
       },
-      { "type": "whatsapp", "label": "WhatsApp", "value": "5569999071519" },
+      {
+        "type": "whatsapp",
+        "label": "WhatsApp",
+        "value": "5569999071519"
+      },
       {
         "type": "instagram",
         "label": "Instagram",
@@ -52,95 +87,101 @@
         "label": "GitHub",
         "url": "https://github.com/guilherme-castelo",
         "primary": false
+      },
+      {
+        "label": "WhatsApp",
+        "url": "https://wa.me/5569999071519",
+        "primary": false
       }
     ]
   },
   "heroHighlights": [
     {
-      "label": "Business Impact",
-      "value": "+40% Produtividade <br /> 90% Latência Zero",
+      "label": "Foco Principal",
+      "value": "Integração com ERP <br /> Automação de Processos",
       "color": "blue"
     },
     {
-      "label": "Technical Core",
-      "value": "Angular 18/19 Expert <br /> Signals Architecture",
+      "label": "Stack Base",
+      "value": "Angular + Node.js <br /> Spring Boot + SQL",
       "color": "purple"
     },
     {
-      "label": "Industry Focus",
-      "value": "ERP Modernization <br /> Legacy Scalability",
+      "label": "Atuação",
+      "value": "Sistemas Internos <br /> Dashboards e APIs",
       "color": "emerald"
     }
   ],
   "skills": {
     "featured": {
-      "eyebrow": "Signature Stack",
-      "title": "Angular <br /> 18/19 Expert",
-      "description": "Arquiteturas reativas de alta performance com <strong class=\"text-white\">Signals</strong>, Standalone e pipelines de dados complexos via <strong class=\"text-white\">RxJS</strong>."
+      "eyebrow": "Stack Principal",
+      "title": "Backend + Angular",
+      "description": "Construção de APIs REST, integração com bancos SQL e desenvolvimento de aplicações web com Angular."
     },
     "frontend": [
-      "Angular 18/19 (Signals, Standalone)",
-      "TypeScript & Design Patterns",
-      "Arquitetura de Estado (RxJS)",
-      "Performance Web (Core Web Vitals)",
-      "Otimização de Bundle & Lazy Loading",
-      "Tailwind CSS & Design Systems"
+      "Angular",
+      "TypeScript",
+      "RxJS",
+      "HTML5 e CSS3",
+      "Tailwind CSS"
     ],
     "backend": [
-      "Node.js (Nest.js/Express)",
+      "Node.js (NestJS / Express)",
       "Java (Spring Boot)",
-      "PHP & Refatoração de Legado",
-      "Arquitetura de Microservices",
-      "Design de APIs RESTful"
+      "PHP (manutenção e refatoração)",
+      "Construção de APIs REST",
+      "Integração com sistemas legados"
     ],
     "database": [
-      "Oracle (PL/SQL)",
-      "Gerenciamento de Banco de Dados MySQL",
-      "PostgreSQL"
+      "Oracle (consultas e procedimentos)",
+      "MySQL",
+      "PostgreSQL",
+      "Modelagem de Banco de Dados"
     ],
     "others": [
-      "Automação com Python/Shell",
-      "Pipelines CI/CD",
-      "Dockerization",
-      "Gestão Ágil (Scrum)"
+      "Automação com Python",
+      "Docker",
+      "CI/CD",
+      "Scrum",
+      "Integração entre sistemas"
     ]
   },
   "experience": [
     {
-      "role": "Analista de Sistemas & Engenheiro Full Stack",
+      "role": "Analista de Sistemas",
       "company": "Brasil Super Atacado",
       "period": "2020 - Atual",
-      "description": "Focado em transformar regras de negócio complexas do ERP Winthor em ferramentas web ágeis. Atuo na ponte entre infraestrutura crítica e entrega de valor via software.",
+      "description": "Atuação voltada à integração do ERP Winthor com aplicações web, desenvolvimento de dashboards e automação de processos internos.",
       "achievements": [
-        "Arquitetura de Dashboards Reativos (Angular 18): Redução do tempo de resposta de relatórios gerenciais de minutos para segundos através de carregamento assíncrono e cache inteligente.",
-        "Interoperabilidade ERP Legacy: Desenvolvimento de camadas de abstração em Spring Boot que permitiram a integração segura do Oracle DB com sistemas web modernos.",
-        "Automação de Processos Críticos: Implementação de pipelines em Python que eliminaram 40% das tarefas manuais de conciliação de dados, reduzindo a taxa de erro humano a quase zero.",
-        "Modernização de Segurança: Refatoração de sistemas PHP legados para conformidade com padrões modernos de segurança e performance."
+        "Desenvolvimento de dashboards web para apoio à gestão, reduzindo o tempo de geração de relatórios e facilitando a tomada de decisão.",
+        "Criação de APIs em Spring Boot para interligar o banco Oracle do ERP a aplicações modernas.",
+        "Automação de processos de conferência e conciliação de dados utilizando scripts em Python.",
+        "Manutenção e modernização de sistemas legados em PHP, melhorando segurança e organização do código."
       ]
     }
   ],
   "projects": [
     {
-      "name": "ERP Bridge Portal",
-      "tag": "Angular 18 + Spring Boot + Oracle",
-      "description": "Centralizador de inteligência logística.",
+      "name": "Portal de Integração ERP",
+      "tag": "Angular + Spring Boot + Oracle",
+      "description": "Sistema web para centralizar informações logísticas e operacionais do ERP.",
       "details": {
-        "problem": "Latência crítica nos processos logísticos do ERP Winthor e falta de acessibilidade mobile para operações de campo.",
-        "decision": "Uso de Angular 18 com Signals e Standalone Components para garantir um bundle leve e renderização reativa ultra-rápida.",
-        "architecture": "Arquitetura baseada em Clean Architecture no backend (Spring Boot) servindo como uma camada de abstração (ACL) para o legado Oracle.",
-        "benefit": "Redução de 90% na latência de dados e centralização de fluxos que antes exigiam 3 telas diferentes em uma única SPA mobile-friendly."
+        "problem": "Dificuldade de acesso rápido a informações do ERP e dependência de telas antigas e pouco intuitivas.",
+        "decision": "Desenvolvimento de aplicação web em Angular consumindo APIs construídas em Spring Boot.",
+        "architecture": "Backend atuando como camada intermediária entre o ERP Oracle e o frontend web.",
+        "benefit": "Maior agilidade na consulta de dados e redução do tempo gasto em tarefas operacionais."
       },
       "link": "https://github.com/guilherme-castelo"
     },
     {
-      "name": "Metrics Engine Dashboard",
-      "tag": "Node.js + Angular 19 + Chart.js",
-      "description": "Motor de visualização de performance em escalas masivas.",
+      "name": "Dashboard de Indicadores Comerciais",
+      "tag": "Node.js + Angular",
+      "description": "Painel web para visualização de métricas de vendas e desempenho.",
       "details": {
-        "problem": "Congelamento da UI (Jank) ao processar e plotar milhares de registros históricos de vendas simultaneamente.",
-        "decision": "Implementação de WebWorkers para processamento paralelo e estratégias de OnPush Change Detection para manter 60fps constantes.",
-        "architecture": "Frontend Angular 19 modularizado com State Management leve e Backend Node.js otimizado para streaming de dados JSON.",
-        "benefit": "Visualização fluida de KPIs em tempo real, permitindo ajustes rápidos de estratégia comercial baseados em dados vivos."
+        "problem": "Relatórios demorados e pouca visibilidade em tempo real das métricas comerciais.",
+        "decision": "Construção de API em Node.js e interface web em Angular para atualização dinâmica dos dados.",
+        "architecture": "Aplicação web consumindo dados via API REST com consultas otimizadas ao banco.",
+        "benefit": "Visualização mais rápida de indicadores e apoio direto à estratégia comercial."
       },
       "link": "https://github.com/guilherme-castelo"
     }
@@ -157,7 +198,7 @@
       "year": "2020 - 2023"
     },
     {
-      "degree": "Manutenção e Suporte de Informática",
+      "degree": "Técnico em Manutenção e Suporte em Informática",
       "institution": "IFRO - Instituto Federal de Rondônia Campus Ariquemes",
       "year": "2016 - 2018"
     }
