@@ -14,7 +14,6 @@
     rel="stylesheet" />
 
   <link rel="stylesheet" href="src/styles/main.css" />
-  <script type="module" src="src/scripts/main.js" defer></script>
 </head>
 
 <body class="bg-[#050505] text-gray-300 selection:bg-blue-500/30 overflow-x-hidden">
@@ -47,16 +46,16 @@
       </div>
     </div>
 
-    <section id="hero" class="hidden space-y-3 py-0 reveal">
+    <section id="hero" class="hidden space-y-10 m-0 py-0 reveal">
       <div class="flex flex-col md:flex-row items-center gap-4 md:gap-12">
         <div id="user-img" class="w-full z-10 md:w-auto flex justify-center"></div>
         <div class="absolute md:relative inset-0 overflow-hidden z-0">
-          <div class="absolute max-h-5rem inset-0 bg-gradient-to-b from-transparent via-transparent to-black z-1"></div>
+          <div class="absolute max-h-[200px] inset-0 bg-gradient-to-b from-transparent via-transparent to-black z-1"></div>
           <div id="user-header" class="relative w-full font-mono text-[8px] md:text-sm text-green-400 leading-relaxed"></div>
         </div>
       </div>
 
-      <div class="space-y-6">
+      <div class="space-y-8">
         <h2
           class="text-blue-500 font-black tracking-[0.3em] uppercase text-[12px] sm:text-[14px] md:text-[18px] flex items-center gap-4">
           <span class="w-12 h-[1px] bg-blue-500/30"></span>
@@ -123,6 +122,7 @@
       <p class="text-[12px] uppercase font-black tracking-[0.3em] text-gray-500 pt-20"></p>
     </footer>
   </main>
+  <script type="module" src="src/scripts/main.js" defer></script>
 </body>
 
 </html>
