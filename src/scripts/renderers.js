@@ -123,19 +123,19 @@ function renderDinamicHeader() {
   }
 
   return `
-    <span class="text-[10px] md:text-sm text-gray-500">user@server:~$</span> 
-    <span class="text-[10px] md:text-sm text-gray-400">${timestamp}</span> 
-    <span class="text-[10px] md:text-sm text-blue-400">${randomMethod}</span> 
-    <span class="text-[10px] md:text-sm text-white">${randomRoute}</span> 
-    <span class="text-[10px] md:text-sm ${statusColor} font-semibold">${randomStatus}</span> 
-    <span class="text-[10px] md:text-sm text-gray-500">${latency}ms</span>
+    <span class="text-[8px] md:text-sm text-gray-500">user@server:~$</span> 
+    <span class="text-[8px] md:text-sm text-gray-400">${timestamp}</span> 
+    <span class="text-[8px] md:text-sm text-blue-400">${randomMethod}</span> 
+    <span class="text-[8px] md:text-sm text-white">${randomRoute}</span> 
+    <span class="text-[8px] md:text-sm ${statusColor} font-semibold">${randomStatus}</span> 
+    <span class="text-[8px] md:text-sm text-gray-500">${latency}ms</span>
   `;
 }
 
 
 function typeLine(container, html, speed = 10) {
   const wrapper = document.createElement("div");
-  wrapper.className = "font-mono p-0 leading-relaxed p-0 text-[10px] md:text-sm";
+  wrapper.className = "font-mono p-0 leading-relaxed p-0 text-[8px] md:text-sm";
   container.prepend(wrapper);
 
   const temp = document.createElement("p");
@@ -167,7 +167,7 @@ function startTerminalLogs() {
   if (!container) return;
 
   container.innerHTML = "";
-  container.className = "space-y-1 p-0 font-mono text-left text-[10px] md:text-sm";
+  container.className = "space-y-1 p-0 font-mono text-left text-[8px] md:text-sm";
 
   function addLine() {
     const log = renderDinamicHeader();
