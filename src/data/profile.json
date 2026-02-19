@@ -162,11 +162,11 @@
   ],
   "projects": [
     {
-      "name": "Portal de Integração ERP",
-      "tag": "Angular + Spring Boot + Oracle",
-      "description": "Sistema web para centralizar informações logísticas e operacionais do ERP.",
+      "name": "Sistema para Refeitório",
+      "tag": "Angular + Node.js + Prisma",
+      "description": "Sistema web para controlar refeições diárias de funcionários com integração ao módulo Folha do Domínio Web.",
       "details": {
-        "problem": "Dificuldade de acesso rápido a informações do ERP e dependência de telas antigas e pouco intuitivas.",
+        "problem": "Dificuldade em gerenciar registros de refeitórios e falta de automação para um este processo que facilite a operação no DP.",
         "decision": "Desenvolvimento de aplicação web em Angular consumindo APIs construídas em Spring Boot.",
         "architecture": "Backend atuando como camada intermediária entre o ERP Oracle e o frontend web.",
         "benefit": "Maior agilidade na consulta de dados e redução do tempo gasto em tarefas operacionais."
@@ -174,16 +174,28 @@
       "link": "https://github.com/guilherme-castelo"
     },
     {
-      "name": "Dashboard de Indicadores Comerciais",
-      "tag": "Node.js + Angular",
-      "description": "Painel web para visualização de métricas de vendas e desempenho.",
+      "name": "Controle Financeiro Web",
+      "tag": "PHP + Bootstrap + Wamp",
+      "description": "Painel web para controle financeiro em grupo.",
       "details": {
-        "problem": "Relatórios demorados e pouca visibilidade em tempo real das métricas comerciais.",
-        "decision": "Construção de API em Node.js e interface web em Angular para atualização dinâmica dos dados.",
-        "architecture": "Aplicação web consumindo dados via API REST com consultas otimizadas ao banco.",
-        "benefit": "Visualização mais rápida de indicadores e apoio direto à estratégia comercial."
+        "problem": "Com diversos aplicativos e sites de controle financeiro, decidi criar o meu próprio.",
+        "decision": "Desenvolvimento de aplicação PHP com e Bootstrap com funcionalidades CRUD de contas, categorias, usuários e registros.",
+        "architecture": "Aplicação PHP com stack WAMP server e estilização Boostrap 5.",
+        "benefit": "Controle de gastos, contas, categorias de despesas e usuários."
       },
-      "link": "https://github.com/guilherme-castelo"
+      "link": "https://github.com/guilherme-castelo/financeiro"
+    },
+    {
+      "name": "Backend Almoxarifado",
+      "tag": "Node.js + TypeScript + TypeORM + Docker",
+      "description": "Um backend REST API para a equipes de RH gerenciar as entradas e saídas de EPIs e Uniformes de seus funcionários.",
+      "details": {
+        "problem": "Falta de controle e gerenciamento de estoque em almoxarifados com grande fluxo de movimentação.",
+        "decision": "Construção de API em Node.js com Typescript para gerenciamento de categorias, itens e movimentações.",
+        "architecture": "API REST, utilização de TypeORM para facilitar migrations e acesso a Bancos.",
+        "benefit": "Controle de estoque em almoxarifados, controle de movimentações de entrada e saída."
+      },
+      "link": "https://github.com/guilherme-castelo/backend-almoxarifado"
     }
   ],
   "education": [
@@ -201,6 +213,29 @@
       "degree": "Técnico em Manutenção e Suporte em Informática",
       "institution": "IFRO - Instituto Federal de Rondônia Campus Ariquemes",
       "year": "2016 - 2018"
+    }
+  ],
+  "certifications": [
+    {
+      "name": "Formação Angular (v15 a v17)",
+      "institution": "Alura / Udemy",
+      "period": "Jan 2023 - Set 2023",
+      "hours": "18.5h",
+      "description": "Desenvolvimento de aplicações escaláveis com Angular, Angular Material e PrimeNg. Arquitetura modular, Lazy Loading, Guards, JWT Authentication."
+    },
+    {
+      "name": "Formação Vue.js",
+      "institution": "Alura",
+      "period": "Jan 2023 - Set 2023",
+      "hours": "124h",
+      "description": "Desenvolvimento web com Vue.js. Componentização, SPA, Vuex, testes com Jest, Composition API."
+    },
+    {
+      "name": "Administrador de Banco de Dados MySQL",
+      "institution": "Udemy",
+      "period": "Ago 2020 - Dez 2020",
+      "hours": "200h",
+      "description": "Modelagem, implementação e manipulação em SQL. Comandos DDL, DML, DCL e TCL. Administração de bancos MySQL."
     }
   ]
 }
