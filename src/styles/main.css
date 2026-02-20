@@ -1,11 +1,16 @@
 :root {
   --accent: #3b82f6;
   --accent-glow: rgba(59, 130, 246, 0.4);
+  --bg-color: #0f172a;
 }
 
 body {
   font-family: "Inter", sans-serif;
   scroll-behavior: smooth;
+}
+
+.bg-color {
+  background-color: var(--bg-color);
 }
 
 .glass {

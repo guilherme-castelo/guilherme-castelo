@@ -49,12 +49,16 @@
       "education-section": {
         "number": "05",
         "title": "Formação Acadêmica"
+      },
+      "certification-section": {
+        "number": "06",
+        "title": "Certificações / Cursos"
       }
     }
   },
   "profile": {
     "name": "Guilherme Castelo",
-    "avatar": "/src/img/perfil.jpg",
+    "avatar": "/src/assets/perfil.jpg",
     "nickname": "GC",
     "title": "Desenvolvedor de Software | Backend com foco em APIs, Banco de Dados e Integração de Sistemas",
     "heroEyebrow": "Backend, ERPs e Automação de Processos",
@@ -167,14 +171,14 @@
       "description": "Sistema web para controlar refeições diárias de funcionários com integração ao módulo Folha do Domínio Web.",
       "details": {
         "problem": "Dificuldade em gerenciar registros de refeitórios e falta de automação para um este processo que facilite a operação no DP.",
-        "decision": "Desenvolvimento de aplicação web em Angular consumindo APIs construídas em Spring Boot.",
+        "decision": "Customização do ElementarUI, aplicação web em Angular com o AngularMaterial e API construída em Node.js com Prisma.",
         "architecture": "Backend atuando como camada intermediária entre o ERP Oracle e o frontend web.",
-        "benefit": "Maior agilidade na consulta de dados e redução do tempo gasto em tarefas operacionais."
+        "benefit": "Maior agilidade e centralização das informações, automação e redução do tempo gasto em tarefas operacionais exportando arquivo de integração para o Domínio Folha."
       },
-      "link": "https://github.com/guilherme-castelo"
+      "link": "https://github.com/guilherme-castelo/elementar-admin"
     },
     {
-      "name": "Controle Financeiro Web",
+      "name": "Controle Financeiro",
       "tag": "PHP + Bootstrap + Wamp",
       "description": "Painel web para controle financeiro em grupo.",
       "details": {
@@ -217,7 +221,7 @@
   ],
   "certifications": [
     {
-      "name": "Formação Angular (v15 a v17)",
+      "name": "Formação Angular (v16 a v18)",
       "institution": "Alura / Udemy",
       "period": "Jan 2023 - Set 2023",
       "hours": "18.5h",
@@ -232,7 +236,7 @@
     },
     {
       "name": "Administrador de Banco de Dados MySQL",
-      "institution": "Udemy",
+      "institution": "IFRO",
       "period": "Ago 2020 - Dez 2020",
       "hours": "200h",
       "description": "Modelagem, implementação e manipulação em SQL. Comandos DDL, DML, DCL e TCL. Administração de bancos MySQL."

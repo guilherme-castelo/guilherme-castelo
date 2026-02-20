@@ -384,16 +384,38 @@ export function renderEducation(education) {
   container.innerHTML = education
     .map(
       (edu) => `
-        <article class="flex justify-between items-center p-6 border-b border-white/5 last:border-0">
-            <div>
+        <article class="grid-cols-12 gap-2 md:flex-row justify-between items-start md:items-center p-6 border-b border-white/5 last:border-0">
+            <div class="col-span-9">
                 <h4 class="text-white font-bold">${edu.degree}</h4>
                 <p class="text-gray-500 text-sm">${edu.institution}</p>
             </div>
-            <span class="text-blue-500 font-mono text-xs font-bold">${edu.year}</span>
+            <div class="col-span-3 text-right w-full">
+              <span class="text-blue-500 font-mono text-xs font-bold">${edu.year}</span>
+            </div>
         </article>
     `,
     )
     .join("");
+}
+
+export function renderCertifications(certifications) {
+  const container = document.getElementById("certification-list");
+  if (!container) return;
+
+  container.innerHTML = certifications.map(
+    cert => `
+        <article class="grid-cols-12 gap-2 md:flex-row justify-between items-start md:items-center p-6 border-b border-white/5 last:border-0">
+            <div class="col-span-9">
+              <h4 class="text-white font-bold">${cert.name}</h4>
+              <p class="text-gray-500 text-sm">${cert.institution}</p>
+              <p class="text-gray-400 text-sm">${cert.description}</p>
+            </div>
+            <div class="col-span-3 text-right w-full">
+              <span class="text-blue-500 font-mono text-xs font-bold">${cert.period}</span>
+            </div>
+        </article>
+    `
+  ).join("")
 }
 
 export function renderSectionHeaders(sections) {

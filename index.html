@@ -5,6 +5,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="" />
+  <!--Favicon-->
+  <link rel="icon" type="image/x-icon" href="/src/assets/favicon.ico" style="color-scheme: light; filter: invert(100%); border-radius: 100%;">
   <title>GC | Loading...</title>
 
   <script src="https://cdn.tailwindcss.com"></script>
@@ -16,7 +18,7 @@
   <link rel="stylesheet" href="src/styles/main.css" />
 </head>
 
-<body class="bg-[#050505] text-gray-300 selection:bg-blue-500/30 overflow-x-hidden">
+<body class="bg-color text-gray-300 selection:bg-blue-500/30 overflow-x-hidden">
   <a href="#main-content"
     class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:px-6 focus:py-3 focus:bg-blue-600 focus:text-white focus:rounded-xl"></a>
 
@@ -39,7 +41,7 @@
   </header>
 
   <main id="main-content" class="relative z-10 max-w-5xl mx-auto px-6 py-12 pt-32 space-y-32">
-    <div id="loader" class="fixed inset-0 bg-[#050505] z-[100] flex justify-center items-center" role="status">
+    <div id="loader" class="fixed inset-0 bg-color z-[100] flex justify-center items-center" role="status">
       <div class="relative w-16 h-16">
         <div class="absolute inset-0 border-4 border-blue-500/20 rounded-full"></div>
         <div class="absolute inset-0 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
@@ -50,7 +52,6 @@
       <div class="flex flex-col md:flex-row items-center gap-4 md:gap-12">
         <div id="user-img" class="w-full z-10 md:w-auto flex justify-center"></div>
         <div class="absolute md:relative inset-0 overflow-hidden z-0">
-          <div class="absolute max-h-[200px] inset-0 bg-gradient-to-b from-transparent via-transparent to-black z-1"></div>
           <div id="user-header" class="relative w-full font-mono text-[8px] md:text-sm text-green-400 leading-relaxed"></div>
         </div>
       </div>
@@ -113,6 +114,14 @@
         <div class="h-[1px] flex-1 bg-white/10"></div>
       </header>
       <div id="education-list" class="glass rounded-[2rem] overflow-hidden"></div>
+    </section>
+
+    <section id="certification-section" class="reveal space-y-16">
+      <header class="flex items-center gap-8">
+        <h2 class="text-xl sm:text-3xl font-black text-white uppercase tracking-tighter shrink-0"></h2>
+        <div class="h-[1px] flex-1 bg-white/10"></div>
+      </header>
+      <div id="certification-list" class="glass rounded-[2rem] overflow-hidden"></div>
     </section>
 
     <footer id="contact" class="hidden border-t border-white/5 pt-32 pb-48 text-center space-y-12 reveal">

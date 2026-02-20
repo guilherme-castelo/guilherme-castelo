@@ -11,6 +11,7 @@ import {
   renderSiteMetadata,
   renderSocials,
   renderSectionHeaders,
+  renderCertifications,
 } from "./renderers.js";
 import { initAnimations, hideLoader } from "./animations.js";
 
@@ -31,6 +32,7 @@ async function bootstrap() {
     renderExperience(data.experience);
     renderProjects(data.projects);
     renderEducation(data.education);
+    renderCertifications(data.certifications)
     renderFooter(data.site, data.profile);
 
     // Reveal Sections
@@ -41,6 +43,7 @@ async function bootstrap() {
       "experience",
       "projects",
       "education-section",
+      "certification-section",
       "contact",
     ].forEach((id) => {
       const el = document.getElementById(id);
