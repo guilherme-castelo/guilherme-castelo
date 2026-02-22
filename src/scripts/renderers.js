@@ -255,7 +255,7 @@ export function renderSkills(skills) {
     // Nested render for tags
     const angularTags = document.getElementById("angular-tags");
     if (angularTags) {
-      angularTags.innerHTML = skills.frontend
+      angularTags.innerHTML = skills.featured.principals
         .map(
           (skill) =>
             `<span class="px-3 py-1 rounded-lg bg-blue-500/10 text-blue-400 text-[10px] font-bold border border-blue-500/20">${skill}</span>`,

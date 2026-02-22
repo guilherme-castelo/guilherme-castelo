@@ -119,8 +119,9 @@
   "skills": {
     "featured": {
       "eyebrow": "Stack Principal",
-      "title": "Backend + Angular",
-      "description": "Construção de APIs REST, integração com bancos SQL e desenvolvimento de aplicações web com Angular."
+      "title": "Node.js + Angular",
+      "description": "Construção de APIs REST, integração com bancos SQL e desenvolvimento de aplicações web com Angular.",
+      "principals": ["angular", "typescript", "node.js", "mysql"]
     },
     "frontend": [
       "Angular",
