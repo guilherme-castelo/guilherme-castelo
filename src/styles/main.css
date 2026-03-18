@@ -1,9 +1,22 @@
 :root {
   --accent: #06b6d4;
   --accent-glow: rgba(6, 182, 212, 0.4);
-  --bg-color: #0A0F1C;
+  --bg-color: #f8fafc;
   
   /* Terminal / Logs */
+  --terminal-bg: rgba(0, 0, 0, 0.03);
+  --terminal-user: #475569;
+  --terminal-date: #94a3b8;
+  --terminal-method: #3b82f6;
+  --terminal-status-ok: #22c55e;
+  --terminal-status-warn: #f59e0b;
+  --terminal-status-err: #ef4444;
+  
+  --transition-smooth: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+:root.dark {
+  --bg-color: #0A0F1C;
   --terminal-bg: rgba(255, 255, 255, 0.03);
   --terminal-user: #9ca3af;
   --terminal-date: #6b7280;
@@ -11,8 +24,6 @@
   --terminal-status-ok: #4ade80;
   --terminal-status-warn: #fbbf24;
   --terminal-status-err: #ef4444;
-  
-  --transition-smooth: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 body {
@@ -172,14 +183,10 @@ section {
   border-radius: 50%;
   font-weight: 800;
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  color: #9ca3af;
 }
 
 .brand-btn:hover {
   transform: scale(1.05) translateY(-5px);
-  background: rgba(255, 255, 255, 0.1);
 }
 
 .btn-gmail:hover { 

@@ -15,6 +15,7 @@ import {
 } from "./renderers.js";
 import { initAnimations, hideLoader, initSpotlight } from "./animations.js";
 import { stopTerminalLogs } from "./terminal.js";
+import { initThemeToggle } from "./theme.js";
 
 const SECTION_IDS = Object.freeze([
   "hero",
@@ -118,6 +119,7 @@ async function bootstrap() {
 
     // UI Post-processing (deferred to next frame to ensure layouts are painted)
     requestAnimationFrame(() => {
+      initThemeToggle();
       initMobileMenu();
       revealSections(SECTION_IDS);
       initAnimations();
