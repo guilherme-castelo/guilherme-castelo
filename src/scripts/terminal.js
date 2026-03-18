@@ -60,8 +60,8 @@ function generateLogEntry() {
  */
 function typeLine(container, html, speed = 15) {
   const wrapper = document.createElement("div");
-  wrapper.className = "font-mono leading-relaxed text-[8px] md:text-sm op-0";
-  container.prepend(wrapper);
+  wrapper.className = "font-mono leading-relaxed text-[10px] md:text-xs op-0 mt-1.5";
+  container.appendChild(wrapper);
 
   // Use a temporary element to extract plain text for the typing effect
   const temp = document.createElement("div");
@@ -85,23 +85,36 @@ function typeLine(container, html, speed = 15) {
 /**
  * Starts the terminal log simulation
  */
-export function startTerminalLogs(containerId = "user-header") {
+export function startTerminalLogs(containerId = "bg-terminal") {
   const container = document.getElementById(containerId);
   if (!container) return;
+
+  // Reduced motion support
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (prefersReducedMotion) return;
+
+  // Developer mode listener for interviews/dev debug mode
+  const isDebug = new URLSearchParams(window.location.search).get('debug') === '1' || window.localStorage.getItem('DEBUG') === '1';
 
   // Cleanup existing interval
   stopTerminalLogs();
 
   container.innerHTML = "";
-  container.className = "space-y-1 p-0 font-mono text-left";
+  container.className = "absolute inset-0 z-0 opacity-[0.06] mix-blend-screen overflow-hidden pointer-events-none text-xs font-mono flex-col justify-end p-6 hidden md:flex [mask-image:linear-gradient(to_bottom,transparent,black,transparent)]";
 
   const addLine = () => {
     const logHtml = generateLogEntry();
-    typeLine(container, logHtml);
+    typeLine(container, logHtml, 10);
 
-    // Keep only last 8 entries
-    if (container.children.length > 8) {
-      container.removeChild(container.lastChild);
+    // Keep only last 20 entries for background
+    if (container.children.length > 20) {
+      container.removeChild(container.firstChild);
+    }
+
+    if (isDebug) {
+      const temp = document.createElement("div");
+      temp.innerHTML = logHtml;
+      console.log(`[SYS] ${temp.innerText}`);
     }
   };
 
@@ -109,7 +122,7 @@ export function startTerminalLogs(containerId = "user-header") {
   addLine();
 
   // Continuous logs
-  terminalInterval = setInterval(addLine, 2500);
+  terminalInterval = setInterval(addLine, 2200);
 }
 
 /**

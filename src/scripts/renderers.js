@@ -96,7 +96,7 @@ export function renderProfile(profile) {
   const titleEl = document.getElementById("user-title");
   const summaryEl = document.getElementById("user-summary");
 
-  if (imgContainer) imgContainer.innerHTML = `<img src="${profile.avatar}" class="z-10 w-48 h-48 rounded-full overflow-hidden border-4 border-blue-500/30 object-cover shadow-2xl" alt="${profile.name}">`;
+  if (imgContainer) imgContainer.innerHTML = `<img src="${profile.avatar}" class="w-full h-full rounded-full object-cover border-4 border-cyan-500/30 z-10 relative" loading="lazy" alt="${profile.name}">`;
   if (nameEl) nameEl.innerText = profile.name;
   if (titleEl) titleEl.innerText = profile.title;
   if (summaryEl) summaryEl.innerText = profile.summary;

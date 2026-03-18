@@ -68,21 +68,13 @@
     </div>
   </header>
 
-  <main id="main-content" class="relative z-10 max-w-5xl mx-auto px-6 py-12 pt-32 space-y-32" role="main">
-    <div id="loader"
-      class="fixed inset-0 bg-color z-[100] flex justify-center items-center opacity-100 loader-container" role="status"
-      aria-label="Carregando portfólio">
-      <div class="relative w-16 h-16">
-        <div class="absolute inset-0 border-4 border-blue-500/20 rounded-full"></div>
-        <div class="absolute inset-0 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
-      </div>
-    </div>
-
-    <section id="hero" class="hidden space-y-8 m-0 py-10 reveal">
+  <section id="hero" class="w-full bg-[#0A0F1C] bg-gradient-to-b from-[#0A0F1C] to-[transparent] pt-32 pb-24 md:pt-40 md:pb-32 hidden reveal relative border-b border-white/5" aria-label="Hero">
+    <div id="bg-terminal" aria-hidden="true" class="absolute inset-0 z-0 opacity-10 mix-blend-screen overflow-hidden pointer-events-none text-xs font-mono flex flex-col justify-end p-6"></div>
+    <div class="max-w-5xl mx-auto px-6 relative z-10 space-y-8">
       <div class="flex flex-col md:flex-row items-center md:items-start gap-8 md:gap-16">
-        <div id="user-img" class="w-48 h-48 shrink-0 z-10 hidden md:block"></div>
+        <div id="user-img" class="shrink-0 z-10 w-24 h-24 sm:w-32 sm:h-32 md:w-48 md:h-48 relative overflow-visible"></div>
         <div class="flex-1 space-y-6">
-          <div id="user-header" class="w-full font-mono text-xs md:text-sm text-cyan-400 leading-relaxed opacity-80">
+          <div id="user-header" class="hidden font-mono text-xs md:text-sm text-cyan-400 leading-relaxed opacity-80">
           </div>
           <h2
             class="text-cyan-500 font-medium tracking-wide text-sm md:text-base flex items-center gap-4">
@@ -97,7 +89,18 @@
 
       <div id="hero-highlights-grid" class="grid grid-cols-2 md:grid-cols-3 gap-6 pt-16 border-t border-white/5"></div>
       <div class="flex flex-wrap gap-4 pt-8"></div>
-    </section>
+    </div>
+  </section>
+
+  <main id="main-content" class="relative z-10 max-w-5xl mx-auto px-6 py-12 space-y-32" role="main">
+    <div id="loader"
+      class="fixed inset-0 bg-color z-[100] flex justify-center items-center opacity-100 loader-container" role="status"
+      aria-label="Carregando portfólio">
+      <div class="relative w-16 h-16">
+        <div class="absolute inset-0 border-4 border-blue-500/20 rounded-full"></div>
+        <div class="absolute inset-0 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
+      </div>
+    </div>
 
     <section id="about" class="hidden space-y-12 reveal">
       <header class="flex items-center gap-6">
@@ -153,13 +156,16 @@
       <div id="certification-list" class="glass rounded-[2rem] overflow-hidden"></div>
     </section>
 
-    <footer id="contact" class="hidden border-t border-white/5 pt-32 pb-48 text-center space-y-12 reveal" role="contentinfo">
+  </main>
+
+  <footer id="contact" class="hidden w-full bg-[#0A0F1C] border-t border-white/5 pt-32 pb-48 text-center space-y-12 reveal" role="contentinfo">
+    <div class="max-w-5xl mx-auto px-6 space-y-12">
       <h2 class="text-3xl sm:text-5xl md:text-8xl font-black text-white tracking-tighter leading-[0.9]"></h2>
       <p class="text-xl sm:text-2xl text-gray-500 max-w-2xl mx-auto font-light leading-snug"></p>
       <div id="contact-links" class="pt-10 flex flex-wrap justify-center gap-8"></div>
       <p class="text-[12px] uppercase font-black tracking-[0.3em] text-gray-500 pt-20"></p>
-    </footer>
-  </main>
+    </div>
+  </footer>
 
   <!-- Sticky CTA (Sprint 2) -->
   <a href="#contact" class="fixed bottom-6 right-6 md:bottom-10 md:right-10 z-[100] bg-cyan-500 hover:bg-cyan-400 text-slate-900 px-6 py-4 md:px-8 md:py-5 rounded-full font-bold shadow-[0_4px_30px_rgba(6,182,212,0.4)] transition-all transform hover:scale-105 hover:-translate-y-1 flex items-center gap-2" aria-label="Entre em contato">
