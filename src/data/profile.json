@@ -1,9 +1,8 @@
 {
   "site": {
     "title": "Guilherme Castelo",
-    "description": "Guilherme Castelo - Desenvolvedor de Software com foco em backend, integração de sistemas, ERPs e automação de processos.",
     "cta": "Guilherme Castelo",
-    "ctaSub": "Desenvolvedor de Software com foco em backend, integração de sistemas, ERPs e automação de processos.",
+    "ctaSub": "Desenvolvedor de Software Web com foco em Integração de Sistemas, APIs e Banco de Dados",
     "skipLink": "Pular para o conteúdo principal",
     "contactBtn": "Contato",
     "footerCopyright": "Guilherme Castelo © 2026 • solution developer",
@@ -60,8 +59,8 @@
     "name": "Guilherme Castelo",
     "avatar": "/src/assets/perfil.jpg",
     "nickname": "GC",
-    "title": "Desenvolvedor de Software | Backend com foco em APIs, Banco de Dados e Integração de Sistemas",
-    "heroEyebrow": "Backend, ERPs e Automação de Processos",
+    "title": "Desenvolvedor de Software Web com foco em Integração de Sistemas, APIs e Banco de Dados",
+    "heroEyebrow": "Backend, Frontend, ERPs e Automação de Processos",
     "location": "Brasil - Remoto",
     "summary": "Atuo no desenvolvimento de sistemas voltados para negócio, com foco em backend, integrações com ERP, APIs REST e banco de dados SQL. Tenho experiência prática na modernização e manutenção de sistemas legados, automação de rotinas internas e construção de aplicações web utilizando Angular no frontend e Node.js no backend. Gosto de resolver problemas reais da operação, transformando processos manuais em soluções digitais mais rápidas, seguras e organizadas.",
     "contacts": [
@@ -102,17 +101,17 @@
   "heroHighlights": [
     {
       "label": "Foco Principal",
-      "value": "Integração com ERP <br /> Automação de Processos",
+      "value": "Integração com ERP Automação de Processos",
       "color": "blue"
     },
     {
       "label": "Stack Base",
-      "value": "Angular + Node.js <br /> Spring Boot + SQL",
+      "value": "Angular + Node.js + SQL",
       "color": "purple"
     },
     {
       "label": "Atuação",
-      "value": "Sistemas Internos <br /> Dashboards e APIs",
+      "value": "Sistemas Internos, Dashboards e APIs",
       "color": "emerald"
     }
   ],
@@ -121,21 +120,26 @@
       "eyebrow": "Stack Principal",
       "title": "Node.js + Angular",
       "description": "Construção de APIs REST, integração com bancos SQL e desenvolvimento de aplicações web com Angular.",
-      "principals": ["angular", "typescript", "node.js", "mysql"]
+      "principals": [
+        "angular",
+        "typescript",
+        "node.js",
+        "mysql",
+        "html+css"
+      ]
     },
+    "backend": [
+      "Node.js (NestJS / Express)",
+      "PHP (manutenção e refatoração)",
+      "Construção de APIs REST",
+      "Integração com sistemas legados"
+    ],
     "frontend": [
       "Angular",
       "TypeScript",
       "RxJS",
       "HTML5 e CSS3",
       "Tailwind CSS"
-    ],
-    "backend": [
-      "Node.js (NestJS / Express)",
-      "Java (Spring Boot)",
-      "PHP (manutenção e refatoração)",
-      "Construção de APIs REST",
-      "Integração com sistemas legados"
     ],
     "database": [
       "Oracle (consultas e procedimentos)",
@@ -167,40 +171,67 @@
   ],
   "projects": [
     {
-      "name": "Sistema para Refeitório",
-      "tag": "Angular + Node.js + Prisma",
-      "description": "Sistema web para controlar refeições diárias de funcionários com integração ao módulo Folha do Domínio Web.",
-      "details": {
-        "problem": "Dificuldade em gerenciar registros de refeitórios e falta de automação para um este processo que facilite a operação no DP.",
-        "decision": "Customização do ElementarUI, aplicação web em Angular com o AngularMaterial e API construída em Node.js com Prisma.",
-        "architecture": "Backend atuando como camada intermediária entre o ERP Oracle e o frontend web.",
-        "benefit": "Maior agilidade e centralização das informações, automação e redução do tempo gasto em tarefas operacionais exportando arquivo de integração para o Domínio Folha."
+      "id": "sistema-para-refeitorio",
+      "title": "Sistema para Refeitório",
+      "context": "Sistema web para controlar refeições diárias de funcionários com integração ao módulo Folha do Domínio Web. Dificuldade em gerenciar registros de refeitórios e falta de automação para um este processo que facilite a operação no DP.",
+      "tech_stack": [
+        "Angular",
+        "Node.js",
+        "Prisma"
+      ],
+      "business_impact": [
+        "Maior agilidade.",
+        "Centralização das informações.",
+        "Automação.",
+        "Redução do tempo gasto em tarefas operacionais exportando arquivo de integração para o Domínio Folha."
+      ],
+      "links": {
+        "live": "https://github.com/guilherme-castelo/elementar-admin",
+        "github": "https://github.com/guilherme-castelo/elementar-admin"
       },
-      "link": "https://github.com/guilherme-castelo/elementar-admin"
+      "images": []
     },
     {
-      "name": "Controle Financeiro",
-      "tag": "PHP + Bootstrap + Wamp",
-      "description": "Painel web para controle financeiro em grupo.",
-      "details": {
-        "problem": "Com diversos aplicativos e sites de controle financeiro, decidi criar o meu próprio.",
-        "decision": "Desenvolvimento de aplicação PHP com e Bootstrap com funcionalidades CRUD de contas, categorias, usuários e registros.",
-        "architecture": "Aplicação PHP com stack WAMP server e estilização Boostrap 5.",
-        "benefit": "Controle de gastos, contas, categorias de despesas e usuários."
+      "id": "controle-financeiro",
+      "title": "Controle Financeiro",
+      "context": "Painel web para controle financeiro em grupo. Com diversos aplicativos e sites de controle financeiro, decidi criar o meu próprio.",
+      "tech_stack": [
+        "PHP",
+        "Bootstrap",
+        "Wamp"
+      ],
+      "business_impact": [
+        "Controle de gastos.",
+        "Contas.",
+        "Categorias de despesas.",
+        "Usuários."
+      ],
+      "links": {
+        "live": "https://github.com/guilherme-castelo/financeiro",
+        "github": "https://github.com/guilherme-castelo/financeiro"
       },
-      "link": "https://github.com/guilherme-castelo/financeiro"
+      "images": []
     },
     {
-      "name": "Backend Almoxarifado",
-      "tag": "Node.js + TypeScript + TypeORM + Docker",
-      "description": "Um backend REST API para a equipes de RH gerenciar as entradas e saídas de EPIs e Uniformes de seus funcionários.",
-      "details": {
-        "problem": "Falta de controle e gerenciamento de estoque em almoxarifados com grande fluxo de movimentação.",
-        "decision": "Construção de API em Node.js com Typescript para gerenciamento de categorias, itens e movimentações.",
-        "architecture": "API REST, utilização de TypeORM para facilitar migrations e acesso a Bancos.",
-        "benefit": "Controle de estoque em almoxarifados, controle de movimentações de entrada e saída."
+      "id": "backend-almoxarifado",
+      "title": "Backend Almoxarifado",
+      "context": "Um backend REST API para a equipes de RH gerenciar as entradas e saídas de EPIs e Uniformes de seus funcionários. Falta de controle e gerenciamento de estoque em almoxarifados com grande fluxo de movimentação.",
+      "tech_stack": [
+        "Node.js",
+        "TypeScript",
+        "TypeORM",
+        "Docker"
+      ],
+      "business_impact": [
+        "Controle de estoque em almoxarifados.",
+        "Controle de movimentações de entrada.",
+        "Saída."
+      ],
+      "links": {
+        "live": "https://github.com/guilherme-castelo/backend-almoxarifado",
+        "github": "https://github.com/guilherme-castelo/backend-almoxarifado"
       },
-      "link": "https://github.com/guilherme-castelo/backend-almoxarifado"
+      "images": []
     }
   ],
   "education": [

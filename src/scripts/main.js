@@ -13,8 +13,9 @@ import {
   renderSectionHeaders,
   renderCertifications,
 } from "./renderers.js";
-import { initAnimations, hideLoader } from "./animations.js";
+import { initAnimations, hideLoader, initSpotlight } from "./animations.js";
 import { stopTerminalLogs } from "./terminal.js";
+import { initThemeToggle } from "./theme.js";
 
 const SECTION_IDS = Object.freeze([
   "hero",
@@ -37,6 +38,65 @@ function revealSections(ids) {
   });
 }
 
+function initMobileMenu() {
+  const btn = document.getElementById("mobile-menu-btn");
+  const closeBtn = document.getElementById("mobile-menu-close");
+  const menu = document.getElementById("mobile-menu");
+  const focusableElements = 'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
+
+  if (btn && menu && closeBtn) {
+    const openMenu = () => {
+      menu.classList.remove("hidden");
+      menu.classList.add("flex");
+      menu.setAttribute("aria-hidden", "false");
+      btn.setAttribute("aria-expanded", "true");
+      document.body.style.overflow = "hidden";
+      closeBtn.focus();
+    };
+
+    const closeMenu = () => {
+      menu.classList.add("hidden");
+      menu.classList.remove("flex");
+      menu.setAttribute("aria-hidden", "true");
+      btn.setAttribute("aria-expanded", "false");
+      document.body.style.overflow = "";
+      btn.focus();
+    };
+
+    btn.addEventListener("click", openMenu);
+    closeBtn.addEventListener("click", closeMenu);
+
+    // Focus trap & Escape key
+    menu.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closeMenu();
+      if (e.key === 'Tab') {
+        const focusableContent = menu.querySelectorAll(focusableElements);
+        const first = focusableContent[0];
+        const last = focusableContent[focusableContent.length - 1];
+        
+        if (e.shiftKey) { 
+          if (document.activeElement === first) {
+            last.focus();
+            e.preventDefault();
+          }
+        } else {
+          if (document.activeElement === last) {
+            first.focus();
+            e.preventDefault();
+          }
+        }
+      }
+    });
+
+    // Close menu when clicking any link inside it
+    menu.addEventListener("click", (e) => {
+      if (e.target.tagName === "A" || e.target.closest("a")) {
+        closeMenu();
+      }
+    });
+  }
+}
+
 async function bootstrap() {
   try {
     const data = await fetchProfileData();
@@ -51,16 +111,25 @@ async function bootstrap() {
     renderSocials(data.profile.socials);
     renderHeroHighlights(data.heroHighlights);
     renderSkills(data.skills);
-    renderExperience(data.experience);
+    renderExperience(data.experience || data.experiences || data.profile?.experience);
     renderProjects(data.projects);
     renderEducation(data.education);
     renderCertifications(data.certifications);
     renderFooter(data.site, data.profile);
 
-    // UI Post-processing
-    revealSections(SECTION_IDS);
-    hideLoader();
-    initAnimations();
+    // UI Post-processing (deferred to next frame to ensure layouts are painted)
+    requestAnimationFrame(() => {
+      initThemeToggle();
+      initMobileMenu();
+      revealSections(SECTION_IDS);
+      initAnimations();
+      try {
+        initSpotlight();
+      } catch (err) {
+        console.warn("Spotlight effect failed to initialize:", err);
+      }
+      setTimeout(hideLoader, 100);
+    });
   } catch (error) {
     console.error("Critical Runtime Error:", error);
     stopTerminalLogs();

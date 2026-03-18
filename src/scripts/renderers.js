@@ -35,27 +35,52 @@ const CONTACT_CONFIG = {
 export function renderSiteMetadata(site, profile) {
   if (!site || !profile) return;
   document.title = site.title;
-  const metaDescription = document.querySelector('meta[name="description"]');
-  if (metaDescription) metaDescription.content = site.description;
+  
+  const setMeta = (attr, key, val) => {
+    let el = document.querySelector(`meta[${attr}="${key}"]`);
+    if (!el) {
+      el = document.createElement('meta');
+      el.setAttribute(attr, key);
+      document.head.appendChild(el);
+    }
+    el.setAttribute('content', val);
+  };
+
+  setMeta('name', 'description', site.description);
+  setMeta('property', 'og:title', site.title);
+  setMeta('property', 'og:description', site.description);
+  setMeta('property', 'og:image', profile.avatar);
+  setMeta('name', 'twitter:card', 'summary_large_image');
 
   const skipLink = document.querySelector('a[href="#main-content"]');
   if (skipLink) skipLink.innerText = site.skipLink;
 
-  const logo = document.querySelector("header .text-white");
-  if (logo) logo.innerHTML = `${profile.nickname}<span class="text-blue-500">.</span>`;
+  const logo = document.querySelector("header nav > div:first-child");
+  if (logo) logo.innerHTML = `${profile.nickname}<span class="text-cyan-500">.</span>`;
 }
 
 export function renderNavigation(site) {
   if (!site?.nav) return;
   const navContainer = document.getElementById("main-nav-links");
-  if (navContainer) {
-    navContainer.innerHTML = site.nav
-      .map(item => `<a href="${item.anchor}" class="nav-link hover:text-white transition-colors">${item.label}</a>`)
+  const mobileNavContainer = document.getElementById("main-nav-links-mobile");
+  
+  const navLinksHTML = site.nav
+      .map(item => `<a href="${item.anchor}" class="nav-link hover:text-white transition-colors block md:inline-block">${item.label}</a>`)
       .join("");
+      
+  if (navContainer) {
+    navContainer.innerHTML = navLinksHTML;
+  }
+  
+  if (mobileNavContainer) {
+    mobileNavContainer.innerHTML = navLinksHTML;
   }
 
   const contactBtn = document.querySelector('header a[href="#contact"]');
   if (contactBtn) contactBtn.innerText = site.contactBtn;
+  
+  const mobileContactBtn = document.getElementById("mobile-contact-btn");
+  if (mobileContactBtn) mobileContactBtn.innerText = site.contactBtn;
 }
 
 export function renderProfile(profile) {
@@ -71,7 +96,7 @@ export function renderProfile(profile) {
   const titleEl = document.getElementById("user-title");
   const summaryEl = document.getElementById("user-summary");
 
-  if (imgContainer) imgContainer.innerHTML = `<img src="${profile.avatar}" class="z-10 w-48 h-48 rounded-full overflow-hidden border-4 border-blue-500/30 object-cover shadow-2xl" alt="${profile.name}">`;
+  if (imgContainer) imgContainer.innerHTML = `<img src="${profile.avatar}" class="w-full h-full rounded-full object-cover border-4 border-cyan-500/30 z-10 relative" loading="lazy" alt="${profile.name}">`;
   if (nameEl) nameEl.innerText = profile.name;
   if (titleEl) titleEl.innerText = profile.title;
   if (summaryEl) summaryEl.innerText = profile.summary;
@@ -87,7 +112,7 @@ export function renderSocials(socials) {
   container.innerHTML = socials
     .map(link => `
       <a href="${link.url}" target="_blank" 
-         class="px-10 py-5 ${link.primary ? "bg-white text-black" : "glass text-white border border-white/10 hover:border-blue-500"} font-black rounded-2xl transition-all transform hover:-translate-y-1 ${link.primary ? "shadow-2xl shadow-blue-500/10" : ""}">
+         class="px-10 py-5 flex items-center gap-3 ${link.primary ? "bg-slate-900 text-white dark:bg-white dark:text-slate-900 lg:hover:bg-cyan-500 dark:lg:hover:bg-cyan-400" : "bg-white/50 dark:bg-white/5 text-slate-700 dark:text-white border border-slate-200 dark:border-white/10 hover:border-cyan-500 lg:hover:shadow-lg dark:lg:hover:shadow-none"} font-black rounded-2xl transition-all transform hover:-translate-y-1 ${link.primary ? "shadow-xl shadow-cyan-500/20" : ""}">
          ${link.label}
       </a>
     `)
@@ -101,9 +126,9 @@ export function renderHeroHighlights(highlights) {
 
   container.innerHTML = highlights
     .map(item => `
-      <article class="p-8 rounded-[2rem] glass shine-effect border-${item.color}-500/10 hover:border-${item.color}-500/40 transition-all group">
+      <article class="p-4 md:p-8 rounded-2xl sm:rounded-[2rem] glass dark:bg-white/[0.03] bg-white/40 shine-effect border border-slate-200 dark:border-${item.color}-500/10 dark:hover:border-${item.color}-500/40 transition-all group">
           <h3 class="text-[10px] text-${item.color}-500 uppercase tracking-widest font-black mb-3 opacity-60">${item.label}</h3>
-          <p class="text-white font-extrabold text-2xl leading-none">${item.value}</p>
+          <p class="text-slate-900 dark:text-white font-extrabold text-md sm:text-lg md:text-1xl lg:text-2xl leading-none">${item.value}</p>
       </article>
     `)
     .join("");
@@ -117,14 +142,14 @@ export function renderSkills(skills) {
   const featuredEl = document.getElementById("featured-skill");
   if (featuredEl && featured) {
     featuredEl.innerHTML = `
-      <div class="absolute -right-20 -top-20 w-80 h-80 bg-blue-500/10 blur-[120px] pointer-events-none"></div>
+      <div class="absolute -right-20 -top-20 w-80 h-80 bg-cyan-500/10 blur-[120px] pointer-events-none"></div>
       <div class="space-y-3">
-          <p class="text-blue-500 text-xs font-black uppercase tracking-[0.3em]">${featured.eyebrow}</p>
-          <h3 class="text-5xl font-black text-white leading-tight">${featured.title}</h3>
+          <p class="text-cyan-500 text-xs font-semibold uppercase tracking-wider">${featured.eyebrow}</p>
+          <h3 class="text-4xl md:text-5xl font-bold text-slate-900 dark:text-white leading-tight">${featured.title}</h3>
       </div>
-      <p class="text-gray-400 text-xl font-light leading-relaxed">${featured.description}</p>
+      <p class="text-slate-600 dark:text-gray-400 text-lg md:text-xl font-normal leading-relaxed">${featured.description}</p>
       <div class="flex flex-wrap gap-2.5">
-          ${featured.principals.map(s => `<span class="px-3 py-1 rounded-lg bg-blue-500/10 text-blue-400 text-[10px] font-bold border border-blue-500/20">${s}</span>`).join("")}
+          ${featured.principals.map(s => `<span class="px-3 py-1 text-xs font-medium rounded-full bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">${s}</span>`).join("")}
       </div>
     `;
   }
@@ -133,21 +158,21 @@ export function renderSkills(skills) {
   if (!secondaryContainer) return;
 
   const categories = [
-    { key: "frontend", label: "Frontend & UI", color: "blue" },
-    { key: "backend", label: "Backend & Systems", color: "purple" },
+    { key: "frontend", label: "Frontend & UI", color: "cyan" },
+    { key: "backend", label: "Backend & Systems", color: "indigo" },
     { key: "database", label: "Database & Data", color: "emerald" },
-    { key: "others", label: "Tools & DevOps", color: "orange" },
+    { key: "others", label: "Tools & DevOps", color: "slate" },
   ];
 
   secondaryContainer.innerHTML = categories
     .map(cat => `
-      <div class="glass p-8 rounded-3xl glass-hover transition-all duration-300 flex flex-col justify-between">
+      <div class="spotlight-card bg-white dark:bg-white/[0.03] backdrop-blur-md border border-slate-200 dark:border-white/10 p-8 rounded-2xl hover:bg-slate-50 dark:hover:bg-white/[0.05] transition-all duration-300 shadow-sm dark:shadow-none hover:scale-[1.02] flex flex-col justify-between">
           <div class="space-y-4">
-              <h4 class="text-${cat.color}-500 text-[10px] font-black uppercase tracking-[0.2em]">${cat.label}</h4>
-              <div class="flex flex-wrap gap-x-4 gap-y-2">
+              <h4 class="text-${cat.color}-500 dark:text-${cat.color}-400 text-xs font-semibold uppercase tracking-wider">${cat.label}</h4>
+              <div class="flex flex-wrap gap-x-4 gap-y-3">
                   ${skills[cat.key].map(s => `
-                      <p class="text-white/80 text-sm font-medium flex items-center gap-2">
-                          <span class="w-1 h-1 bg-${cat.color}-500 rounded-full"></span>
+                      <p class="text-slate-700 dark:text-gray-300 text-sm font-medium flex items-center gap-2">
+                          <span class="w-1.5 h-1.5 bg-${cat.color}-500/40 dark:bg-${cat.color}-400/60 rounded-full"></span>
                           ${s}
                       </p>
                   `).join("")}
@@ -158,81 +183,274 @@ export function renderSkills(skills) {
     .join("");
 }
 
-export function renderExperience(experience) {
-  if (!experience) return;
-  const container = document.getElementById("experience-list");
-  if (!container) return;
+export function renderExperience(experienceData) {
+  try {
+    const container = document.getElementById("experience-list");
+    if (!container) return;
 
-  container.innerHTML = experience
-    .map(exp => `
-      <article class="grid md:grid-cols-12 gap-8 items-start relative section-reveal">
-          <div class="md:col-span-4 md:sticky md:top-32">
-              <span class="text-blue-500 font-mono text-xs mb-2 block font-bold">${exp.period}</span>
-              <h4 class="text-3xl font-black text-white tracking-tight">${exp.role}</h4>
-              <p class="text-blue-400 font-bold uppercase text-[10px] tracking-widest mt-1">${exp.company}</p>
-          </div>
-          <div class="md:col-span-8 space-y-6">
-              <p class="text-gray-400 text-lg font-light leading-relaxed italic border-l-2 border-blue-500/20 pl-6">${exp.description}</p>
-              <ul class="grid gap-4">
-                  ${exp.achievements.map(a => `
-                      <li class="flex items-start gap-3 p-4 rounded-2xl glass border-white/5 hover:border-white/10 transition-all">
-                          ${ICONS.CHECK}
-                          <span class="text-gray-300 text-sm leading-relaxed">${a}</span>
-                      </li>
-                  `).join("")}
-              </ul>
-          </div>
-      </article>
-    `)
-    .join("");
+    // Tolerate multiple schemas
+    const experience = experienceData || [];
+    
+    if (!Array.isArray(experience) || experience.length === 0) {
+      container.innerHTML = '<p class="text-gray-500 italic p-6 border border-white/5 rounded-2xl">Nenhuma experiência profissional cadastrada.</p>';
+      return;
+    }
+
+    container.innerHTML = experience
+      .map(exp => {
+        const period = exp.period || '';
+        const datetime = period ? period.split(' ')[0] : '';
+        const achievements = Array.isArray(exp.achievements) ? exp.achievements : [];
+        
+        return `
+        <article class="grid md:grid-cols-12 gap-8 items-start relative section-reveal">
+            <div class="md:col-span-4 md:sticky md:top-32">
+                <time datetime="${datetime}" class="text-cyan-500 font-mono text-sm mb-2 block font-semibold">${period}</time>
+                <h4 class="text-3xl font-bold text-slate-900 dark:text-white tracking-tight">${exp.role || 'Cargo não definido'}</h4>
+                <p class="text-cyan-500 dark:text-cyan-400 font-semibold uppercase text-xs tracking-wider mt-1">${exp.company || ''}</p>
+            </div>
+            <div class="md:col-span-8 space-y-6">
+                <p class="text-slate-600 dark:text-gray-400 text-base md:text-lg font-normal leading-relaxed italic border-l-2 border-cyan-500/20 pl-6">${exp.description || ''}</p>
+                <ul class="grid gap-4">
+                    ${achievements.map(a => `
+                        <li class="flex items-start gap-3 p-5 rounded-2xl bg-white dark:bg-white/[0.03] border border-slate-200 dark:border-white/5 hover:border-cyan-500/20 shadow-sm dark:shadow-none transition-all">
+                            ${ICONS.CHECK}
+                            <span class="text-slate-700 dark:text-gray-300 text-sm leading-relaxed">${a}</span>
+                        </li>
+                    `).join("")}
+                </ul>
+            </div>
+        </article>
+      `}).join("");
+  } catch (err) {
+    console.error("Error rendering experience:", err);
+    const container = document.getElementById("experience-list");
+    if (container) container.innerHTML = '<p class="text-red-500 italic p-6">Erro ao carregar seção de experiência.</p>';
+  }
 }
 
-export function renderProjects(projects) {
-  if (!projects) return;
-  const container = document.getElementById("projects-grid");
-  if (!container) return;
+let currentProjectIndex = 0;
+let projectsData = [];
 
-  container.innerHTML = projects
-    .map(project => `
-      <article class="glass p-10 rounded-[2.5rem] glass-hover group relative overflow-hidden flex flex-col gap-8 transition-all duration-500">
-          <div class="space-y-2">
-               <div class="flex justify-between items-start">
-                  <span class="text-blue-500 text-[10px] font-black uppercase tracking-[0.2em]">${project.tag}</span>
-                  <a href="${project.link}" target="_blank" class="w-10 h-10 rounded-full glass flex justify-center items-center group-hover:bg-white group-hover:text-black transition-all" aria-label="Ver Projeto">
-                      ${ICONS.ARROW_RIGHT}
-                  </a>
-               </div>
-              <h4 class="text-4xl font-black text-white tracking-tighter">${project.name}</h4>
-          </div>
-          
-          <div class="space-y-6">
-              <div class="p-5 rounded-2xl bg-white/5 space-y-2">
-                  <p class="text-xs font-bold text-white mb-1 uppercase tracking-widest opacity-50">Problem Solving</p>
-                  <p class="text-sm text-gray-300 leading-relaxed font-light">${project.details.problem}</p>
-              </div>
-              <div class="grid grid-cols-2 gap-4 text-[11px]">
-                  <div>
-                      <p class="text-[9px] font-bold text-blue-400 uppercase tracking-widest mb-1">Decisão</p>
-                      <p class="text-gray-400 leading-snug">${project.details.decision}</p>
-                  </div>
-                  <div>
-                      <p class="text-[9px] font-bold text-emerald-400 uppercase tracking-widest mb-1">Benefício</p>
-                      <p class="text-gray-400 leading-snug">${project.details.benefit}</p>
-                  </div>
-              </div>
-          </div>
-      </article>
-    `)
-    .join("");
+export function renderProjects(projects) {
+  if (!projects || projects.length === 0) return;
+  projectsData = projects;
+  
+  const track = document.getElementById("projects-track");
+  const prevBtn = document.getElementById("slider-prev");
+  const nextBtn = document.getElementById("slider-next");
+  const indicators = document.getElementById("slider-indicators");
+  if (!track) return;
+  
+  if (indicators) {
+      indicators.innerHTML = projects.map((_, i) => `<button class="w-2 h-2 rounded-full transition-all ${i === 0 ? 'bg-cyan-500 w-6' : 'bg-white/20'}" aria-label="Ir para projeto ${i + 1}" data-index="${i}"></button>`).join("");
+      
+      indicators.querySelectorAll("button").forEach(btn => {
+          btn.addEventListener("click", (e) => {
+              currentProjectIndex = parseInt(e.target.getAttribute("data-index"));
+              updateProjectsSlider();
+          });
+      });
+  }
+  
+  // Render cards ONCE into DOM
+  let html = "";
+  projects.forEach((project, i) => {
+      const cardStyle = `transform: translate3d(0, 0, -200px) scale(0.8); z-index: 0; opacity: 0; pointer-events: none; position: absolute; left: 0; right: 0; margin: 0 auto; top: 0; width: min(440px, 85vw); bottom: 0;`;
+      
+      const stack = project.tech_stack || (project.tag ? project.tag.split('+') : []);
+      const context = project.context || project.details?.problem || '';
+      const impacts = project.business_impact || (project.details?.benefit ? [project.details.benefit] : []);
+      const liveLink = project.links?.live || project.link || '';
+      const githubLink = project.links?.github || '';
+      const isSameLink = liveLink === githubLink;
+      
+      html += `
+          <article id="project-card-${i}" class="spotlight-card bg-white/90 dark:bg-[#0A0F1C]/90 backdrop-blur-xl border border-slate-200 dark:border-white/10 p-6 md:p-8 rounded-[2rem] flex flex-col gap-1 sm:gap-6 w-full h-full transition-all duration-500 ease-out shadow-lg dark:shadow-none" style="${cardStyle}" aria-hidden="true">
+             <div class="space-y-1 sm:space-y-4">
+                <div class="flex justify-between items-start gap-4">
+                    <div class="flex flex-wrap gap-1 sm:gap-2 flex-1">
+                        ${stack.map(tech => `<span class="px-2.5 py-1 bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 text-[10px] font-bold tracking-wider rounded-full border border-cyan-500/20">${tech.trim()}</span>`).join('')}
+                    </div>
+                    <div class="flex gap-2 shrink-0">
+                        ${githubLink ? `<a href="${githubLink}" target="_blank" class="w-10 h-10 rounded-full bg-slate-100 border border-slate-200 dark:bg-white/5 dark:border-white/10 flex justify-center items-center hover:bg-slate-200 dark:hover:bg-slate-800 transition-all hover:scale-110"><svg class="w-5 h-5 text-slate-700 dark:text-gray-300" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.373 0 12c0 5.302 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.627-5.373-12-12-12"/></svg></a>` : ''}
+                        ${liveLink && !isSameLink ? `<a href="${liveLink}" target="_blank" class="w-10 h-10 rounded-full bg-cyan-500/10 border border-cyan-500/20 flex justify-center items-center hover:bg-cyan-500 text-slate-700 dark:text-white hover:text-slate-900 transition-all hover:scale-110"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg></a>` : ''}
+                        ${liveLink && isSameLink && !githubLink ? `<a href="${liveLink}" target="_blank" class="w-10 h-10 rounded-full bg-cyan-500/10 border border-cyan-500/20 flex justify-center items-center hover:bg-cyan-500 text-slate-700 dark:text-white hover:text-slate-900 transition-all hover:scale-110"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg></a>` : ''}
+                    </div>
+                </div>
+                <h4 class="text-3xl font-bold text-slate-900 dark:text-white tracking-tight leading-tight text-center">${project.title || project.name}</h4>
+            </div>
+            
+            <div class="space-y-6 pt-2 border-t border-slate-200 dark:border-white/5 mt-auto flex-1 flex flex-col justify-between">
+                <p class="text-[15px] text-slate-600 dark:text-gray-300 leading-relaxed font-normal text-justify">${context}</p>
+                
+                <div class="space-y-6 sm:space-y-4 pt-4 border-t border-slate-200 dark:border-white/5">
+                    <p class="text-xs font-semibold uppercase tracking-wider text-slate-900 dark:text-white mb-3">Impacto no Negócio</p>
+                    <ul class="space-y-1 sm:space-y-3">
+                        ${impacts.map(impact => impact ? `
+                            <li class="flex items-start gap-1 sm:gap-3">
+                                <svg class="w-5 h-5 text-emerald-500 dark:text-emerald-400 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                                <span class="text-sm text-slate-600 dark:text-gray-400 leading-relaxed">${impact}</span>
+                            </li>
+                        ` : '').join("")}
+                    </ul>
+                </div>
+            </div>
+          </article>
+      `;
+  });
+  track.innerHTML = html;
+  
+  // Set initial slider layout
+  // Add a slight delay to ensure browser paints initial setup before transition
+  setTimeout(updateProjectsSlider, 10);
+  
+  if (prevBtn) prevBtn.addEventListener("click", () => {
+      currentProjectIndex = (currentProjectIndex === 0) ? projectsData.length - 1 : currentProjectIndex - 1;
+      updateProjectsSlider();
+  });
+  if (nextBtn) nextBtn.addEventListener("click", () => {
+      currentProjectIndex = (currentProjectIndex === projectsData.length - 1) ? 0 : currentProjectIndex + 1;
+      updateProjectsSlider();
+  });
+  
+  let touchStartX = 0;
+  let touchEndX = 0;
+  
+  track.addEventListener('touchstart', e => {
+      touchStartX = e.changedTouches[0].screenX;
+  }, { passive: true });
+  
+  track.addEventListener('touchend', e => {
+      touchEndX = e.changedTouches[0].screenX;
+      handleSwipe();
+  }, { passive: true });
+  
+  function handleSwipe() {
+      const diff = touchStartX - touchEndX;
+      if (Math.abs(diff) > 50) {
+          if (diff > 0) {
+              currentProjectIndex = (currentProjectIndex === projectsData.length - 1) ? 0 : currentProjectIndex + 1;
+          } else {
+              currentProjectIndex = (currentProjectIndex === 0) ? projectsData.length - 1 : currentProjectIndex - 1;
+          }
+          updateProjectsSlider();
+      }
+  }
+  
+  document.addEventListener('keydown', e => {
+      const rect = track.getBoundingClientRect();
+      const inView = rect.top < window.innerHeight && rect.bottom > 0;
+      if (!inView) return;
+      
+      if (e.key === 'ArrowLeft') {
+          currentProjectIndex = (currentProjectIndex === 0) ? projectsData.length - 1 : currentProjectIndex - 1;
+          updateProjectsSlider();
+      } else if (e.key === 'ArrowRight') {
+          currentProjectIndex = (currentProjectIndex === projectsData.length - 1) ? 0 : currentProjectIndex + 1;
+          updateProjectsSlider();
+      }
+  });
+
+  window.addEventListener('resize', () => {
+      requestAnimationFrame(updateProjectsSlider);
+  });
+}
+
+function updateProjectsSlider() {
+    const track = document.getElementById("projects-track");
+    if (!track || projectsData.length === 0) return;
+    
+    // Update indicators
+    const indicators = document.getElementById("slider-indicators");
+    if (indicators) {
+        indicators.querySelectorAll("button").forEach((btn, i) => {
+            if (i === currentProjectIndex) {
+                btn.className = "w-6 h-2 rounded-full transition-all bg-cyan-500 duration-300";
+            } else {
+                btn.className = "w-2 h-2 rounded-full transition-all bg-white/20 duration-300 hover:bg-white/40";
+            }
+        });
+    }
+
+    const isMobile = window.innerWidth <= 768;
+    const len = projectsData.length;
+    
+    projectsData.forEach((_, i) => {
+        const card = document.getElementById(`project-card-${i}`);
+        if (!card) return;
+        
+        // Calculate relative position to handle infinite scrolling loop seamlessly
+        let diff = i - currentProjectIndex;
+        if (diff > Math.floor(len / 2)) diff -= len;
+        if (diff < -Math.floor(len / 2)) diff += len;
+        
+        let transformStr = "translate3d(0, 0, -200px) scale(0.8)";
+        let zIndex = 0;
+        let opacity = 0;
+        let pointerEvents = "none";
+        
+        if (diff === 0) {
+            // Current Active Card
+            transformStr = "translate3d(0, 0, 0) scale(1)";
+            zIndex = 20;
+            opacity = 1;
+            pointerEvents = "auto";
+            card.setAttribute("aria-hidden", "false");
+            card.classList.add("border-cyan-500/30", "shadow-[0_0_30px_rgba(6,182,212,0.15)]");
+            card.classList.remove("border-white/10");
+            
+            // Allow child links to be focusable
+            card.querySelectorAll("a").forEach(a => a.setAttribute("tabindex", "0"));
+            
+        } else if (diff === -1 || (len === 2 && currentProjectIndex === 0 && i === 1)) {
+            // Left Card
+            transformStr = isMobile ? "translate3d(-110%, 0, 0) scale(0.95)" : "translate3d(-65%, 0, 0) scale(0.92)";
+            zIndex = 10;
+            opacity = 0.4;
+            card.setAttribute("aria-hidden", "true");
+            card.classList.remove("border-cyan-500/30", "shadow-[0_0_30px_rgba(6,182,212,0.15)]");
+            card.classList.add("border-white/10");
+            
+            card.querySelectorAll("a").forEach(a => a.setAttribute("tabindex", "-1"));
+            
+        } else if (diff === 1 || (len === 2 && currentProjectIndex === 1 && i === 0)) {
+            // Right Card
+            transformStr = isMobile ? "translate3d(110%, 0, 0) scale(0.95)" : "translate3d(65%, 0, 0) scale(0.92)";
+            zIndex = 10;
+            opacity = 0.4;
+            card.setAttribute("aria-hidden", "true");
+            card.classList.remove("border-cyan-500/30", "shadow-[0_0_30px_rgba(6,182,212,0.15)]");
+            card.classList.add("border-white/10");
+            
+            card.querySelectorAll("a").forEach(a => a.setAttribute("tabindex", "-1"));
+            
+        } else {
+            // Cards further away
+            transformStr = diff < -1 ? "translate3d(-150%, 0, 0) scale(0.8)" : "translate3d(150%, 0, 0) scale(0.8)";
+            zIndex = 0;
+            opacity = 0;
+            card.setAttribute("aria-hidden", "true");
+            card.classList.remove("border-cyan-500/30", "shadow-[0_0_30px_rgba(6,182,212,0.15)]");
+            card.classList.add("border-white/10");
+            
+            card.querySelectorAll("a").forEach(a => a.setAttribute("tabindex", "-1"));
+        }
+        
+        card.style.transform = transformStr;
+        card.style.zIndex = zIndex;
+        card.style.opacity = opacity;
+        card.style.pointerEvents = pointerEvents;
+    });
 }
 
 function renderListItem(item) {
   return `
-    <article class="grid-cols-12 gap-2 md:flex-row justify-between items-start md:items-center p-6 border-b border-white/5 last:border-0 hover:bg-white/5 transition-colors">
+    <article class="grid-cols-12 gap-2 md:flex-row justify-between items-start md:items-center p-6 border-b border-slate-200 dark:border-white/5 last:border-0 hover:bg-slate-50 dark:hover:bg-white/5 transition-colors">
         <div class="col-span-9">
-            <h4 class="text-white font-bold">${item.degree || item.name}</h4>
-            <p class="text-gray-500 text-sm">${item.institution}</p>
-            ${item.description ? `<p class="text-gray-400 text-sm mt-2">${item.description}</p>` : ""}
+            <h4 class="text-slate-900 dark:text-white font-bold">${item.degree || item.name}</h4>
+            <p class="text-slate-600 dark:text-gray-500 text-sm">${item.institution}</p>
+            ${item.description ? `<p class="text-slate-500 dark:text-gray-400 text-sm mt-2">${item.description}</p>` : ""}
         </div>
         <div class="col-span-3 text-right w-full">
           <span class="text-blue-500 font-mono text-xs font-bold">${item.year || item.period}</span>
@@ -259,7 +477,7 @@ export function renderSectionHeaders(sections) {
     const section = document.getElementById(id);
     if (section) {
       const h2 = section.querySelector("h2");
-      if (h2) h2.innerHTML = `<span class="text-gray-500 font-mono text-sm mr-2">${sections[id].number}.</span> ${sections[id].title}`;
+      if (h2) h2.innerHTML = `<span class="text-slate-400 dark:text-gray-500 font-mono text-sm mr-2">${sections[id].number}.</span> <span class="text-slate-900 dark:text-white">${sections[id].title}</span>`;
     }
   });
 }
@@ -283,7 +501,7 @@ export function renderFooter(site, profile) {
       .map(contact => {
         const config = CONTACT_CONFIG[contact.type] || {
           getHref: (v) => v,
-          btnClass: "glass text-white",
+          btnClass: "bg-white/50 border border-slate-200 text-slate-700 hover:bg-white dark:bg-white/5 dark:text-white dark:border-white/10 dark:hover:bg-white/10",
           icon: ""
         };
 
