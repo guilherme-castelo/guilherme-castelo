@@ -35,14 +35,28 @@ const CONTACT_CONFIG = {
 export function renderSiteMetadata(site, profile) {
   if (!site || !profile) return;
   document.title = site.title;
-  const metaDescription = document.querySelector('meta[name="description"]');
-  if (metaDescription) metaDescription.content = site.description;
+  
+  const setMeta = (attr, key, val) => {
+    let el = document.querySelector(`meta[${attr}="${key}"]`);
+    if (!el) {
+      el = document.createElement('meta');
+      el.setAttribute(attr, key);
+      document.head.appendChild(el);
+    }
+    el.setAttribute('content', val);
+  };
+
+  setMeta('name', 'description', site.description);
+  setMeta('property', 'og:title', site.title);
+  setMeta('property', 'og:description', site.description);
+  setMeta('property', 'og:image', profile.avatar);
+  setMeta('name', 'twitter:card', 'summary_large_image');
 
   const skipLink = document.querySelector('a[href="#main-content"]');
   if (skipLink) skipLink.innerText = site.skipLink;
 
   const logo = document.querySelector("header .text-white");
-  if (logo) logo.innerHTML = `${profile.nickname}<span class="text-blue-500">.</span>`;
+  if (logo) logo.innerHTML = `${profile.nickname}<span class="text-cyan-500">.</span>`;
 }
 
 export function renderNavigation(site) {
