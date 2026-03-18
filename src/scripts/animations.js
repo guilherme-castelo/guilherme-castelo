@@ -8,7 +8,7 @@ export function initAnimations() {
     rootMargin: "0px 0px -50px 0px",
   };
 
-  const revealElements = document.querySelectorAll(".reveal");
+  const revealElements = document.querySelectorAll(".reveal, .section-reveal");
   let revealedCount = 0;
 
   const observer = new IntersectionObserver((entries) => {
