@@ -13,7 +13,7 @@ import {
   renderSectionHeaders,
   renderCertifications,
 } from "./renderers.js";
-import { initAnimations, hideLoader } from "./animations.js";
+import { initAnimations, hideLoader, initSpotlight } from "./animations.js";
 import { stopTerminalLogs } from "./terminal.js";
 
 const SECTION_IDS = Object.freeze([
@@ -110,17 +110,24 @@ async function bootstrap() {
     renderSocials(data.profile.socials);
     renderHeroHighlights(data.heroHighlights);
     renderSkills(data.skills);
-    renderExperience(data.experience);
+    renderExperience(data.experience || data.experiences || data.profile?.experience);
     renderProjects(data.projects);
     renderEducation(data.education);
     renderCertifications(data.certifications);
     renderFooter(data.site, data.profile);
 
-    // UI Post-processing
-    initMobileMenu();
-    revealSections(SECTION_IDS);
-    hideLoader();
-    initAnimations();
+    // UI Post-processing (deferred to next frame to ensure layouts are painted)
+    requestAnimationFrame(() => {
+      initMobileMenu();
+      revealSections(SECTION_IDS);
+      initAnimations();
+      try {
+        initSpotlight();
+      } catch (err) {
+        console.warn("Spotlight effect failed to initialize:", err);
+      }
+      setTimeout(hideLoader, 100);
+    });
   } catch (error) {
     console.error("Critical Runtime Error:", error);
     stopTerminalLogs();

@@ -166,7 +166,7 @@ export function renderSkills(skills) {
 
   secondaryContainer.innerHTML = categories
     .map(cat => `
-      <div class="bg-white/[0.03] backdrop-blur-md border border-white/10 p-8 rounded-2xl hover:bg-white/[0.05] transition-all duration-300 flex flex-col justify-between">
+      <div class="spotlight-card bg-white/[0.03] backdrop-blur-md border border-white/10 p-8 rounded-2xl hover:bg-white/[0.05] transition-all duration-300 hover:scale-[1.02] flex flex-col justify-between">
           <div class="space-y-4">
               <h4 class="text-${cat.color}-400 text-xs font-semibold uppercase tracking-wider">${cat.label}</h4>
               <div class="flex flex-wrap gap-x-4 gap-y-3">
@@ -183,33 +183,50 @@ export function renderSkills(skills) {
     .join("");
 }
 
-export function renderExperience(experience) {
-  if (!experience) return;
-  const container = document.getElementById("experience-list");
-  if (!container) return;
+export function renderExperience(experienceData) {
+  try {
+    const container = document.getElementById("experience-list");
+    if (!container) return;
 
-  container.innerHTML = experience
-    .map(exp => `
-      <article class="grid md:grid-cols-12 gap-8 items-start relative section-reveal">
-          <div class="md:col-span-4 md:sticky md:top-32">
-              <time datetime="${exp.period.split(' ')[0]}" class="text-cyan-500 font-mono text-sm mb-2 block font-semibold">${exp.period}</time>
-              <h4 class="text-3xl font-bold text-white tracking-tight">${exp.role}</h4>
-              <p class="text-cyan-400 font-semibold uppercase text-xs tracking-wider mt-1">${exp.company}</p>
-          </div>
-          <div class="md:col-span-8 space-y-6">
-              <p class="text-gray-400 text-base md:text-lg font-normal leading-relaxed italic border-l-2 border-cyan-500/20 pl-6">${exp.description}</p>
-              <ul class="grid gap-4">
-                  ${exp.achievements.map(a => `
-                      <li class="flex items-start gap-3 p-5 rounded-2xl bg-white/[0.03] border border-white/5 hover:border-cyan-500/20 transition-all">
-                          ${ICONS.CHECK}
-                          <span class="text-gray-300 text-sm leading-relaxed">${a}</span>
-                      </li>
-                  `).join("")}
-              </ul>
-          </div>
-      </article>
-    `)
-    .join("");
+    // Tolerate multiple schemas
+    const experience = experienceData || [];
+    
+    if (!Array.isArray(experience) || experience.length === 0) {
+      container.innerHTML = '<p class="text-gray-500 italic p-6 border border-white/5 rounded-2xl">Nenhuma experiência profissional cadastrada.</p>';
+      return;
+    }
+
+    container.innerHTML = experience
+      .map(exp => {
+        const period = exp.period || '';
+        const datetime = period ? period.split(' ')[0] : '';
+        const achievements = Array.isArray(exp.achievements) ? exp.achievements : [];
+        
+        return `
+        <article class="grid md:grid-cols-12 gap-8 items-start relative section-reveal">
+            <div class="md:col-span-4 md:sticky md:top-32">
+                <time datetime="${datetime}" class="text-cyan-500 font-mono text-sm mb-2 block font-semibold">${period}</time>
+                <h4 class="text-3xl font-bold text-white tracking-tight">${exp.role || 'Cargo não definido'}</h4>
+                <p class="text-cyan-400 font-semibold uppercase text-xs tracking-wider mt-1">${exp.company || ''}</p>
+            </div>
+            <div class="md:col-span-8 space-y-6">
+                <p class="text-gray-400 text-base md:text-lg font-normal leading-relaxed italic border-l-2 border-cyan-500/20 pl-6">${exp.description || ''}</p>
+                <ul class="grid gap-4">
+                    ${achievements.map(a => `
+                        <li class="flex items-start gap-3 p-5 rounded-2xl bg-white/[0.03] border border-white/5 hover:border-cyan-500/20 transition-all">
+                            ${ICONS.CHECK}
+                            <span class="text-gray-300 text-sm leading-relaxed">${a}</span>
+                        </li>
+                    `).join("")}
+                </ul>
+            </div>
+        </article>
+      `}).join("");
+  } catch (err) {
+    console.error("Error rendering experience:", err);
+    const container = document.getElementById("experience-list");
+    if (container) container.innerHTML = '<p class="text-red-500 italic p-6">Erro ao carregar seção de experiência.</p>';
+  }
 }
 
 export function renderProjects(projects) {
@@ -230,7 +247,7 @@ export function renderProjects(projects) {
       const isSameLink = liveLink === githubLink;
       
       return `
-      <article class="bg-white/[0.03] backdrop-blur-md border border-white/10 p-8 rounded-2xl hover:bg-white/[0.05] hover:border-cyan-500/30 transition-all duration-300 group relative overflow-hidden flex flex-col gap-6">
+      <article class="spotlight-card bg-white/[0.03] backdrop-blur-md border border-white/10 p-8 rounded-2xl hover:bg-white/[0.05] hover:border-cyan-500/30 transition-all duration-300 hover:scale-[1.02] group overflow-hidden flex flex-col gap-6">
           <div class="space-y-4">
               <div class="flex justify-between items-start gap-4">
                   <div class="flex flex-wrap gap-2 flex-1">
