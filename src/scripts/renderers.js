@@ -48,14 +48,25 @@ export function renderSiteMetadata(site, profile) {
 export function renderNavigation(site) {
   if (!site?.nav) return;
   const navContainer = document.getElementById("main-nav-links");
-  if (navContainer) {
-    navContainer.innerHTML = site.nav
-      .map(item => `<a href="${item.anchor}" class="nav-link hover:text-white transition-colors">${item.label}</a>`)
+  const mobileNavContainer = document.getElementById("main-nav-links-mobile");
+  
+  const navLinksHTML = site.nav
+      .map(item => `<a href="${item.anchor}" class="nav-link hover:text-white transition-colors block md:inline-block">${item.label}</a>`)
       .join("");
+      
+  if (navContainer) {
+    navContainer.innerHTML = navLinksHTML;
+  }
+  
+  if (mobileNavContainer) {
+    mobileNavContainer.innerHTML = navLinksHTML;
   }
 
   const contactBtn = document.querySelector('header a[href="#contact"]');
   if (contactBtn) contactBtn.innerText = site.contactBtn;
+  
+  const mobileContactBtn = document.getElementById("mobile-contact-btn");
+  if (mobileContactBtn) mobileContactBtn.innerText = site.contactBtn;
 }
 
 export function renderProfile(profile) {
@@ -117,14 +128,14 @@ export function renderSkills(skills) {
   const featuredEl = document.getElementById("featured-skill");
   if (featuredEl && featured) {
     featuredEl.innerHTML = `
-      <div class="absolute -right-20 -top-20 w-80 h-80 bg-blue-500/10 blur-[120px] pointer-events-none"></div>
+      <div class="absolute -right-20 -top-20 w-80 h-80 bg-cyan-500/10 blur-[120px] pointer-events-none"></div>
       <div class="space-y-3">
-          <p class="text-blue-500 text-xs font-black uppercase tracking-[0.3em]">${featured.eyebrow}</p>
-          <h3 class="text-5xl font-black text-white leading-tight">${featured.title}</h3>
+          <p class="text-cyan-500 text-xs font-semibold uppercase tracking-wider">${featured.eyebrow}</p>
+          <h3 class="text-4xl md:text-5xl font-bold text-white leading-tight">${featured.title}</h3>
       </div>
-      <p class="text-gray-400 text-xl font-light leading-relaxed">${featured.description}</p>
+      <p class="text-gray-400 text-lg md:text-xl font-normal leading-relaxed">${featured.description}</p>
       <div class="flex flex-wrap gap-2.5">
-          ${featured.principals.map(s => `<span class="px-3 py-1 rounded-lg bg-blue-500/10 text-blue-400 text-[10px] font-bold border border-blue-500/20">${s}</span>`).join("")}
+          ${featured.principals.map(s => `<span class="px-3 py-1 text-xs font-medium rounded-full bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">${s}</span>`).join("")}
       </div>
     `;
   }
@@ -133,21 +144,21 @@ export function renderSkills(skills) {
   if (!secondaryContainer) return;
 
   const categories = [
-    { key: "frontend", label: "Frontend & UI", color: "blue" },
-    { key: "backend", label: "Backend & Systems", color: "purple" },
+    { key: "frontend", label: "Frontend & UI", color: "cyan" },
+    { key: "backend", label: "Backend & Systems", color: "indigo" },
     { key: "database", label: "Database & Data", color: "emerald" },
-    { key: "others", label: "Tools & DevOps", color: "orange" },
+    { key: "others", label: "Tools & DevOps", color: "slate" },
   ];
 
   secondaryContainer.innerHTML = categories
     .map(cat => `
-      <div class="glass p-8 rounded-3xl glass-hover transition-all duration-300 flex flex-col justify-between">
+      <div class="bg-white/[0.03] backdrop-blur-md border border-white/10 p-8 rounded-2xl hover:bg-white/[0.05] transition-all duration-300 flex flex-col justify-between">
           <div class="space-y-4">
-              <h4 class="text-${cat.color}-500 text-[10px] font-black uppercase tracking-[0.2em]">${cat.label}</h4>
-              <div class="flex flex-wrap gap-x-4 gap-y-2">
+              <h4 class="text-${cat.color}-400 text-xs font-semibold uppercase tracking-wider">${cat.label}</h4>
+              <div class="flex flex-wrap gap-x-4 gap-y-3">
                   ${skills[cat.key].map(s => `
-                      <p class="text-white/80 text-sm font-medium flex items-center gap-2">
-                          <span class="w-1 h-1 bg-${cat.color}-500 rounded-full"></span>
+                      <p class="text-gray-300 text-sm font-medium flex items-center gap-2">
+                          <span class="w-1.5 h-1.5 bg-${cat.color}-400/60 rounded-full"></span>
                           ${s}
                       </p>
                   `).join("")}
@@ -167,15 +178,15 @@ export function renderExperience(experience) {
     .map(exp => `
       <article class="grid md:grid-cols-12 gap-8 items-start relative section-reveal">
           <div class="md:col-span-4 md:sticky md:top-32">
-              <span class="text-blue-500 font-mono text-xs mb-2 block font-bold">${exp.period}</span>
-              <h4 class="text-3xl font-black text-white tracking-tight">${exp.role}</h4>
-              <p class="text-blue-400 font-bold uppercase text-[10px] tracking-widest mt-1">${exp.company}</p>
+              <time datetime="${exp.period.split(' ')[0]}" class="text-cyan-500 font-mono text-sm mb-2 block font-semibold">${exp.period}</time>
+              <h4 class="text-3xl font-bold text-white tracking-tight">${exp.role}</h4>
+              <p class="text-cyan-400 font-semibold uppercase text-xs tracking-wider mt-1">${exp.company}</p>
           </div>
           <div class="md:col-span-8 space-y-6">
-              <p class="text-gray-400 text-lg font-light leading-relaxed italic border-l-2 border-blue-500/20 pl-6">${exp.description}</p>
+              <p class="text-gray-400 text-base md:text-lg font-normal leading-relaxed italic border-l-2 border-cyan-500/20 pl-6">${exp.description}</p>
               <ul class="grid gap-4">
                   ${exp.achievements.map(a => `
-                      <li class="flex items-start gap-3 p-4 rounded-2xl glass border-white/5 hover:border-white/10 transition-all">
+                      <li class="flex items-start gap-3 p-5 rounded-2xl bg-white/[0.03] border border-white/5 hover:border-cyan-500/20 transition-all">
                           ${ICONS.CHECK}
                           <span class="text-gray-300 text-sm leading-relaxed">${a}</span>
                       </li>
@@ -194,30 +205,36 @@ export function renderProjects(projects) {
 
   container.innerHTML = projects
     .map(project => `
-      <article class="glass p-10 rounded-[2.5rem] glass-hover group relative overflow-hidden flex flex-col gap-8 transition-all duration-500">
+      <article class="bg-white/[0.03] backdrop-blur-md border border-white/10 p-8 rounded-2xl hover:bg-white/[0.05] hover:border-cyan-500/30 transition-all duration-300 group relative overflow-hidden flex flex-col gap-6">
           <div class="space-y-2">
                <div class="flex justify-between items-start">
-                  <span class="text-blue-500 text-[10px] font-black uppercase tracking-[0.2em]">${project.tag}</span>
-                  <a href="${project.link}" target="_blank" class="w-10 h-10 rounded-full glass flex justify-center items-center group-hover:bg-white group-hover:text-black transition-all" aria-label="Ver Projeto">
+                  <span class="text-cyan-500 text-xs font-semibold uppercase tracking-wider">${project.tag}</span>
+                  <a href="${project.link}" target="_blank" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex justify-center items-center group-hover:bg-cyan-500 group-hover:text-slate-900 group-hover:border-transparent transition-all" aria-label="Ver Projeto">
                       ${ICONS.ARROW_RIGHT}
                   </a>
                </div>
-              <h4 class="text-4xl font-black text-white tracking-tighter">${project.name}</h4>
+              <h4 class="text-3xl font-bold text-white tracking-tight">${project.name}</h4>
           </div>
           
-          <div class="space-y-6">
-              <div class="p-5 rounded-2xl bg-white/5 space-y-2">
-                  <p class="text-xs font-bold text-white mb-1 uppercase tracking-widest opacity-50">Problem Solving</p>
-                  <p class="text-sm text-gray-300 leading-relaxed font-light">${project.details.problem}</p>
+          <div class="space-y-6 pt-4 border-t border-white/5 mt-auto">
+              <div>
+                  <p class="text-base text-gray-300 leading-relaxed font-normal">${project.details.problem}</p>
               </div>
-              <div class="grid grid-cols-2 gap-4 text-[11px]">
-                  <div>
-                      <p class="text-[9px] font-bold text-blue-400 uppercase tracking-widest mb-1">Decisão</p>
-                      <p class="text-gray-400 leading-snug">${project.details.decision}</p>
+              
+              <div class="space-y-4 pt-4 border-t border-white/5">
+                  <div class="flex items-start gap-3">
+                      <svg class="w-5 h-5 text-cyan-400 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                      <div>
+                         <p class="text-sm font-semibold text-white mb-1">Decisão Técnica</p>
+                         <p class="text-sm text-gray-400 leading-relaxed">${project.details.decision}</p>
+                      </div>
                   </div>
-                  <div>
-                      <p class="text-[9px] font-bold text-emerald-400 uppercase tracking-widest mb-1">Benefício</p>
-                      <p class="text-gray-400 leading-snug">${project.details.benefit}</p>
+                  <div class="flex items-start gap-3">
+                      <svg class="w-5 h-5 text-emerald-400 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                      <div>
+                         <p class="text-sm font-semibold text-white mb-1">Impacto Gerado</p>
+                         <p class="text-sm text-gray-400 leading-relaxed">${project.details.benefit}</p>
+                      </div>
                   </div>
               </div>
           </div>

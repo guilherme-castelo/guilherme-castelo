@@ -37,6 +37,65 @@ function revealSections(ids) {
   });
 }
 
+function initMobileMenu() {
+  const btn = document.getElementById("mobile-menu-btn");
+  const closeBtn = document.getElementById("mobile-menu-close");
+  const menu = document.getElementById("mobile-menu");
+  const focusableElements = 'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
+
+  if (btn && menu && closeBtn) {
+    const openMenu = () => {
+      menu.classList.remove("hidden");
+      menu.classList.add("flex");
+      menu.setAttribute("aria-hidden", "false");
+      btn.setAttribute("aria-expanded", "true");
+      document.body.style.overflow = "hidden";
+      closeBtn.focus();
+    };
+
+    const closeMenu = () => {
+      menu.classList.add("hidden");
+      menu.classList.remove("flex");
+      menu.setAttribute("aria-hidden", "true");
+      btn.setAttribute("aria-expanded", "false");
+      document.body.style.overflow = "";
+      btn.focus();
+    };
+
+    btn.addEventListener("click", openMenu);
+    closeBtn.addEventListener("click", closeMenu);
+
+    // Focus trap & Escape key
+    menu.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closeMenu();
+      if (e.key === 'Tab') {
+        const focusableContent = menu.querySelectorAll(focusableElements);
+        const first = focusableContent[0];
+        const last = focusableContent[focusableContent.length - 1];
+        
+        if (e.shiftKey) { 
+          if (document.activeElement === first) {
+            last.focus();
+            e.preventDefault();
+          }
+        } else {
+          if (document.activeElement === last) {
+            first.focus();
+            e.preventDefault();
+          }
+        }
+      }
+    });
+
+    // Close menu when clicking any link inside it
+    menu.addEventListener("click", (e) => {
+      if (e.target.tagName === "A" || e.target.closest("a")) {
+        closeMenu();
+      }
+    });
+  }
+}
+
 async function bootstrap() {
   try {
     const data = await fetchProfileData();
@@ -58,6 +117,7 @@ async function bootstrap() {
     renderFooter(data.site, data.profile);
 
     // UI Post-processing
+    initMobileMenu();
     revealSections(SECTION_IDS);
     hideLoader();
     initAnimations();
