@@ -229,60 +229,219 @@ export function renderExperience(experienceData) {
   }
 }
 
-export function renderProjects(projects) {
-  if (!projects) return;
-  const container = document.getElementById("projects-grid");
-  if (!container) return;
+let currentProjectIndex = 0;
+let projectsData = [];
 
-  container.innerHTML = projects
-    .map(project => {
-      // Safe fallback extraction for legacy keys
+export function renderProjects(projects) {
+  if (!projects || projects.length === 0) return;
+  projectsData = projects;
+  
+  const track = document.getElementById("projects-track");
+  const prevBtn = document.getElementById("slider-prev");
+  const nextBtn = document.getElementById("slider-next");
+  const indicators = document.getElementById("slider-indicators");
+  if (!track) return;
+  
+  if (indicators) {
+      indicators.innerHTML = projects.map((_, i) => `<button class="w-2 h-2 rounded-full transition-all ${i === 0 ? 'bg-cyan-500 w-6' : 'bg-white/20'}" aria-label="Ir para projeto ${i + 1}" data-index="${i}"></button>`).join("");
+      
+      indicators.querySelectorAll("button").forEach(btn => {
+          btn.addEventListener("click", (e) => {
+              currentProjectIndex = parseInt(e.target.getAttribute("data-index"));
+              updateProjectsSlider();
+          });
+      });
+  }
+  
+  // Render cards ONCE into DOM
+  let html = "";
+  projects.forEach((project, i) => {
+      const cardStyle = `transform: translate3d(0, 0, -200px) scale(0.8); z-index: 0; opacity: 0; pointer-events: none; position: absolute; left: 0; right: 0; margin: 0 auto; top: 0; width: min(440px, 85vw); bottom: 0;`;
+      
       const stack = project.tech_stack || (project.tag ? project.tag.split('+') : []);
       const context = project.context || project.details?.problem || '';
       const impacts = project.business_impact || (project.details?.benefit ? [project.details.benefit] : []);
       const liveLink = project.links?.live || project.link || '';
       const githubLink = project.links?.github || '';
-
-      // Determine single link behavior
       const isSameLink = liveLink === githubLink;
       
-      return `
-      <article class="spotlight-card bg-white/[0.03] backdrop-blur-md border border-white/10 p-8 rounded-2xl hover:bg-white/[0.05] hover:border-cyan-500/30 transition-all duration-300 hover:scale-[1.02] group overflow-hidden flex flex-col gap-6">
-          <div class="space-y-4">
-              <div class="flex justify-between items-start gap-4">
-                  <div class="flex flex-wrap gap-2 flex-1">
-                      ${stack.map(tech => `<span class="px-2.5 py-1 bg-cyan-500/10 text-cyan-400 text-[10px] font-bold tracking-wider rounded-full border border-cyan-500/20">${tech.trim()}</span>`).join('')}
-                  </div>
-                  <div class="flex gap-2 shrink-0">
-                      ${githubLink ? `<a href="${githubLink}" target="_blank" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex justify-center items-center hover:bg-slate-800 transition-all hover:scale-110" aria-label="Ver Repositório GitHub"><svg class="w-5 h-5 text-gray-300" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.373 0 12c0 5.302 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.627-5.373-12-12-12"/></svg></a>` : ''}
-                      ${liveLink && !isSameLink ? `<a href="${liveLink}" target="_blank" class="w-10 h-10 rounded-full bg-cyan-500/10 border border-cyan-500/20 flex justify-center items-center hover:bg-cyan-500 hover:text-slate-900 hover:border-transparent transition-all hover:scale-110" aria-label="Ver Aplicação em Produção">${ICONS.ARROW_RIGHT}</a>` : ''}
-                      ${liveLink && isSameLink && !githubLink ? `<a href="${liveLink}" target="_blank" class="w-10 h-10 rounded-full bg-cyan-500/10 border border-cyan-500/20 flex justify-center items-center hover:bg-cyan-500 hover:text-slate-900 transition-all hover:scale-110" aria-label="Ver Projeto">${ICONS.ARROW_RIGHT}</a>` : ''}
-                  </div>
-              </div>
-              <h4 class="text-3xl font-bold text-white tracking-tight leading-tight">${project.title || project.name}</h4>
-          </div>
-          
-          <div class="space-y-6 pt-4 border-t border-white/5 mt-auto flex-1 flex flex-col justify-between">
-              <div>
-                  <p class="text-[15px] text-gray-300 leading-relaxed font-normal">${context}</p>
-              </div>
-              
-              <div class="space-y-4 pt-4 border-t border-white/5">
-                  <p class="text-xs font-semibold uppercase tracking-wider text-white mb-3">Impacto no Negócio</p>
-                  <ul class="space-y-3">
-                      ${impacts.map(impact => impact ? `
-                          <li class="flex items-start gap-3">
-                              <svg class="w-5 h-5 text-emerald-400 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                              <span class="text-sm text-gray-400 leading-relaxed">${impact}</span>
-                          </li>
-                      ` : '').join("")}
-                  </ul>
-              </div>
-          </div>
-      </article>
+      html += `
+          <article id="project-card-${i}" class="spotlight-card bg-[#0A0F1C]/90 backdrop-blur-xl border border-white/10 p-8 rounded-[2rem] flex flex-col gap-6 w-full h-full transition-all duration-500 ease-out" style="${cardStyle}" aria-hidden="true">
+             <div class="space-y-4">
+                <div class="flex justify-between items-start gap-4">
+                    <div class="flex flex-wrap gap-2 flex-1">
+                        ${stack.map(tech => `<span class="px-2.5 py-1 bg-cyan-500/10 text-cyan-400 text-[10px] font-bold tracking-wider rounded-full border border-cyan-500/20">${tech.trim()}</span>`).join('')}
+                    </div>
+                    <div class="flex gap-2 shrink-0">
+                        ${githubLink ? `<a href="${githubLink}" target="_blank" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex justify-center items-center hover:bg-slate-800 transition-all hover:scale-110"><svg class="w-5 h-5 text-gray-300" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.373 0 12c0 5.302 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.627-5.373-12-12-12"/></svg></a>` : ''}
+                        ${liveLink && !isSameLink ? `<a href="${liveLink}" target="_blank" class="w-10 h-10 rounded-full bg-cyan-500/10 border border-cyan-500/20 flex justify-center items-center hover:bg-cyan-500 hover:text-slate-900 transition-all hover:scale-110"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg></a>` : ''}
+                        ${liveLink && isSameLink && !githubLink ? `<a href="${liveLink}" target="_blank" class="w-10 h-10 rounded-full bg-cyan-500/10 border border-cyan-500/20 flex justify-center items-center hover:bg-cyan-500 hover:text-slate-900 transition-all hover:scale-110"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg></a>` : ''}
+                    </div>
+                </div>
+                <h4 class="text-3xl font-bold text-white tracking-tight leading-tight">${project.title || project.name}</h4>
+            </div>
+            
+            <div class="space-y-6 pt-4 border-t border-white/5 mt-auto flex-1 flex flex-col justify-between">
+                <p class="text-[15px] text-gray-300 leading-relaxed font-normal">${context}</p>
+                
+                <div class="space-y-4 pt-4 border-t border-white/5">
+                    <p class="text-xs font-semibold uppercase tracking-wider text-white mb-3">Impacto no Negócio</p>
+                    <ul class="space-y-3">
+                        ${impacts.map(impact => impact ? `
+                            <li class="flex items-start gap-3">
+                                <svg class="w-5 h-5 text-emerald-400 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                                <span class="text-sm text-gray-400 leading-relaxed">${impact}</span>
+                            </li>
+                        ` : '').join("")}
+                    </ul>
+                </div>
+            </div>
+          </article>
       `;
-    })
-    .join("");
+  });
+  track.innerHTML = html;
+  
+  // Set initial slider layout
+  // Add a slight delay to ensure browser paints initial setup before transition
+  setTimeout(updateProjectsSlider, 10);
+  
+  if (prevBtn) prevBtn.addEventListener("click", () => {
+      currentProjectIndex = (currentProjectIndex === 0) ? projectsData.length - 1 : currentProjectIndex - 1;
+      updateProjectsSlider();
+  });
+  if (nextBtn) nextBtn.addEventListener("click", () => {
+      currentProjectIndex = (currentProjectIndex === projectsData.length - 1) ? 0 : currentProjectIndex + 1;
+      updateProjectsSlider();
+  });
+  
+  let touchStartX = 0;
+  let touchEndX = 0;
+  
+  track.addEventListener('touchstart', e => {
+      touchStartX = e.changedTouches[0].screenX;
+  }, { passive: true });
+  
+  track.addEventListener('touchend', e => {
+      touchEndX = e.changedTouches[0].screenX;
+      handleSwipe();
+  }, { passive: true });
+  
+  function handleSwipe() {
+      const diff = touchStartX - touchEndX;
+      if (Math.abs(diff) > 50) {
+          if (diff > 0) {
+              currentProjectIndex = (currentProjectIndex === projectsData.length - 1) ? 0 : currentProjectIndex + 1;
+          } else {
+              currentProjectIndex = (currentProjectIndex === 0) ? projectsData.length - 1 : currentProjectIndex - 1;
+          }
+          updateProjectsSlider();
+      }
+  }
+  
+  document.addEventListener('keydown', e => {
+      const rect = track.getBoundingClientRect();
+      const inView = rect.top < window.innerHeight && rect.bottom > 0;
+      if (!inView) return;
+      
+      if (e.key === 'ArrowLeft') {
+          currentProjectIndex = (currentProjectIndex === 0) ? projectsData.length - 1 : currentProjectIndex - 1;
+          updateProjectsSlider();
+      } else if (e.key === 'ArrowRight') {
+          currentProjectIndex = (currentProjectIndex === projectsData.length - 1) ? 0 : currentProjectIndex + 1;
+          updateProjectsSlider();
+      }
+  });
+
+  window.addEventListener('resize', () => {
+      requestAnimationFrame(updateProjectsSlider);
+  });
+}
+
+function updateProjectsSlider() {
+    const track = document.getElementById("projects-track");
+    if (!track || projectsData.length === 0) return;
+    
+    // Update indicators
+    const indicators = document.getElementById("slider-indicators");
+    if (indicators) {
+        indicators.querySelectorAll("button").forEach((btn, i) => {
+            if (i === currentProjectIndex) {
+                btn.className = "w-6 h-2 rounded-full transition-all bg-cyan-500 duration-300";
+            } else {
+                btn.className = "w-2 h-2 rounded-full transition-all bg-white/20 duration-300 hover:bg-white/40";
+            }
+        });
+    }
+
+    const isMobile = window.innerWidth <= 768;
+    const len = projectsData.length;
+    
+    projectsData.forEach((_, i) => {
+        const card = document.getElementById(`project-card-${i}`);
+        if (!card) return;
+        
+        // Calculate relative position to handle infinite scrolling loop seamlessly
+        let diff = i - currentProjectIndex;
+        if (diff > Math.floor(len / 2)) diff -= len;
+        if (diff < -Math.floor(len / 2)) diff += len;
+        
+        let transformStr = "translate3d(0, 0, -200px) scale(0.8)";
+        let zIndex = 0;
+        let opacity = 0;
+        let pointerEvents = "none";
+        
+        if (diff === 0) {
+            // Current Active Card
+            transformStr = "translate3d(0, 0, 0) scale(1)";
+            zIndex = 20;
+            opacity = 1;
+            pointerEvents = "auto";
+            card.setAttribute("aria-hidden", "false");
+            card.classList.add("border-cyan-500/30", "shadow-[0_0_30px_rgba(6,182,212,0.15)]");
+            card.classList.remove("border-white/10");
+            
+            // Allow child links to be focusable
+            card.querySelectorAll("a").forEach(a => a.setAttribute("tabindex", "0"));
+            
+        } else if (diff === -1 || (len === 2 && currentProjectIndex === 0 && i === 1)) {
+            // Left Card
+            transformStr = isMobile ? "translate3d(-110%, 0, 0) scale(0.95)" : "translate3d(-65%, 0, 0) scale(0.92)";
+            zIndex = 10;
+            opacity = 0.4;
+            card.setAttribute("aria-hidden", "true");
+            card.classList.remove("border-cyan-500/30", "shadow-[0_0_30px_rgba(6,182,212,0.15)]");
+            card.classList.add("border-white/10");
+            
+            card.querySelectorAll("a").forEach(a => a.setAttribute("tabindex", "-1"));
+            
+        } else if (diff === 1 || (len === 2 && currentProjectIndex === 1 && i === 0)) {
+            // Right Card
+            transformStr = isMobile ? "translate3d(110%, 0, 0) scale(0.95)" : "translate3d(65%, 0, 0) scale(0.92)";
+            zIndex = 10;
+            opacity = 0.4;
+            card.setAttribute("aria-hidden", "true");
+            card.classList.remove("border-cyan-500/30", "shadow-[0_0_30px_rgba(6,182,212,0.15)]");
+            card.classList.add("border-white/10");
+            
+            card.querySelectorAll("a").forEach(a => a.setAttribute("tabindex", "-1"));
+            
+        } else {
+            // Cards further away
+            transformStr = diff < -1 ? "translate3d(-150%, 0, 0) scale(0.8)" : "translate3d(150%, 0, 0) scale(0.8)";
+            zIndex = 0;
+            opacity = 0;
+            card.setAttribute("aria-hidden", "true");
+            card.classList.remove("border-cyan-500/30", "shadow-[0_0_30px_rgba(6,182,212,0.15)]");
+            card.classList.add("border-white/10");
+            
+            card.querySelectorAll("a").forEach(a => a.setAttribute("tabindex", "-1"));
+        }
+        
+        card.style.transform = transformStr;
+        card.style.zIndex = zIndex;
+        card.style.opacity = opacity;
+        card.style.pointerEvents = pointerEvents;
+    });
 }
 
 function renderListItem(item) {

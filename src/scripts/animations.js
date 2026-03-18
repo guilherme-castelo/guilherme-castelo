@@ -61,8 +61,8 @@ export function initSpotlight() {
       }, { passive: true });
 
       card.addEventListener('mousemove', (e) => {
-        if (!bounds) return;
         requestAnimationFrame(() => {
+          if (!bounds) return;
           const x = e.clientX - bounds.left;
           const y = e.clientY - bounds.top;
           card.style.setProperty('--mouse-x', `${x}px`);

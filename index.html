@@ -132,12 +132,28 @@
       <div id="experience-list" class="space-y-32"></div>
     </section>
 
-    <section id="projects" class="hidden space-y-24 reveal">
+    <section id="projects" class="hidden space-y-16 reveal relative w-full" aria-label="Projetos">
       <header class="flex items-center gap-8">
         <h2 class="text-xl sm:text-3xl font-black text-white uppercase tracking-tighter shrink-0"></h2>
         <div class="h-[1px] flex-1 bg-white/10"></div>
       </header>
-      <div id="projects-grid" class="grid grid-cols-1 md:grid-cols-2 gap-10"></div>
+      
+      <div id="projects-carousel" class="relative w-full overflow-hidden py-4 flex flex-col items-center justify-center min-h-[600px] group">
+        <!-- Virtual Track -->
+        <div id="projects-track" class="relative w-full max-w-5xl min-h-[600px] flex items-stretch justify-center perspective-[1000px] touch-pan-y" aria-live="polite" aria-roledescription="carousel">
+        </div>
+        
+        <!-- Controls -->
+        <button id="slider-prev" class="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 z-30 w-10 md:w-14 h-10 md:h-14 flex items-center justify-center bg-white/5 hover:bg-white/10 border border-white/10 rounded-full text-white backdrop-blur-md transition-all opacity-0 group-hover:opacity-100 focus:opacity-100 shadow-xl" aria-label="Projeto anterior">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+        </button>
+        <button id="slider-next" class="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 z-30 w-10 md:w-14 h-10 md:h-14 flex items-center justify-center bg-white/5 hover:bg-white/10 border border-white/10 rounded-full text-white backdrop-blur-md transition-all opacity-0 group-hover:opacity-100 focus:opacity-100 shadow-xl" aria-label="Próximo projeto">
+           <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+        </button>
+        
+        <!-- Indicators -->
+        <div id="slider-indicators" class="absolute bottom-0 left-1/2 -translate-x-1/2 flex gap-3 z-30 pb-4"></div>
+      </div>
     </section>
 
     <section id="education-section" class="reveal space-y-16">
