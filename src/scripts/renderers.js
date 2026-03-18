@@ -126,9 +126,9 @@ export function renderHeroHighlights(highlights) {
 
   container.innerHTML = highlights
     .map(item => `
-      <article class="p-8 rounded-[2rem] glass shine-effect border-${item.color}-500/10 hover:border-${item.color}-500/40 transition-all group">
+      <article class="p-4 md:p-8 rounded-2xl sm:rounded-[2rem] glass shine-effect border-${item.color}-500/10 hover:border-${item.color}-500/40 transition-all group">
           <h3 class="text-[10px] text-${item.color}-500 uppercase tracking-widest font-black mb-3 opacity-60">${item.label}</h3>
-          <p class="text-white font-extrabold text-2xl leading-none">${item.value}</p>
+          <p class="text-white font-extrabold text-md sm:text-lg md:text-1xl lg:text-2xl leading-none">${item.value}</p>
       </article>
     `)
     .join("");
@@ -266,10 +266,10 @@ export function renderProjects(projects) {
       const isSameLink = liveLink === githubLink;
       
       html += `
-          <article id="project-card-${i}" class="spotlight-card bg-[#0A0F1C]/90 backdrop-blur-xl border border-white/10 p-8 rounded-[2rem] flex flex-col gap-6 w-full h-full transition-all duration-500 ease-out" style="${cardStyle}" aria-hidden="true">
-             <div class="space-y-4">
+          <article id="project-card-${i}" class="spotlight-card bg-[#0A0F1C]/90 backdrop-blur-xl border border-white/10 p-6 md:p-8 rounded-[2rem] flex flex-col gap-1 sm:gap-6 w-full h-full transition-all duration-500 ease-out" style="${cardStyle}" aria-hidden="true">
+             <div class="space-y-1 sm:space-y-4">
                 <div class="flex justify-between items-start gap-4">
-                    <div class="flex flex-wrap gap-2 flex-1">
+                    <div class="flex flex-wrap gap-1 sm:gap-2 flex-1">
                         ${stack.map(tech => `<span class="px-2.5 py-1 bg-cyan-500/10 text-cyan-400 text-[10px] font-bold tracking-wider rounded-full border border-cyan-500/20">${tech.trim()}</span>`).join('')}
                     </div>
                     <div class="flex gap-2 shrink-0">
@@ -278,17 +278,17 @@ export function renderProjects(projects) {
                         ${liveLink && isSameLink && !githubLink ? `<a href="${liveLink}" target="_blank" class="w-10 h-10 rounded-full bg-cyan-500/10 border border-cyan-500/20 flex justify-center items-center hover:bg-cyan-500 hover:text-slate-900 transition-all hover:scale-110"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg></a>` : ''}
                     </div>
                 </div>
-                <h4 class="text-3xl font-bold text-white tracking-tight leading-tight">${project.title || project.name}</h4>
+                <h4 class="text-3xl font-bold text-white tracking-tight leading-tight text-center">${project.title || project.name}</h4>
             </div>
             
-            <div class="space-y-6 pt-4 border-t border-white/5 mt-auto flex-1 flex flex-col justify-between">
-                <p class="text-[15px] text-gray-300 leading-relaxed font-normal">${context}</p>
+            <div class="space-y-6 pt-2 border-t border-white/5 mt-auto flex-1 flex flex-col justify-between">
+                <p class="text-[15px] text-gray-300 leading-relaxed font-normal text-justify">${context}</p>
                 
-                <div class="space-y-4 pt-4 border-t border-white/5">
+                <div class="space-y-6 sm:space-y-4 pt-4 border-t border-white/5">
                     <p class="text-xs font-semibold uppercase tracking-wider text-white mb-3">Impacto no Negócio</p>
-                    <ul class="space-y-3">
+                    <ul class="space-y-1 sm:space-y-3">
                         ${impacts.map(impact => impact ? `
-                            <li class="flex items-start gap-3">
+                            <li class="flex items-start gap-1 sm:gap-3">
                                 <svg class="w-5 h-5 text-emerald-400 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
                                 <span class="text-sm text-gray-400 leading-relaxed">${impact}</span>
                             </li>

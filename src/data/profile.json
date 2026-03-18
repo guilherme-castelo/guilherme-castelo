@@ -1,9 +1,8 @@
 {
   "site": {
     "title": "Guilherme Castelo",
-    "description": "Guilherme Castelo - Desenvolvedor de Software com foco em backend, integração de sistemas, ERPs e automação de processos.",
     "cta": "Guilherme Castelo",
-    "ctaSub": "Desenvolvedor de Software com foco em backend, integração de sistemas, ERPs e automação de processos.",
+    "ctaSub": "Desenvolvedor de Software Web com foco em Integração de Sistemas, APIs e Banco de Dados",
     "skipLink": "Pular para o conteúdo principal",
     "contactBtn": "Contato",
     "footerCopyright": "Guilherme Castelo © 2026 • solution developer",
@@ -60,8 +59,8 @@
     "name": "Guilherme Castelo",
     "avatar": "/src/assets/perfil.jpg",
     "nickname": "GC",
-    "title": "Desenvolvedor de Software | Backend com foco em APIs, Banco de Dados e Integração de Sistemas",
-    "heroEyebrow": "Backend, ERPs e Automação de Processos",
+    "title": "Desenvolvedor de Software Web com foco em Integração de Sistemas, APIs e Banco de Dados",
+    "heroEyebrow": "Backend, Frontend, ERPs e Automação de Processos",
     "location": "Brasil - Remoto",
     "summary": "Atuo no desenvolvimento de sistemas voltados para negócio, com foco em backend, integrações com ERP, APIs REST e banco de dados SQL. Tenho experiência prática na modernização e manutenção de sistemas legados, automação de rotinas internas e construção de aplicações web utilizando Angular no frontend e Node.js no backend. Gosto de resolver problemas reais da operação, transformando processos manuais em soluções digitais mais rápidas, seguras e organizadas.",
     "contacts": [
@@ -102,17 +101,17 @@
   "heroHighlights": [
     {
       "label": "Foco Principal",
-      "value": "Integração com ERP <br /> Automação de Processos",
+      "value": "Integração com ERP Automação de Processos",
       "color": "blue"
     },
     {
       "label": "Stack Base",
-      "value": "Angular + Node.js <br /> Spring Boot + SQL",
+      "value": "Angular + Node.js + SQL",
       "color": "purple"
     },
     {
       "label": "Atuação",
-      "value": "Sistemas Internos <br /> Dashboards e APIs",
+      "value": "Sistemas Internos, Dashboards e APIs",
       "color": "emerald"
     }
   ],
@@ -125,22 +124,22 @@
         "angular",
         "typescript",
         "node.js",
-        "mysql"
+        "mysql",
+        "html+css"
       ]
     },
+    "backend": [
+      "Node.js (NestJS / Express)",
+      "PHP (manutenção e refatoração)",
+      "Construção de APIs REST",
+      "Integração com sistemas legados"
+    ],
     "frontend": [
       "Angular",
       "TypeScript",
       "RxJS",
       "HTML5 e CSS3",
       "Tailwind CSS"
-    ],
-    "backend": [
-      "Node.js (NestJS / Express)",
-      "Java (Spring Boot)",
-      "PHP (manutenção e refatoração)",
-      "Construção de APIs REST",
-      "Integração com sistemas legados"
     ],
     "database": [
       "Oracle (consultas e procedimentos)",

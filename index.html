@@ -37,7 +37,7 @@
   </div>
 
   <header class="fixed top-0 left-0 w-full z-50 bg-[#0A0F1C]/80 backdrop-blur-xl border-b border-white/5 transition-all" role="banner">
-    <nav class="max-w-7xl mx-auto flex items-center justify-between px-6 py-4 md:px-12" aria-label="Navegação Principal" role="navigation">
+    <nav class="max-w-7xl mx-auto flex items-center justify-between p-4" aria-label="Navegação Principal" role="navigation">
       <div class="text-white font-bold tracking-tight text-xl"></div>
       
       <!-- Desktop Nav -->
@@ -68,9 +68,9 @@
     </div>
   </header>
 
-  <section id="hero" class="w-full bg-[#0A0F1C] bg-gradient-to-b from-[#0A0F1C] to-[transparent] pt-32 pb-24 md:pt-40 md:pb-32 hidden reveal relative border-b border-white/5" aria-label="Hero">
+  <section id="hero" class="w-full bg-[#0A0F1C] bg-gradient-to-b from-[#0A0F1C] to-[transparent] pt-24 pb-14 md:pt-48 md:pb-36 hidden reveal relative border-b border-white/5" aria-label="Hero">
     <div id="bg-terminal" aria-hidden="true" class="absolute inset-0 z-0 opacity-10 mix-blend-screen overflow-hidden pointer-events-none text-xs font-mono flex flex-col justify-end p-6"></div>
-    <div class="max-w-5xl mx-auto px-6 relative z-10 space-y-8">
+    <div class="max-w-7xl p-4 mx-auto relative z-10 space-y-8">
       <div class="flex flex-col md:flex-row items-center md:items-start gap-8 md:gap-16">
         <div id="user-img" class="shrink-0 z-10 w-24 h-24 sm:w-32 sm:h-32 md:w-48 md:h-48 relative overflow-visible"></div>
         <div class="flex-1 space-y-6">
@@ -87,7 +87,7 @@
         </div>
       </div>
 
-      <div id="hero-highlights-grid" class="grid grid-cols-2 md:grid-cols-3 gap-6 pt-16 border-t border-white/5"></div>
+      <div id="hero-highlights-grid" class="grid grid-cols-1 sm:grid-cols-2 md:flex md:flex-row gap-6 pt-6 border-t border-white/5"></div>
       <div class="flex flex-wrap gap-4 pt-8"></div>
     </div>
   </section>
@@ -138,7 +138,7 @@
         <div class="h-[1px] flex-1 bg-white/10"></div>
       </header>
       
-      <div id="projects-carousel" class="relative w-full overflow-hidden py-4 flex flex-col items-center justify-center min-h-[600px] group">
+      <div id="projects-carousel" class="relative w-full overflow-hidden py-4 flex flex-col items-center justify-center min-h-[560px] group">
         <!-- Virtual Track -->
         <div id="projects-track" class="relative w-full max-w-5xl min-h-[600px] flex items-stretch justify-center perspective-[1000px] touch-pan-y" aria-live="polite" aria-roledescription="carousel">
         </div>

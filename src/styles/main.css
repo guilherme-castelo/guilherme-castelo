@@ -97,7 +97,7 @@ section {
 
 .spotlight-card > * {
   position: relative;
-  z-index: 1;
+  z-index: 100;
 }
 
 /* Stagger reveals */
