@@ -1,16 +1,17 @@
 const fs = require('fs');
-const pdf = require('pdf-parse');
+const parse = require('pdf-parse');
 
 async function extract() {
     const files = [
-        './src/data/Curriculo Guilherme Castelo - Analista de Suporte Pleno - Desenvolvedor Web.pdf',
-        './src/data/Profile.pdf'
+        '.\\src\\data\\Curriculo Guilherme Castelo - Analista de Suporte Pleno - Desenvolvedor Web.pdf',
+        '.\\src\\data\\Profile.pdf'
     ];
     for (const file of files) {
         if (fs.existsSync(file)) {
             const dataBuffer = fs.readFileSync(file);
             try {
-                const data = await pdf(dataBuffer);
+                const parseFunc = typeof parse === 'function' ? parse : parse.default || parse.pdf;
+                const data = await parseFunc(dataBuffer);
                 console.log(`\n\n=== CONTENT OF ${file} ===\n\n`);
                 console.log(data.text);
             } catch (err) {

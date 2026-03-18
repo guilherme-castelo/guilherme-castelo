@@ -172,7 +172,7 @@
   ],
   "projects": [
     {
-      "id": "sistema-para-refeit-rio",
+      "id": "sistema-para-refeitorio",
       "title": "Sistema para Refeitório",
       "context": "Sistema web para controlar refeições diárias de funcionários com integração ao módulo Folha do Domínio Web. Dificuldade em gerenciar registros de refeitórios e falta de automação para um este processo que facilite a operação no DP.",
       "tech_stack": [
