@@ -265,14 +265,20 @@ export function renderProjects(projects) {
       const githubLink = project.links?.github || '';
       const isSameLink = liveLink === githubLink;
       
+      const images = project.images || [];
+      const hasImage = images.length > 0;
+      const imageUrl = hasImage ? images[0] : '';
+      const clickableClass = hasImage ? 'cursor-pointer hover:border-cyan-500/50 hover:shadow-[0_0_20px_rgba(6,182,212,0.2)]' : '';
+      
       html += `
-          <article id="project-card-${i}" class="spotlight-card bg-white/90 dark:bg-[#0A0F1C]/90 backdrop-blur-xl border border-slate-200 dark:border-white/10 p-6 md:p-8 rounded-[2rem] flex flex-col gap-1 sm:gap-6 w-full h-full transition-all duration-500 ease-out shadow-lg dark:shadow-none" style="${cardStyle}" aria-hidden="true">
-             <div class="space-y-1 sm:space-y-4">
+          <article id="project-card-${i}" class="spotlight-card ${clickableClass} bg-white/90 dark:bg-[#0A0F1C]/90 backdrop-blur-xl border border-slate-200 dark:border-white/10 p-6 md:p-8 rounded-[2rem] flex flex-col gap-1 sm:gap-6 w-full h-full transition-all duration-500 ease-out shadow-lg dark:shadow-none" style="${cardStyle}" aria-hidden="true" data-image="${imageUrl}">
+             <div class="space-y-1 sm:space-y-4 pointer-events-auto">
                 <div class="flex justify-between items-start gap-4">
-                    <div class="flex flex-wrap gap-1 sm:gap-2 flex-1">
+                    <div class="flex flex-wrap gap-1 sm:gap-2 flex-1 relative z-10">
                         ${stack.map(tech => `<span class="px-2.5 py-1 bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 text-[10px] font-bold tracking-wider rounded-full border border-cyan-500/20">${tech.trim()}</span>`).join('')}
                     </div>
-                    <div class="flex gap-2 shrink-0">
+                    <div class="flex gap-2 shrink-0 relative z-10">
+                        ${hasImage ? `<button aria-label="Visualizar Imagem" type="button" class="view-image-trigger w-10 h-10 rounded-full bg-emerald-500/10 border border-emerald-500/20 flex justify-center items-center hover:bg-emerald-500 text-slate-700 dark:text-emerald-400 hover:text-white transition-all hover:scale-110" data-image="${imageUrl}"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg></button>` : ''}
                         ${githubLink ? `<a href="${githubLink}" target="_blank" class="w-10 h-10 rounded-full bg-slate-100 border border-slate-200 dark:bg-white/5 dark:border-white/10 flex justify-center items-center hover:bg-slate-200 dark:hover:bg-slate-800 transition-all hover:scale-110"><svg class="w-5 h-5 text-slate-700 dark:text-gray-300" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.373 0 12c0 5.302 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.627-5.373-12-12-12"/></svg></a>` : ''}
                         ${liveLink && !isSameLink ? `<a href="${liveLink}" target="_blank" class="w-10 h-10 rounded-full bg-cyan-500/10 border border-cyan-500/20 flex justify-center items-center hover:bg-cyan-500 text-slate-700 dark:text-white hover:text-slate-900 transition-all hover:scale-110"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg></a>` : ''}
                         ${liveLink && isSameLink && !githubLink ? `<a href="${liveLink}" target="_blank" class="w-10 h-10 rounded-full bg-cyan-500/10 border border-cyan-500/20 flex justify-center items-center hover:bg-cyan-500 text-slate-700 dark:text-white hover:text-slate-900 transition-all hover:scale-110"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg></a>` : ''}
@@ -312,6 +318,34 @@ export function renderProjects(projects) {
   if (nextBtn) nextBtn.addEventListener("click", () => {
       currentProjectIndex = (currentProjectIndex === projectsData.length - 1) ? 0 : currentProjectIndex + 1;
       updateProjectsSlider();
+  });
+  
+  // Track specific global click listeners to handle Image Modal
+  track.addEventListener("click", (e) => {
+      const imgBtn = e.target.closest(".view-image-trigger");
+      if (imgBtn) {
+          e.preventDefault();
+          e.stopPropagation();
+          const card = imgBtn.closest("article[id^='project-card-']");
+          if (card) {
+              const i = card.id.split('-').pop();
+              if (projectsData[i] && projectsData[i].images) {
+                  openProjectImageModal(projectsData[i].images);
+              }
+          }
+          return;
+      }
+
+      const card = e.target.closest("article[id^='project-card-']");
+      if (!card) return;
+      
+      // Ignore clicks on anchors/buttons explicitly
+      if (e.target.closest("a") || e.target.closest("button")) return;
+
+      const i = card.id.split('-').pop();
+      if (projectsData[i] && projectsData[i].images && projectsData[i].images.length > 0) {
+          openProjectImageModal(projectsData[i].images);
+      }
   });
   
   let touchStartX = 0;
@@ -515,4 +549,133 @@ export function renderFooter(site, profile) {
       })
       .join("");
   }
+}
+
+// Global Image Modal Component for Projects
+let currentModalImages = [];
+let currentModalImageIndex = 0;
+
+function updateModalImage() {
+  const modal = document.getElementById('project-image-modal');
+  if (!modal) return;
+  const imgEl = modal.querySelector('#modal-image-img');
+  const indexEl = modal.querySelector('#modal-image-counter');
+  const prevBtn = modal.querySelector('#modal-prev-btn');
+  const nextBtn = modal.querySelector('#modal-next-btn');
+
+  if (currentModalImages.length > 0) {
+      imgEl.src = currentModalImages[currentModalImageIndex];
+  }
+  
+  if (currentModalImages.length > 1) {
+    indexEl.textContent = `${currentModalImageIndex + 1} / ${currentModalImages.length}`;
+    indexEl.classList.remove('hidden');
+    prevBtn.classList.remove('hidden');
+    nextBtn.classList.remove('hidden');
+  } else {
+    indexEl.classList.add('hidden');
+    prevBtn.classList.add('hidden');
+    nextBtn.classList.add('hidden');
+  }
+}
+
+function openProjectImageModal(images) {
+  if (!images || images.length === 0) return;
+  currentModalImages = images;
+  currentModalImageIndex = 0;
+
+  let modal = document.getElementById('project-image-modal');
+  if (!modal) {
+    modal = document.createElement('div');
+    modal.id = 'project-image-modal';
+    modal.className = 'fixed inset-0 z-[200] flex items-center justify-center p-4 bg-[#0A0F1C]/90 backdrop-blur-md opacity-0 pointer-events-none transition-opacity duration-300';
+    modal.innerHTML = `
+      <div class="relative max-w-6xl w-full flex flex-col items-center justify-center transform scale-95 opacity-0 transition-all duration-300 ease-out h-[90vh]" id="project-image-modal-content">
+        <button id="close-image-modal" class="absolute -top-10 md:-top-4 right-0 md:-right-12 bg-white/10 hover:bg-white/30 hover:scale-110 text-white w-10 h-10 rounded-full flex justify-center items-center backdrop-blur-md transition-all shadow-lg border border-white/20 z-[210]" aria-label="Fechar galeria de imagem">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+        </button>
+        
+        <div class="relative w-full h-full flex items-center justify-center group">
+            <button id="modal-prev-btn" class="absolute left-2 md:-left-12 z-[210] bg-slate-900/50 hover:bg-slate-900/80 hover:scale-110 text-white w-10 h-10 md:w-12 md:h-12 rounded-full flex justify-center items-center backdrop-blur-md transition-all shadow-lg border border-white/10 hidden" aria-label="Imagem anterior">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+            </button>
+            <img id="modal-image-img" src="" alt="Screenshot do Projeto" class="max-w-full max-h-[85vh] object-contain rounded-2xl shadow-[0_0_50px_rgba(6,182,212,0.15)] border border-slate-200/20 dark:border-white/10 relative z-[205] select-none">
+            <button id="modal-next-btn" class="absolute right-2 md:-right-12 z-[210] bg-slate-900/50 hover:bg-slate-900/80 hover:scale-110 text-white w-10 h-10 md:w-12 md:h-12 rounded-full flex justify-center items-center backdrop-blur-md transition-all shadow-lg border border-white/10 hidden" aria-label="Próxima imagem">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+            </button>
+        </div>
+        
+        <div id="modal-image-counter" class="absolute -bottom-8 md:-bottom-10 left-1/2 transform -translate-x-1/2 bg-slate-900/60 text-white text-xs font-bold tracking-widest px-4 py-1.5 rounded-full border border-white/10 backdrop-blur-sm hidden z-[210]">
+           1 / 3
+        </div>
+      </div>
+    `;
+    document.body.appendChild(modal);
+
+    modal.querySelector('#close-image-modal').addEventListener('click', () => closeProjectImageModal());
+    modal.addEventListener('click', (e) => {
+      // Close only if clicking the background, not the image itself or buttons
+      if (e.target === modal || e.target === modal.firstElementChild) {
+         closeProjectImageModal();
+      }
+    });
+    
+    modal.querySelector('#modal-prev-btn').addEventListener('click', (e) => {
+        e.stopPropagation();
+        currentModalImageIndex = (currentModalImageIndex === 0) ? currentModalImages.length - 1 : currentModalImageIndex - 1;
+        updateModalImage();
+    });
+    modal.querySelector('#modal-next-btn').addEventListener('click', (e) => {
+        e.stopPropagation();
+        currentModalImageIndex = (currentModalImageIndex === currentModalImages.length - 1) ? 0 : currentModalImageIndex + 1;
+        updateModalImage();
+    });
+    
+    document.addEventListener('keydown', (e) => {
+      if (modal.classList.contains('pointer-events-none')) return;
+      if (e.key === 'Escape') {
+        closeProjectImageModal();
+      } else if (e.key === 'ArrowLeft') {
+        if (currentModalImages.length > 1) {
+            currentModalImageIndex = (currentModalImageIndex === 0) ? currentModalImages.length - 1 : currentModalImageIndex - 1;
+            updateModalImage();
+        }
+      } else if (e.key === 'ArrowRight') {
+        if (currentModalImages.length > 1) {
+            currentModalImageIndex = (currentModalImageIndex === currentModalImages.length - 1) ? 0 : currentModalImageIndex + 1;
+            updateModalImage();
+        }
+      }
+    });
+  }
+
+  updateModalImage();
+  
+  // Animation frames for entry
+  requestAnimationFrame(() => {
+    modal.classList.remove('opacity-0', 'pointer-events-none');
+    modal.classList.add('opacity-100', 'pointer-events-auto');
+    
+    const content = modal.querySelector('#project-image-modal-content');
+    content.classList.remove('scale-95', 'opacity-0');
+    content.classList.add('scale-100', 'opacity-100');
+  });
+}
+
+function closeProjectImageModal() {
+  let modal = document.getElementById('project-image-modal');
+  if (!modal) return;
+  modal.classList.remove('opacity-100', 'pointer-events-auto');
+  modal.classList.add('opacity-0', 'pointer-events-none');
+  
+  const content = modal.querySelector('#project-image-modal-content');
+  if (content) {
+      content.classList.remove('scale-100', 'opacity-100');
+      content.classList.add('scale-95', 'opacity-0');
+  }
+  
+  setTimeout(() => {
+     const imgEl = modal.querySelector('#modal-image-img');
+     if (imgEl) imgEl.src = '';
+  }, 300);
 }

@@ -171,6 +171,34 @@
   ],
   "projects": [
     {
+      "id": "album-platform-saas",
+      "title": "Album Platform SaaS",
+      "context": "Plataforma web para artistas e bandas gerenciarem projetos de lançamento de álbuns e músicas, com páginas públicas personalizadas para fãs.",
+      "tech_stack": [
+        "Node.js",
+        "Express",
+        "JavaScript",
+        "MongoDB",
+        "Vercel",
+        "Tailwind",
+        "HTML",
+        "JWT Auth"
+      ],
+      "business_impact": [
+        "Centralização da divulgação de álbuns e músicas em páginas personalizadas.",
+        "Aumento do engajamento dos fãs com curtidas e avaliações.",
+        "Facilidade de gerenciamento de conteúdo musical por artistas e bandas.",
+        "Coleta de dados analíticos sobre comportamento dos usuários."
+      ],
+      "links": {
+        "live": "https://album-passagem.vercel.app/",
+        "github": "https://github.com/guilherme-castelo/album-passagem"
+      },
+      "images": [
+        "/src/assets/projects/album-platform-saas.png"
+      ]
+    },
+    {
       "id": "sistema-para-refeitorio",
       "title": "Sistema para Refeitório",
       "context": "Sistema web para controlar refeições diárias de funcionários com integração ao módulo Folha do Domínio Web. Dificuldade em gerenciar registros de refeitórios e falta de automação para um este processo que facilite a operação no DP.",
@@ -189,7 +217,11 @@
         "live": "https://github.com/guilherme-castelo/elementar-admin",
         "github": "https://github.com/guilherme-castelo/elementar-admin"
       },
-      "images": []
+      "images": [
+        "/src/assets/projects/sistema-para-refeitorio-1.png",
+        "/src/assets/projects/sistema-para-refeitorio-2.png",
+        "/src/assets/projects/sistema-para-refeitorio-3.png"
+      ]
     },
     {
       "id": "controle-financeiro",
