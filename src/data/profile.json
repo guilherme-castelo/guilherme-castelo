@@ -1,15 +1,19 @@
 {
   "site": {
-    "title": "Guilherme Castelo",
-    "cta": "Guilherme Castelo",
-    "ctaSub": "Sustento ambientes corporativos e construo as ferramentas que os operam — de redes e servidores a APIs e integrações ERP.",
+    "title": "Guilherme Castelo | Backend & Infrastructure Developer",
+    "cta": "Vamos conversar?",
+    "ctaSub": "Aberto a projetos, oportunidades e desafios técnicos. Respondo em até 24h.",
     "skipLink": "Pular para o conteúdo principal",
     "contactBtn": "Contato",
-    "footerCopyright": "Guilherme Castelo © 2026 • infrastructure & backend developer",
+    "footerCopyright": "Guilherme Castelo © 2026 · Backend Developer · Integração de Sistemas",
     "nav": [
       {
         "label": "Sobre",
         "anchor": "#about"
+      },
+      {
+        "label": "Diferenciais",
+        "anchor": "#differentials"
       },
       {
         "label": "Stack",
@@ -22,31 +26,31 @@
       {
         "label": "Projetos",
         "anchor": "#projects"
-      },
-      {
-        "label": "Formação",
-        "anchor": "#education-section"
       }
     ],
     "sections": {
       "about": {
         "number": "01",
-        "title": "Sobre Mim"
+        "title": "Sobre"
+      },
+      "differentials": {
+        "number": "02",
+        "title": "Diferenciais"
       },
       "skills": {
-        "number": "02",
-        "title": "Tecnologias"
+        "number": "03",
+        "title": "Stack"
       },
       "experience": {
-        "number": "03",
+        "number": "04",
         "title": "Experiência"
       },
       "projects": {
-        "number": "04",
+        "number": "05",
         "title": "Projetos"
       },
       "qualifications": {
-        "number": "05",
+        "number": "06",
         "title": "Formação & Certificações"
       }
     }
@@ -55,11 +59,13 @@
     "name": "Guilherme Castelo",
     "avatar": "/src/assets/perfil.jpg",
     "nickname": "GC",
-    "title": "Sustento ambientes corporativos e construo as ferramentas que os operam — de redes e servidores a APIs e integrações ERP.",
-    "heroEyebrow": "Infraestrutura · Backend · Integrações",
+    "title": "Desenvolvedor Backend · Integração de Sistemas & Infraestrutura",
+    "heroEyebrow": "Backend · APIs · ERP · Infraestrutura",
     "cvUrl": "/src/assets/Desenvolvedor Backend - Guilherme Castelo.pdf",
-    "location": "Brasil - Remoto",
-    "summary": "Atuo na interseção entre infraestrutura e desenvolvimento. Sustento ambientes corporativos — AD, redes, Winthor — e construo as ferramentas que os operam: APIs, sistemas internos e integrações.\n\nFoco em resolver problemas reais onde suporte técnico e desenvolvimento se cruzam, garantindo alta disponibilidade e eliminação de retrabalho.",
+    "location": "Brasil · Remoto",
+    "available": true,
+    "availableLabel": "Disponível para novas oportunidades",
+    "summary": "Sou desenvolvedor backend com 5+ anos de imersão em ambientes corporativos — onde aprendi que o maior problema nunca é o código, é a integração.\n\nCada sistema que construo nasce de um problema real que já operei: APIs que eliminam entrada manual de dados entre plataformas, sistemas que conectam ERP a aplicações web, automações que transformam processos frágeis em fluxos confiáveis. Tenho visão de infraestrutura e execução de backend — o que me permite construir soluções que permanecem de pé sem precisar de manutenção constante.",
     "contacts": [
       {
         "type": "email",
@@ -93,85 +99,112 @@
   "heroHighlights": [
     {
       "label": "Experiência",
-      "value": "5+ anos em ambiente corporativo",
-      "color": "blue"
+      "value": "5+",
+      "suffix": "anos em ambiente corporativo",
+      "animated": true,
+      "color": "cyan"
     },
     {
       "label": "Especialidade",
-      "value": "ERP Winthor + Oracle + APIs",
-      "color": "purple"
+      "value": "ERP Winthor",
+      "suffix": "Oracle · APIs · Integração",
+      "animated": false,
+      "color": "blue"
     },
     {
       "label": "Atuação",
-      "value": "Suporte N1/N2 → Dev Backend",
-      "color": "emerald"
+      "value": "Backend",
+      "suffix": "Infra · Sistemas internos",
+      "animated": false,
+      "color": "indigo"
+    }
+  ],
+  "differentials": [
+    {
+      "icon": "layers",
+      "title": "Visão Infra + Dev",
+      "description": "Opero a infraestrutura e construo o software que roda em cima dela. Entendo o ambiente completo — do servidor à API.",
+      "tags": ["Active Directory", "Windows Server", "Linux", "Docker"]
+    },
+    {
+      "icon": "plug",
+      "title": "Especialista em Integração",
+      "description": "5 anos conectando sistemas legados a aplicações modernas. ERP Winthor, Oracle, APIs REST — sem gambiarras.",
+      "tags": ["ERP Winthor", "Oracle", "REST API", "Node.js"]
+    },
+    {
+      "icon": "zap",
+      "title": "Código que resolve problemas reais",
+      "description": "Cada sistema que entrego nasce de uma dor operacional que eu mesmo identifiquei. Sem over-engineering, sem código de portfólio.",
+      "tags": ["NestJS", "Angular", "TypeScript", "Automação"]
     }
   ],
   "skills": {
     "featured": {
       "eyebrow": "Stack Principal",
-      "title": "Infraestrutura + Backend",
-      "description": "Projeto sistemas que integram a camada de infraestrutura com o software — do servidor à interface.",
-      "principals": ["Active Directory", "Node.js", "Angular", "MySQL", "Linux"]
+      "title": "Backend & Integração",
+      "description": "Construo APIs robustas e integrações entre sistemas corporativos — com foco em confiabilidade, rastreabilidade e manutenibilidade.",
+      "principals": ["Node.js", "NestJS", "Oracle", "PostgreSQL", "Angular"]
     },
     "backend": [
       "Node.js (NestJS / Express)",
-      "PHP (manutenção e refatoração)",
+      "Spring Boot (Java)",
       "Construção de APIs REST",
-      "Integração com sistemas legados"
+      "Integração com sistemas legados",
+      "PHP (manutenção e refatoração)"
     ],
     "frontend": [
-      "Angular",
+      "Angular (v16–v19)",
       "TypeScript",
-      "RxJS",
+      "RxJS / Signals",
       "HTML5 e CSS3",
       "Tailwind CSS"
     ],
     "database": [
-      "Oracle (consultas e procedimentos)",
+      "Oracle (consultas e procedures)",
       "MySQL",
       "PostgreSQL",
-      "Modelagem de Banco de Dados"
+      "Prisma ORM",
+      "TypeORM"
     ],
     "others": [
-      "Active Directory",
-      "GPO",
-      "DHCP e DNS",
+      "Active Directory & GPO",
       "Windows Server",
       "Linux",
-      "Microsoft 365",
-      "Automação com Python",
       "Docker",
       "CI/CD",
-      "Scrum",
-      "Integração entre sistemas"
+      "Microsoft 365",
+      "Python (Automação)",
+      "Scrum / Kanban"
     ]
   },
   "experience": [
     {
-      "role": "Analista de Sistemas e Infraestrutura",
+      "role": "Desenvolvedor Backend & Analista de Infraestrutura",
       "company": "Brasil Super Atacado",
-      "period": "2020 - Atual",
-      "description": "Atuação híbrida com sustentação de infraestrutura, suporte a usuários e desenvolvimento de soluções internas para integração do ERP Winthor com aplicações web e bancos de dados SQL.",
+      "period": "2020 – Atual",
+      "description": "Atuação híbrida com foco em desenvolvimento backend e integração de sistemas — sustentando a infraestrutura corporativa e construindo as ferramentas internas que a operam.",
       "achievements": [
-        "Operei sustentação N1/N2 em ambiente corporativo multi-usuário, garantindo continuidade de serviços críticos de rede e aplicações.",
-        "Desenvolvi aplicações internas com Angular e Node.js que automatizaram tarefas manuais, eliminando retrabalho operacional.",
-        "Projetei e mantive APIs REST integrando Oracle e ERP Winthor, eliminando a troca manual de dados entre plataformas.",
-        "Refatorei e evoluí sistemas legados em PHP, automatizando rotinas operacionais e aumentando a estabilidade dos processos."
+        "Projetei e mantive APIs REST integrando Oracle e ERP Winthor com aplicações web, eliminando troca manual de dados entre plataformas e reduzindo erros operacionais.",
+        "Desenvolvi aplicações internas com Angular e Node.js que automatizaram processos manuais, economizando horas semanais de trabalho operacional.",
+        "Refatorei e evoluí sistemas legados em PHP, aumentando a estabilidade de rotinas críticas e reduzindo chamados de suporte recorrentes.",
+        "Gerenciei ambiente de infraestrutura corporativa (AD, GPO, redes, Windows Server) garantindo disponibilidade dos serviços para múltiplos usuários simultâneos."
       ]
     }
   ],
   "projects": [
     {
       "id": "integracao-erp-winthor",
-      "title": "Integração ERP Winthor",
-      "context": "Processos manuais entre o ERP e a web geravam erros diários. Desenvolvi uma integração em Spring Boot + Oracle para automatizar fluxos e centralizar dados.",
-      "tech_stack": ["Spring Boot", "Oracle", "Angular", "Tailwind", "SQL"],
+      "title": "Integração ERP → Web",
+      "subtitle": "Winthor + Oracle + API REST",
+      "context": "Dados do ERP Winthor precisavam ser transferidos manualmente entre plataformas — processo que consumia horas diárias e gerava inconsistências frequentes.",
+      "solution": "API REST com Spring Boot + Oracle integrando o ERP Winthor a aplicações web internas, com sincronização bidirecional de dados e validação centralizada.",
+      "tech_stack": ["Spring Boot", "Oracle", "Angular", "REST API", "SQL"],
       "business_impact": [
-        "Eliminação de entrada manual de dados",
-        "Integração bidirecional ERP-Web",
-        "Redução de inconsistências de dados",
-        "Base técnica para novos módulos internos"
+        "Eliminação de entrada manual de dados entre sistemas",
+        "Processos operacionais antes manuais passaram a ser automatizados",
+        "Base técnica reutilizada para outros módulos internos",
+        "Redução de inconsistências e retrabalho operacional"
       ],
       "links": {
         "live": "",
@@ -181,14 +214,16 @@
     },
     {
       "id": "sistema-para-refeitorio",
-      "title": "Sistema para Refeitório",
-      "context": "Sistema web para controle de refeições diárias de funcionários, integrado ao módulo Folha do Domínio Web para automatizar um processo antes manual.",
-      "tech_stack": ["Angular", "Node.js", "Prisma"],
+      "title": "Controle de Refeições",
+      "subtitle": "Angular + Node.js + Domínio Web",
+      "context": "Controle de refeições de funcionários era gerenciado em planilhas e integrado manualmente ao sistema de folha de pagamento — processo propenso a erros e moroso.",
+      "solution": "Aplicação web Angular + Node.js com integração ao módulo Folha do Domínio Web, centralizando controle diário de refeições e automatizando a geração de relatórios.",
+      "tech_stack": ["Angular", "Node.js", "Prisma", "TypeScript"],
       "business_impact": [
-        "Maior agilidade operacional",
-        "Centralização das informações",
-        "Automação do processo",
-        "Redução do tempo gasto com integração de dados"
+        "Automatização da integração com folha de pagamento",
+        "Relatórios de consumo disponíveis em tempo real",
+        "Eliminação de lançamentos manuais e erros de digitação",
+        "Centralização dos dados operacionais do refeitório"
       ],
       "links": {
         "live": "https://github.com/guilherme-castelo/elementar-admin",
@@ -198,14 +233,16 @@
     },
     {
       "id": "backend-almoxarifado",
-      "title": "Backend Almoxarifado",
-      "context": "API REST para controle de entradas e saídas de EPIs e uniformes, com foco em organização, rastreabilidade e apoio à operação de RH.",
-      "tech_stack": ["Node.js", "TypeScript", "TypeORM", "Docker"],
+      "title": "API de Gestão de EPIs",
+      "subtitle": "Node.js + TypeScript + Docker",
+      "context": "RH sem rastreabilidade de entrega e devolução de EPIs e uniformes — controle feito em papel, sem histórico confiável por colaborador.",
+      "solution": "API REST com Node.js, TypeScript e TypeORM, com endpoints para controle de entrada/saída, histórico por colaborador e relatórios de inventário.",
+      "tech_stack": ["Node.js", "TypeScript", "TypeORM", "Docker", "PostgreSQL"],
       "business_impact": [
-        "Controle de estoque em almoxarifados",
-        "Controle de movimentações de entrada e saída",
-        "Organização das operações",
-        "Rastreabilidade dos dados"
+        "100% de rastreabilidade nas movimentações do almoxarifado",
+        "Eliminação completa dos registros em papel",
+        "Histórico auditável por colaborador para conformidade trabalhista",
+        "Relatórios de estoque gerados automaticamente"
       ],
       "links": {
         "live": "https://github.com/guilherme-castelo/backend-almoxarifado",
@@ -215,14 +252,16 @@
     },
     {
       "id": "controle-financeiro",
-      "title": "Controle Financeiro",
-      "context": "Painel web para controle financeiro em grupo, desenvolvido como solução pessoal para organizar contas, categorias e usuários.",
-      "tech_stack": ["PHP", "Bootstrap", "Wamp"],
+      "title": "Painel Financeiro",
+      "subtitle": "PHP · Controle de gastos em grupo",
+      "context": "Necessidade pessoal de organizar finanças compartilhadas em grupo — sem ferramenta adequada no mercado que atendesse o fluxo necessário.",
+      "solution": "Aplicação web PHP com dashboard de controle financeiro, categorização de gastos, gestão de contas e controle de acesso por usuário.",
+      "tech_stack": ["PHP", "MySQL", "Bootstrap", "JavaScript"],
       "business_impact": [
-        "Controle de gastos",
-        "Controle de contas",
-        "Organização por categorias",
-        "Gestão de usuários"
+        "Controle centralizado de contas e gastos por categoria",
+        "Visualização do fluxo financeiro por período",
+        "Gestão de múltiplos usuários com permissões",
+        "Histórico completo de movimentações"
       ],
       "links": {
         "live": "https://github.com/guilherme-castelo/financeiro",
@@ -235,40 +274,40 @@
     {
       "degree": "MBA em Gerenciamento de Projetos de TI",
       "institution": "Faveni",
-      "year": "2024 - 2025"
+      "year": "2024 – 2025"
     },
     {
       "degree": "Análise e Desenvolvimento de Sistemas",
-      "institution": "Unicesumar - Centro Universitário de Maringá",
-      "year": "2020 - 2023"
+      "institution": "Unicesumar",
+      "year": "2020 – 2023"
     },
     {
       "degree": "Técnico em Manutenção e Suporte em Informática",
-      "institution": "IFRO - Instituto Federal de Rondônia Campus Ariquemes",
-      "year": "2016 - 2018"
+      "institution": "IFRO – Instituto Federal de Rondônia",
+      "year": "2016 – 2018"
     }
   ],
   "certifications": [
     {
       "name": "Formação Angular (v16 a v18)",
       "institution": "Alura / Udemy",
-      "period": "Jan 2023 - Set 2023",
+      "period": "Jan 2023 – Set 2023",
       "hours": "18.5h",
-      "description": "Desenvolvimento de aplicações escaláveis com Angular, Angular Material e PrimeNG. Arquitetura modular, Lazy Loading, Guards, JWT Authentication."
+      "description": "Aplicações escaláveis com Angular, Angular Material e PrimeNG. Arquitetura modular, Lazy Loading, Guards, JWT Authentication."
     },
     {
       "name": "Formação Vue.js",
       "institution": "Alura",
-      "period": "Jan 2023 - Set 2023",
+      "period": "Jan 2023 – Set 2023",
       "hours": "124h",
-      "description": "Desenvolvimento web com Vue.js. Componentização, SPA, Vuex, testes com Jest, Composition API."
+      "description": "Desenvolvimento web com Vue.js. Componentização, SPA, Vuex, Composition API."
     },
     {
       "name": "Administrador de Banco de Dados MySQL",
       "institution": "IFRO",
-      "period": "Ago 2020 - Dez 2020",
+      "period": "Ago 2020 – Dez 2020",
       "hours": "200h",
-      "description": "Modelagem, implementação e manipulação em SQL. Comandos DDL, DML, DCL e TCL. Administração de bancos MySQL."
+      "description": "Modelagem, implementação e SQL. Comandos DDL, DML, DCL e TCL. Administração de bancos MySQL."
     }
   ]
 }
