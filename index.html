@@ -4,16 +4,16 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#0f172a">
+  <meta name="theme-color" content="#080C18">
   <link rel="icon" type="image/x-icon" href="/src/assets/favicon.ico"
     style="color-scheme: light; filter: invert(100%); border-radius: 100%;">
   <title>Guilherme Castelo | Carregando...</title>
 
-  <meta name="description" content="Guilherme Castelo - Desenvolvedor de Software com foco em backend, integração de sistemas, ERPs e automação de processos." />
+  <meta name="description" content="Guilherme Castelo — Desenvolvedor Backend especializado em integração de sistemas, ERP Winthor, Oracle e automação de processos corporativos." />
   
-  <!-- Open Graph Static Fallbacks (for scrapers without JS execution) -->
-  <meta property="og:title" content="Guilherme Castelo | Desenvolvedor de Software" />
-  <meta property="og:description" content="Guilherme Castelo - Desenvolvedor de Software com foco em backend, integração de sistemas, ERPs e automação de processos." />
+  <!-- Open Graph -->
+  <meta property="og:title" content="Guilherme Castelo | Backend Developer" />
+  <meta property="og:description" content="Desenvolvedor Backend especializado em integração de sistemas, ERP Winthor, Oracle e automação de processos corporativos." />
   <meta property="og:type" content="website" />
   <meta property="og:image" content="/src/assets/perfil.jpg" />
   <meta name="twitter:card" content="summary_large_image" />
@@ -38,29 +38,57 @@
   </script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" as="style" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet" />
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&family=JetBrains+Mono:wght@400;600&display=swap" as="style" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
 
   <link rel="stylesheet" href="src/styles/main.css" />
 </head>
 
-<body class="bg-slate-50 dark:bg-[#0A0F1C] text-slate-900 dark:text-gray-300 selection:bg-cyan-500/30 overflow-x-hidden transition-colors duration-300">
+<body class="bg-slate-50 dark:bg-[#080C18] text-slate-900 dark:text-gray-300 selection:bg-cyan-500/30 overflow-x-hidden transition-colors duration-300">
   <a href="#main-content"
     class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:px-6 focus:py-3 focus:bg-cyan-600 focus:text-white focus:rounded-xl"></a>
 
+  <!-- Background ambient glow -->
   <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden" aria-hidden="true">
-    <div class="absolute -top-48 -right-48 w-[600px] h-[600px] bg-cyan-600/10 blur-[150px] rounded-full" aria-hidden="true"></div>
-    <div class="absolute top-1/2 -left-48 w-[500px] h-[500px] bg-slate-800/10 dark:bg-slate-800/30 blur-[120px] rounded-full" aria-hidden="true"></div>
+    <div class="absolute -top-48 -right-48 w-[700px] h-[700px] bg-cyan-600/8 blur-[180px] rounded-full"></div>
+    <div class="absolute top-1/2 -left-48 w-[500px] h-[500px] bg-blue-900/10 dark:bg-blue-900/20 blur-[140px] rounded-full"></div>
+    <div class="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-indigo-900/5 dark:bg-indigo-900/15 blur-[120px] rounded-full"></div>
   </div>
 
-  <header class="fixed top-0 left-0 w-full z-50 bg-white/80 dark:bg-[#0A0F1C]/80 backdrop-blur-xl border-b border-black/5 dark:border-white/5 transition-all" role="banner">
-    <nav class="max-w-7xl mx-auto flex items-center justify-between p-4" aria-label="Navegação Principal" role="navigation">
+  <!-- Mobile Menu Overlay -->
+  <div id="mobile-menu" class="fixed inset-0 bg-white dark:bg-[#080C18] z-[70] hidden flex-col px-6 transition-colors duration-300" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Menu Principal">
+    <div class="flex items-center justify-between py-6">
+      <div class="text-slate-900 dark:text-white font-bold tracking-tight text-xl">GC.</div>
+      <button id="mobile-menu-close" class="text-slate-600 dark:text-gray-400 hover:text-slate-900 dark:hover:text-white" aria-label="Fechar Menu">
+        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+      </button>
+    </div>
+    <div id="main-nav-links-mobile" class="flex flex-col gap-6 text-3xl font-black text-slate-400 dark:text-gray-600 pt-10"></div>
+    <div class="mt-auto pb-12 space-y-4">
+      <a id="nav-cv-btn-mobile" href="#" target="_blank" download
+         class="w-full py-4 rounded-2xl border border-slate-200 dark:border-white/10 text-slate-900 dark:text-white text-center font-bold flex items-center justify-center gap-3">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+        Currículo
+      </a>
+      <a href="#contact" id="mobile-contact-btn" class="w-full text-center block px-6 py-5 rounded-2xl bg-cyan-500 text-slate-900 text-lg font-black transition-colors"></a>
+    </div>
+  </div>
+
+  <header class="fixed top-0 left-0 w-full z-50 bg-white/90 dark:bg-[#080C18]/90 backdrop-blur-xl border-b border-black/5 dark:border-white/5 transition-all" role="banner">
+    <nav class="max-w-7xl mx-auto flex items-center justify-between px-6 py-4" aria-label="Navegação Principal" role="navigation">
       <div class="text-slate-900 dark:text-white font-bold tracking-tight text-xl"></div>
       
       <!-- Desktop Nav -->
-      <div id="main-nav-links" class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-600 dark:text-gray-400"></div>
+      <div id="main-nav-links" class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-500 dark:text-gray-400"></div>
       
-      <div class="hidden md:flex items-center gap-4">
+      <div class="hidden md:flex items-center gap-3">
+        <a id="nav-cv-btn" href="#" target="_blank" download
+           class="px-5 py-2 rounded-full border border-slate-200 dark:border-white/10 text-slate-600 dark:text-gray-300 text-sm font-medium hover:border-cyan-500 hover:text-cyan-600 dark:hover:text-cyan-400 transition-all flex items-center gap-2">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+          Currículo
+        </a>
         <button id="theme-toggle" aria-label="Alternar tema" class="p-2 rounded-lg backdrop-blur-md bg-white border border-slate-200 text-slate-600 hover:bg-slate-100 dark:bg-white/5 dark:border-white/10 dark:text-white dark:hover:bg-white/10 transition-colors">
           <svg class="w-5 h-5 invisible" fill="none" viewBox="0 0 24 24"></svg><!-- Placeholder before js loads -->
         </button>
@@ -77,120 +105,164 @@
     </nav>
     
     <!-- Mobile Menu Overlay -->
-    <div id="mobile-menu" class="fixed inset-0 bg-slate-50 dark:bg-[#0A0F1C] z-40 hidden flex-col px-6 py-32 space-y-8 transition-colors duration-300" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Menu Principal">
-      <button id="mobile-menu-close" class="absolute top-6 right-6 text-gray-400 hover:text-white" aria-label="Fechar Menu">
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-        </svg>
-      </button>
-      <div id="main-nav-links-mobile" class="flex flex-col gap-8 text-xl font-medium text-gray-300"></div>
-      <a href="#contact" id="mobile-contact-btn" class="w-full text-center px-6 py-4 rounded-full bg-cyan-500 text-slate-900 text-base font-bold transition-colors"></a>
+    <div id="mobile-menu" class="fixed inset-0 bg-white dark:bg-[#080C18] z-[70] hidden flex-col px-6 transition-colors duration-300" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Menu Principal">
+      <div class="flex items-center justify-between py-6">
+        <div class="text-slate-900 dark:text-white font-bold tracking-tight text-xl">GC.</div>
+        <button id="mobile-menu-close" class="text-slate-600 dark:text-gray-400 hover:text-slate-900 dark:hover:text-white" aria-label="Fechar Menu">
+          <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+      </div>
+      <div id="main-nav-links-mobile" class="flex flex-col gap-6 text-3xl font-black text-slate-400 dark:text-gray-600 pt-10"></div>
+      <div class="mt-auto pb-12 space-y-4">
+        <a id="nav-cv-btn-mobile" href="#" target="_blank" download
+           class="w-full py-4 rounded-2xl border border-slate-200 dark:border-white/10 text-slate-900 dark:text-white text-center font-bold flex items-center justify-center gap-3">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+          Currículo
+        </a>
+        <a href="#contact" id="mobile-contact-btn" class="w-full text-center block px-6 py-5 rounded-2xl bg-cyan-500 text-slate-900 text-lg font-black transition-colors"></a>
+      </div>
     </div>
   </header>
 
-  <section id="hero" class="w-full bg-slate-50 dark:bg-[#0A0F1C] bg-gradient-to-b from-slate-50 dark:from-[#0A0F1C] to-[transparent] pt-24 pb-14 md:pt-48 md:pb-36 hidden reveal relative border-b border-slate-200 dark:border-white/5" aria-label="Hero">
-    <div class="max-w-7xl p-4 mx-auto relative z-10 space-y-8">
-      <div class="flex flex-col md:flex-row items-center md:items-start gap-8 md:gap-16">
-        <div id="user-img" class="shrink-0 z-10 w-24 h-24 sm:w-32 sm:h-32 md:w-48 md:h-48 relative overflow-visible"></div>
-        <div class="flex-1 space-y-6">
-          <div id="user-header" class="hidden font-mono text-xs md:text-sm text-cyan-500 dark:text-cyan-400 leading-relaxed opacity-80">
+  <!-- Main Portfolio View -->
+  <div id="portfolio-view" class="block">
+    <section id="hero" class="w-full bg-slate-50 dark:bg-[#080C18] pt-24 pb-14 md:pt-48 md:pb-36 hidden reveal relative border-b border-slate-200 dark:border-white/5" aria-label="Hero">
+      <div class="max-w-7xl p-4 md:px-8 mx-auto relative z-10 space-y-10">
+        <div class="flex flex-col md:flex-row items-center md:items-start gap-8 md:gap-16">
+          <div id="user-img" class="shrink-0 z-10 w-24 h-24 sm:w-32 sm:h-32 md:w-44 md:h-44 relative overflow-visible"></div>
+          <div class="flex-1 space-y-5">
+            <div class="flex flex-wrap items-center gap-3">
+              <h2 class="text-cyan-600 dark:text-cyan-500 font-medium tracking-wide text-sm md:text-base flex items-center gap-3">
+                <span class="w-6 h-[1px] bg-cyan-500/50"></span>
+              </h2>
+              <!-- Availability badge - rendered by JS -->
+              <div id="availability-badge"></div>
+            </div>
+            <h1 id="user-name"
+              class="text-[11vw] md:text-7xl lg:text-8xl font-black text-slate-900 dark:text-white tracking-tight leading-[0.95] max-w-full break-words"></h1>
+            <p id="user-title" class="text-lg md:text-2xl text-slate-500 dark:text-gray-400 max-w-2xl leading-relaxed font-normal">
+            </p>
           </div>
-          <h2
-            class="text-cyan-600 dark:text-cyan-500 font-medium tracking-wide text-sm md:text-base flex items-center gap-4">
-            <span class="w-8 h-[1px] bg-cyan-500/50"></span>
-          </h2>
-          <h1 id="user-name"
-            class="text-[12vw] md:text-7xl lg:text-8xl font-black text-slate-900 dark:text-white tracking-tight leading-[1] max-w-full break-words"></h1>
-          <p id="user-title" class="text-xl md:text-3xl text-slate-600 dark:text-gray-400 max-w-2xl leading-relaxed font-normal">
-          </p>
         </div>
-      </div>
 
-      <div id="hero-highlights-grid" class="grid grid-cols-1 sm:grid-cols-2 md:flex md:flex-row gap-6 pt-6 border-t border-slate-200 dark:border-white/5"></div>
-      <div id="hero-social-links" class="flex flex-wrap gap-4 pt-8"></div>
-    </div>
-  </section>
-
-  <main id="main-content" class="relative z-10 max-w-5xl mx-auto px-6 py-12 space-y-32" role="main">
-    <div id="loader"
-      class="fixed inset-0 bg-slate-50 dark:bg-[#0A0F1C] z-[100] flex justify-center items-center opacity-100 loader-container" role="status"
-      aria-label="Carregando portfólio">
-      <div class="relative w-16 h-16">
-        <div class="absolute inset-0 border-4 border-cyan-500/20 rounded-full"></div>
-        <div class="absolute inset-0 border-4 border-cyan-500 border-t-transparent rounded-full animate-spin"></div>
-      </div>
-    </div>
-
-    <section id="about" class="hidden space-y-12 reveal">
-      <header class="flex items-center gap-6">
-        <h2 class="text-2xl sm:text-4xl font-semibold text-slate-900 dark:text-white tracking-tight shrink-0"></h2>
-        <div class="h-[1px] flex-1 bg-slate-200 dark:bg-white/10"></div>
-      </header>
-      <p id="user-summary" class="text-lg md:text-xl text-slate-700 dark:text-gray-300 leading-relaxed font-normal max-w-4xl">
-      </p>
-    </section>
-
-    <section id="skills" class="hidden space-y-16 reveal">
-      <header class="flex items-center gap-8">
-        <h2 class="text-xl sm:text-3xl font-black text-slate-900 dark:text-white uppercase tracking-tighter shrink-0"></h2>
-        <div class="h-[1px] flex-1 bg-slate-200 dark:bg-white/5"></div>
-      </header>
-      <div class="grid grid-cols-1 md:grid-cols-12 gap-8">
-        <div id="featured-skill"
-          class="md:col-span-12 lg:col-span-5 angular-card p-12 rounded-[3rem] space-y-8 relative overflow-hidden group shadow-2xl shadow-blue-500/5">
-        </div>
-        <div id="secondary-skills" class="md:col-span-12 lg:col-span-7 grid md:grid-cols-2 gap-8"></div>
+        <div id="hero-highlights-grid" class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-6 border-t border-slate-200 dark:border-white/5"></div>
+        <div id="hero-social-links" class="flex flex-col sm:flex-row flex-wrap gap-4 pt-2"></div>
       </div>
     </section>
 
-    <section id="experience" class="hidden space-y-24 reveal">
-      <header class="flex items-center gap-8">
-        <h2 class="text-xl sm:text-3xl font-black text-slate-900 dark:text-white uppercase tracking-tighter shrink-0"></h2>
-        <div class="h-[1px] flex-1 bg-slate-200 dark:bg-white/10"></div>
-      </header>
-      <div id="experience-list" class="space-y-32"></div>
-    </section>
-
-    <section id="projects" class="hidden space-y-16 reveal relative w-full" aria-label="Projetos">
-      <header class="flex items-center gap-8">
-        <h2 class="text-xl sm:text-3xl font-black text-slate-900 dark:text-white uppercase tracking-tighter shrink-0"></h2>
-        <div class="h-[1px] flex-1 bg-slate-200 dark:bg-white/10"></div>
-      </header>
-      
-      <div id="projects-grid" class="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch pt-8"></div>
-    </section>
-
-    <section id="qualifications" class="reveal space-y-16">
-      <header class="flex items-center gap-8">
-        <h2 class="text-xl sm:text-3xl font-black text-slate-900 dark:text-white tracking-tighter shrink-0"></h2>
-        <div class="h-[1px] flex-1 bg-slate-200 dark:bg-white/10"></div>
-      </header>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-12 pt-4">
-        <div class="space-y-6">
-          <h3 class="text-sm font-semibold uppercase tracking-widest text-cyan-500 opacity-80 pl-4 border-l-2 border-cyan-500/20">Formação Acadêmica</h3>
-          <div id="education-list" class="glass rounded-[2rem] overflow-hidden"></div>
-        </div>
-        <div class="space-y-6">
-          <h3 class="text-sm font-semibold uppercase tracking-widest text-cyan-500 opacity-80 pl-4 border-l-2 border-cyan-500/20">Certificações / Cursos</h3>
-          <div id="certification-list" class="glass rounded-[2rem] overflow-hidden"></div>
+    <main id="main-content" class="relative z-10 max-w-5xl mx-auto px-6 py-12 space-y-36" role="main">
+      <div id="loader"
+        class="fixed inset-0 bg-slate-50 dark:bg-[#080C18] z-[100] flex justify-center items-center opacity-100 loader-container" role="status"
+        aria-label="Carregando portfólio">
+        <div class="relative w-16 h-16">
+          <div class="absolute inset-0 border-4 border-cyan-500/20 rounded-full"></div>
+          <div class="absolute inset-0 border-4 border-cyan-500 border-t-transparent rounded-full animate-spin"></div>
         </div>
       </div>
-    </section>
 
-  </main>
+      <!-- About -->
+      <section id="about" class="hidden space-y-10 reveal">
+        <header class="flex items-center gap-6">
+          <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white tracking-tight shrink-0"></h2>
+          <div class="h-[1px] flex-1 bg-slate-200 dark:bg-white/8"></div>
+        </header>
+        <p id="user-summary" class="text-lg md:text-xl text-slate-600 dark:text-gray-300 leading-relaxed font-normal max-w-3xl whitespace-pre-line">
+        </p>
+      </section>
 
-  <footer id="contact" class="hidden w-full bg-slate-50 dark:bg-[#0A0F1C] border-t border-slate-200 dark:border-white/5 pt-32 pb-48 text-center space-y-12 reveal transition-colors duration-300" role="contentinfo">
-    <div class="max-w-5xl mx-auto px-6 space-y-12">
-      <h2 class="text-3xl sm:text-5xl md:text-8xl font-black text-slate-900 dark:text-white tracking-tighter leading-[0.9]"></h2>
-      <p class="text-xl sm:text-2xl text-slate-600 dark:text-gray-500 max-w-2xl mx-auto font-light leading-snug"></p>
-      <div id="contact-links" class="pt-10 flex flex-wrap justify-center gap-8"></div>
-      <p class="text-[12px] uppercase font-black tracking-[0.3em] text-slate-500 dark:text-gray-500 pt-20"></p>
-    </div>
-  </footer>
+      <!-- Differentials -->
+      <section id="differentials" class="hidden space-y-12 reveal">
+        <header class="flex items-center gap-6">
+          <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white tracking-tight shrink-0"></h2>
+          <div class="h-[1px] flex-1 bg-slate-200 dark:bg-white/8"></div>
+        </header>
+        <div id="differentials-grid" class="grid grid-cols-1 md:grid-cols-3 gap-6"></div>
+      </section>
 
-  <!-- Sticky CTA (Sprint 2) -->
-  <a href="#contact" class="fixed bottom-6 right-6 md:bottom-10 md:right-10 z-[100] bg-cyan-500 hover:bg-cyan-400 text-slate-900 px-6 py-4 md:px-8 md:py-5 rounded-full font-bold shadow-[0_4px_30px_rgba(6,182,212,0.4)] transition-all transform hover:scale-105 hover:-translate-y-1 flex items-center gap-2" aria-label="Entre em contato">
-    <svg class="w-5 h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <!-- Skills -->
+      <section id="skills" class="hidden space-y-12 reveal">
+        <header class="flex items-center gap-8">
+          <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white tracking-tight shrink-0"></h2>
+          <div class="h-[1px] flex-1 bg-slate-200 dark:bg-white/5"></div>
+        </header>
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-8">
+          <div id="featured-skill"
+            class="md:col-span-12 lg:col-span-5 angular-card p-10 rounded-[2.5rem] space-y-8 relative overflow-hidden group shadow-2xl shadow-blue-500/5">
+          </div>
+          <div id="secondary-skills" class="md:col-span-12 lg:col-span-7 grid md:grid-cols-2 gap-6"></div>
+        </div>
+      </section>
+
+      <!-- Experience -->
+      <section id="experience" class="hidden space-y-20 reveal">
+        <header class="flex items-center gap-8">
+          <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white tracking-tight shrink-0"></h2>
+          <div class="h-[1px] flex-1 bg-slate-200 dark:bg-white/10"></div>
+        </header>
+        <div id="experience-list" class="space-y-24"></div>
+        <!-- CTA intermediário -->
+        <div id="experience-cta" class="hidden pt-4 border-t border-slate-200 dark:border-white/5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
+          <p class="text-slate-500 dark:text-gray-400 text-base">Quer entender como posso contribuir com sua equipe?</p>
+          <a href="#contact" class="inline-flex items-center gap-2 text-cyan-600 dark:text-cyan-400 font-semibold hover:gap-4 transition-all text-sm group">
+            Veja como posso ajudar
+            <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+          </a>
+        </div>
+      </section>
+
+      <!-- Projects -->
+      <section id="projects" class="hidden space-y-12 reveal relative w-full" aria-label="Projetos">
+        <header class="flex items-center gap-8">
+          <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white tracking-tight shrink-0"></h2>
+          <div class="h-[1px] flex-1 bg-slate-200 dark:bg-white/10"></div>
+        </header>
+        
+        <div id="projects-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch"></div>
+      </section>
+
+      <!-- Qualifications -->
+      <section id="qualifications" class="reveal space-y-12">
+        <header class="flex items-center gap-8">
+          <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white tracking-tight shrink-0"></h2>
+          <div class="h-[1px] flex-1 bg-slate-200 dark:bg-white/10"></div>
+        </header>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-10 pt-2">
+          <div class="space-y-4">
+            <h3 class="text-xs font-semibold uppercase tracking-widest text-cyan-600 dark:text-cyan-500 pl-4 border-l-2 border-cyan-500/30">Formação Acadêmica</h3>
+            <div id="education-list" class="qual-card rounded-2xl overflow-hidden divide-y divide-slate-100 dark:divide-white/5"></div>
+          </div>
+          <div class="space-y-4">
+            <h3 class="text-xs font-semibold uppercase tracking-widest text-cyan-600 dark:text-cyan-500 pl-4 border-l-2 border-cyan-500/30">Certificações & Cursos</h3>
+            <div id="certification-list" class="rounded-2xl overflow-hidden space-y-3"></div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <footer id="contact" class="hidden w-full bg-slate-50 dark:bg-[#080C18] border-t border-slate-200 dark:border-white/5 pt-32 pb-48 text-center space-y-12 reveal transition-colors duration-300" role="contentinfo">
+      <div class="max-w-4xl mx-auto px-6 space-y-10">
+        <div class="space-y-4">
+          <p class="text-xs uppercase tracking-widest text-cyan-600 dark:text-cyan-500 font-semibold">Contato</p>
+          <h2 class="text-4xl sm:text-6xl md:text-8xl font-black text-slate-900 dark:text-white tracking-tighter leading-[0.9]"></h2>
+        </div>
+        <p class="text-lg sm:text-xl text-slate-500 dark:text-gray-400 max-w-lg mx-auto font-light leading-relaxed"></p>
+        <div id="contact-links" class="pt-6 flex flex-wrap justify-center gap-4"></div>
+        <p class="text-[11px] uppercase font-bold tracking-[0.3em] text-slate-400 dark:text-gray-600 pt-16"></p>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Project Detail View -->
+  <div id="project-detail-view" class="hidden bg-slate-50 dark:bg-[#080C18] min-h-screen pt-24 pb-32">
+    <div class="max-w-5xl mx-auto px-6" id="project-detail-content"></div>
+  </div>
+
+  <!-- Sticky CTA -->
+  <a href="#contact" class="fixed bottom-6 right-6 md:bottom-10 md:right-10 z-[100] bg-cyan-500 hover:bg-cyan-400 text-slate-900 px-6 py-4 md:px-8 md:py-5 rounded-full font-bold shadow-[0_4px_30px_rgba(6,182,212,0.35)] transition-all transform hover:scale-105 hover:-translate-y-1 flex items-center gap-2" aria-label="Entre em contato">
+    <svg class="w-5 h-5 md:w-5 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
     </svg>
     <span class="hidden md:inline">Fale Comigo</span>

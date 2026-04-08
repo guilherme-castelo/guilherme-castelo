@@ -1,6 +1,7 @@
 import { fetchProfileData } from "./api.js";
 import {
   renderProfile,
+  renderAvailabilityBadge,
   renderSkills,
   renderExperience,
   renderProjects,
@@ -12,6 +13,8 @@ import {
   renderSocials,
   renderSectionHeaders,
   renderCertifications,
+  renderDifferentials,
+  renderProjectDetail,
 } from "./renderers.js";
 import { initAnimations, hideLoader, initSpotlight } from "./animations.js";
 import { stopTerminalLogs } from "./terminal.js";
@@ -20,6 +23,7 @@ import { initThemeToggle } from "./theme.js";
 const SECTION_IDS = Object.freeze([
   "hero",
   "about",
+  "differentials",
   "skills",
   "experience",
   "projects",
@@ -35,6 +39,41 @@ function revealSections(ids) {
     const el = document.getElementById(id);
     if (el) el.classList.remove("hidden");
   });
+}
+
+function handleRouting(data) {
+  const hash = window.location.hash;
+  const portfolioView = document.getElementById("portfolio-view");
+  const detailView = document.getElementById("project-detail-view");
+
+  if (hash.startsWith("#/project/")) {
+    const projectId = hash.replace("#/project/", "");
+    const project = data.projects.find(p => p.id === projectId);
+
+    if (project) {
+      renderProjectDetail(project);
+      portfolioView.classList.replace("block", "hidden");
+      detailView.classList.replace("hidden", "block");
+      window.scrollTo(0, 0);
+      return;
+    }
+  }
+
+  // Default to portfolio
+  portfolioView.classList.replace("hidden", "block");
+  detailView.classList.replace("hidden", "block"); // Ensure it's hidden by CSS initially? No, let's be explicit
+  detailView.classList.replace("block", "hidden");
+  
+  // If coming from detail, we might need to scroll to projects
+  if (hash === "#/projects") {
+    const projSection = document.getElementById("projects");
+    if (projSection) projSection.scrollIntoView({ behavior: 'smooth' });
+  }
+}
+
+function initHashRouter(data) {
+  window.addEventListener("hashchange", () => handleRouting(data));
+  handleRouting(data);
 }
 
 function initMobileMenu() {
@@ -107,8 +146,10 @@ async function bootstrap() {
 
     // Business Content Rendering
     renderProfile(data.profile);
+    renderAvailabilityBadge(data.profile);
     renderSocials(data.profile.socials, data.profile.cvUrl);
     renderHeroHighlights(data.heroHighlights);
+    renderDifferentials(data.differentials);
     renderSkills(data.skills);
     renderExperience(data.experience || data.experiences || data.profile?.experience);
     renderProjects(data.projects);
@@ -116,10 +157,15 @@ async function bootstrap() {
     renderCertifications(data.certifications);
     renderFooter(data.site, data.profile);
 
+    // Populate Mobile CV Link
+    const mobileCvBtn = document.getElementById("nav-cv-btn-mobile");
+    if (mobileCvBtn && data.profile.cvUrl) mobileCvBtn.href = data.profile.cvUrl;
+
     // UI Post-processing (deferred to next frame to ensure layouts are painted)
     requestAnimationFrame(() => {
       initThemeToggle();
       initMobileMenu();
+      initHashRouter(data);
       revealSections(SECTION_IDS);
       initAnimations();
       try {

@@ -1,62 +1,68 @@
+/* ─── Design Tokens ──────────────────────────────────────────────────────── */
 :root {
   --accent: #06b6d4;
-  --accent-glow: rgba(6, 182, 212, 0.4);
-  --bg-color: #f8fafc;
-  
-  /* Terminal / Logs */
-  --terminal-bg: rgba(0, 0, 0, 0.03);
-  --terminal-user: #475569;
-  --terminal-date: #94a3b8;
-  --terminal-method: #3b82f6;
-  --terminal-status-ok: #22c55e;
-  --terminal-status-warn: #f59e0b;
-  --terminal-status-err: #ef4444;
-  
-  --transition-smooth: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  --accent-light: #22d3ee;
+  --accent-glow: rgba(6, 182, 212, 0.35);
+
+  /* Surfaces */
+  --bg: #F8FAFC;
+  --surface: #FFFFFF;
+  --border: rgba(0, 0, 0, 0.07);
+  --border-hover: rgba(0, 0, 0, 0.12);
+
+  /* Text */
+  --text-primary: #0F172A;
+  --text-secondary: #334155;
+  --text-muted: #64748B;
+  --text-faint: #94A3B8;
+
+  /* Components */
+  --card-bg: rgba(255, 255, 255, 0.7);
+  --card-border: rgba(0, 0, 0, 0.07);
+  --card-shadow: 0 1px 3px 0 rgba(0,0,0,0.07), 0 1px 2px -1px rgba(0,0,0,0.07);
+  --card-shadow-hover: 0 10px 25px -5px rgba(0,0,0,0.08), 0 8px 10px -6px rgba(0,0,0,0.05);
+
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-spring: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 :root.dark {
-  --bg-color: #0A0F1C;
-  --terminal-bg: rgba(255, 255, 255, 0.03);
-  --terminal-user: #9ca3af;
-  --terminal-date: #6b7280;
-  --terminal-method: #60a5fa;
-  --terminal-status-ok: #4ade80;
-  --terminal-status-warn: #fbbf24;
-  --terminal-status-err: #ef4444;
+  --bg: #080C18;
+  --surface: #0D1220;
+  --border: rgba(255, 255, 255, 0.06);
+  --border-hover: rgba(255, 255, 255, 0.12);
+
+  --text-primary: #F1F5F9;
+  --text-secondary: #CBD5E1;
+  --text-muted: #94A3B8;
+  --text-faint: #475569;
+
+  --card-bg: rgba(255, 255, 255, 0.03);
+  --card-border: rgba(255, 255, 255, 0.06);
+  --card-shadow: none;
+  --card-shadow-hover: 0 20px 40px -15px rgba(6, 182, 212, 0.08);
 }
 
+/* ─── Base ───────────────────────────────────────────────────────────────── */
 body {
   font-family: "Inter", sans-serif;
   scroll-behavior: smooth;
 }
 
-/* Fix sticky header overlap */
+code, .font-mono, time {
+  font-family: "JetBrains Mono", "Fira Code", monospace;
+}
+
 section {
-  scroll-margin-top: 120px;
+  scroll-margin-top: 100px;
 }
 
-.bg-color {
-  background-color: var(--bg-color);
-}
-
-.glass {
-  background: var(--terminal-bg);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-.glass-hover:hover {
-  background: rgba(255, 255, 255, 0.06);
-  border-color: rgba(6, 182, 212, 0.3);
-  transform: translateY(-4px) scale(1.02);
-  box-shadow: 0 10px 30px -10px var(--accent-glow);
-}
-
+/* ─── Reveal Animations ──────────────────────────────────────────────────── */
 .reveal {
   opacity: 0;
-  transform: translateY(30px) translateZ(0);
-  transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1), transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  transform: translateY(24px) translateZ(0);
+  transition: opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
   will-change: opacity, transform;
 }
 
@@ -65,11 +71,11 @@ section {
   transform: translateY(0) translateZ(0);
 }
 
-/* Stagger reveals */
 .section-reveal {
   opacity: 0;
-  transform: translateY(30px) translateZ(0);
-  transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1), transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  transform: translateY(20px) translateZ(0);
+  transition: opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
   will-change: opacity, transform;
 }
 
@@ -78,7 +84,50 @@ section {
   transform: translateY(0) translateZ(0);
 }
 
-/* Spotlight Effect */
+/* ─── Nav Link ───────────────────────────────────────────────────────────── */
+.nav-link {
+  position: relative;
+  transition: color 0.25s ease;
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1.5px;
+  background: var(--accent);
+  transition: width 0.25s ease;
+}
+
+.nav-link:hover::after, .nav-link.active::after {
+  width: 100%;
+}
+
+/* ─── Loader ─────────────────────────────────────────────────────────────── */
+.loader-container {
+  transition: opacity 0.4s ease-out;
+}
+
+/* ─── Page Views ─────────────────────────────────────────────────────────── */
+#portfolio-view.hidden, #project-detail-view.hidden {
+  display: none;
+}
+
+#portfolio-view.block, #project-detail-view.block {
+  display: block;
+}
+
+/* ─── Glass ──────────────────────────────────────────────────────────────── */
+.glass {
+  background: var(--card-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--card-border);
+}
+
+/* ─── Spotlight Effect ───────────────────────────────────────────────────── */
 .spotlight-card {
   position: relative;
 }
@@ -86,18 +135,15 @@ section {
 .spotlight-card::before {
   content: "";
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  inset: 0;
   border-radius: inherit;
   background: radial-gradient(
-    600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
-    rgba(6, 182, 212, 0.08),
+    500px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    rgba(6, 182, 212, 0.06),
     transparent 40%
   );
   opacity: 0;
-  transition: opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: opacity 0.4s ease;
   pointer-events: none;
   z-index: 0;
 }
@@ -108,191 +154,329 @@ section {
 
 .spotlight-card > * {
   position: relative;
-  z-index: 100;
+  z-index: 1;
 }
 
-/* Stagger reveals */
-.reveal:nth-child(2) { transition-delay: 0.1s; }
-.reveal:nth-child(3) { transition-delay: 0.2s; }
-.reveal:nth-child(4) { transition-delay: 0.3s; }
-
-.angular-card {
-  background: linear-gradient(
-    135deg,
-    rgba(59, 130, 246, 0.1) 0%,
-    rgba(147, 51, 234, 0.1) 100%
-  );
-  border: 1px solid rgba(59, 130, 246, 0.2);
+/* ─── Hero KPI Cards ─────────────────────────────────────────────────────── */
+.kpi-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  box-shadow: var(--card-shadow);
+  transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
 }
 
-.nav-link {
-  position: relative;
-  transition: color 0.3s ease;
+.kpi-card:hover {
+  border-color: rgba(6, 182, 212, 0.3);
+  transform: translateY(-2px);
+  box-shadow: var(--card-shadow-hover);
 }
 
-.nav-link::after {
-  content: "";
-  position: absolute;
-  bottom: -2px;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background: var(--accent);
-  transition: width 0.3s ease;
+/* ─── Availability Badge ─────────────────────────────────────────────────── */
+.availability-badge {
+  transition: opacity 0.3s ease;
 }
 
-.nav-link:hover::after {
-  width: 100%;
+/* ─── Differential Cards ─────────────────────────────────────────────────── */
+.differential-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  box-shadow: var(--card-shadow);
+  transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-@keyframes shine {
-  from { transform: translateX(-100%); }
-  to { transform: translateX(100%); }
+.differential-card:hover {
+  border-color: rgba(6, 182, 212, 0.25);
+  transform: translateY(-3px);
+  box-shadow: var(--card-shadow-hover);
 }
 
-.shine-effect {
-  position: relative;
-  overflow: hidden;
-}
-
-.shine-effect::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 50%;
-  height: 100%;
-  background: linear-gradient(
-    to right,
-    transparent,
-    rgba(255, 255, 255, 0.05),
-    transparent
-  );
-  transform: skewX(-25deg);
-  animation: shine 3s infinite;
-}
-
-/* Brand Buttons (Ghost Variants) */
-.brand-btn {
+.diff-icon {
+  width: 2.75rem;
+  height: 2.75rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 64px;
-  height: 64px;
-  padding: 0;
+  border-radius: 0.75rem;
+  background: rgba(6, 182, 212, 0.08);
+  border: 1px solid rgba(6, 182, 212, 0.15);
+  color: #06b6d4;
+  flex-shrink: 0;
+}
+
+.diff-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.2rem 0.65rem;
+  border-radius: 9999px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  background: rgba(6, 182, 212, 0.06);
+  color: var(--text-muted);
+  border: 1px solid var(--card-border);
+}
+
+/* ─── Featured Skill Card ────────────────────────────────────────────────── */
+.angular-card {
+  background: linear-gradient(
+    135deg,
+    rgba(99, 102, 241, 0.06) 0%,
+    rgba(6, 182, 212, 0.06) 100%
+  );
+  border: 1px solid rgba(99, 102, 241, 0.15);
+}
+
+:root:not(.dark) .angular-card {
+  background: linear-gradient(
+    135deg,
+    rgba(99, 102, 241, 0.04) 0%,
+    rgba(6, 182, 212, 0.04) 100%
+  );
+  border: 1px solid rgba(99, 102, 241, 0.12);
+  box-shadow: 0 4px 20px -4px rgba(99, 102, 241, 0.08);
+}
+
+/* ─── Skill Cards (Secondary Grid) ──────────────────────────────────────── */
+.skill-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  box-shadow: var(--card-shadow);
+  transition: border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.skill-card:hover {
+  border-color: var(--border-hover);
+  transform: translateY(-2px);
+  box-shadow: var(--card-shadow-hover);
+}
+
+/* ─── Tech Badge ─────────────────────────────────────────────────────────── */
+.tech-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.2rem 0.6rem;
+  border-radius: 9999px;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  background: rgba(6, 182, 212, 0.08);
+  color: #0891b2;
+  border: 1px solid rgba(6, 182, 212, 0.18);
+}
+
+:root.dark .tech-badge {
+  color: #22d3ee;
+  background: rgba(6, 182, 212, 0.08);
+  border-color: rgba(6, 182, 212, 0.2);
+}
+
+/* ─── Project Cards ──────────────────────────────────────────────────────── */
+.project-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  box-shadow: var(--card-shadow);
+  transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-card:hover {
+  border-color: rgba(6, 182, 212, 0.2);
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px -12px rgba(6, 182, 212, 0.1), var(--card-shadow-hover);
+}
+
+.project-card--featured {
+  background: linear-gradient(135deg, rgba(6, 182, 212, 0.03) 0%, rgba(99, 102, 241, 0.03) 100%);
+  border-color: rgba(6, 182, 212, 0.15);
+}
+
+:root:not(.dark) .project-card--featured {
+  border-color: rgba(6, 182, 212, 0.2);
+  box-shadow: 0 4px 24px -4px rgba(6, 182, 212, 0.08);
+}
+
+/* ─── Qualifications Cards ───────────────────────────────────────────────── */
+.qual-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  box-shadow: var(--card-shadow);
+}
+
+/* ─── Accordion (Certifications) ─────────────────────────────────────────── */
+.accordion-item {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  transition: var(--transition);
+}
+
+.accordion-item:hover {
+  border-color: var(--border-hover);
+}
+
+.accordion-trigger {
+  width: 100%;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.25rem 1.5rem;
+  cursor: pointer;
+}
+
+.accordion-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s cubic-bezier(0, 1, 0, 1);
+}
+
+.accordion-item.active .accordion-content {
+  max-height: 1000px;
+  transition: max-height 0.4s ease-in-out;
+}
+
+.accordion-item.active .accordion-icon {
+  transform: rotate(180deg);
+}
+
+.accordion-icon {
+  transition: transform 0.3s ease;
+}
+
+/* ─── Project detail styles ──────────────────────────────────────────────── */
+.project-detail-hero {
+  background: radial-gradient(circle at top right, rgba(6, 182, 212, 0.05), transparent 40%);
+}
+
+.impact-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  padding: 1.5rem;
+  border-radius: 1.5rem;
+  transition: var(--transition);
+}
+
+.impact-card:hover {
+  border-color: rgba(6, 182, 212, 0.2);
+  transform: translateY(-2px);
+}
+
+/* ─── Contact Brand Buttons ──────────────────────────────────────────────── */
+.brand-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
   border-radius: 50%;
   font-weight: 800;
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition: var(--transition);
 }
 
 .brand-btn:hover {
-  transform: scale(1.05) translateY(-5px);
+  transform: translateY(-3px);
 }
 
-.btn-gmail:hover { 
-  border-color: #ea4335; 
-  color: #ea4335; 
-  box-shadow: 0 15px 30px -10px rgba(234, 67, 53, 0.3); 
+.btn-gmail:hover {
+  border-color: #ea4335 !important;
+  color: #ea4335;
+  box-shadow: 0 10px 25px -8px rgba(234, 67, 53, 0.3);
 }
 
-.btn-whatsapp:hover { 
-  border-color: #25d366; 
-  color: #25d366; 
-  box-shadow: 0 15px 30px -10px rgba(37, 211, 102, 0.3); 
+.btn-whatsapp:hover {
+  border-color: #25d366 !important;
+  color: #25d366;
+  box-shadow: 0 10px 25px -8px rgba(37, 211, 102, 0.3);
 }
 
-.btn-instagram:hover { 
-  border-color: #e6683c; 
-  color: #e6683c; 
-  box-shadow: 0 15px 30px -10px rgba(220, 39, 67, 0.3); 
-}
-
-.terminal-cursor {
-  animation: blink 1s step-end infinite;
-  color: var(--terminal-status-ok);
-  font-family: monospace;
-}
-
-@keyframes blink {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0; }
-}
-
-.loader-container {
-  transition: opacity 0.5s ease-out;
-}
-
-/* A11y & Fallbacks (Sprint 1) */
-@supports not (backdrop-filter: blur(12px)) {
-  .glass, .backdrop-blur-xl, .backdrop-blur-md {
-    background-color: rgba(10, 15, 28, 0.95) !important;
-  }
-}
-
-*:focus-visible {
-  outline: none;
-  box-shadow: 0 0 0 2px var(--bg-color), 0 0 0 4px var(--accent);
-  border-radius: inherit;
-  transition: box-shadow 0.2s ease;
-}
-
-/* Project Grid & Featured Card */
-#projects-grid {
-  display: grid;
-  gap: 2rem;
-}
-
-@media (min-width: 768px) {
-  .md\:col-span-2 {
-    grid-column: span 2 / span 2;
-  }
-}
-
-.featured-project-card {
-  background: linear-gradient(135deg, rgba(6, 182, 212, 0.05) 0%, rgba(59, 130, 246, 0.05) 100%);
-  border: 1px solid rgba(6, 182, 212, 0.2) !important;
-}
-
-/* Qualifications Section Polish */
-#qualifications .glass {
-  transition: all 0.3s ease;
-}
-
-#qualifications .glass:hover {
-  border-color: rgba(6, 182, 212, 0.3);
-  background: rgba(255, 255, 255, 0.05);
-}
-
-/* Header standardizing (overriding forced uppercase in some places) */
+/* ─── Section Number Prefix ──────────────────────────────────────────────── */
 h2 {
   text-transform: none !important;
 }
 
-/* Light Mode Chip & Card Contrast Refinements */
-:root:not(.dark) .spotlight-card {
-  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
-  border-color: rgba(0, 0, 0, 0.1) !important;
+/* ─── Shine Animation ────────────────────────────────────────────────────── */
+@keyframes shine {
+  from { transform: translateX(-100%) skewX(-25deg); }
+  to { transform: translateX(300%) skewX(-25deg); }
 }
 
-:root:not(.dark) .featured-project-card {
-  box-shadow: 0 20px 40px -15px rgba(6, 182, 212, 0.15) !important;
-  border-color: rgba(6, 182, 212, 0.25) !important;
+/* ─── Focus Visible ──────────────────────────────────────────────────────── */
+*:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--bg), 0 0 0 4px var(--accent);
+  border-radius: inherit;
+  transition: box-shadow 0.2s ease;
 }
 
-:root:not(.dark) .bg-cyan-500\/10 {
-  background-color: rgba(6, 182, 212, 0.08) !important;
-  border-color: rgba(6, 182, 212, 0.4) !important;
+/* ─── A11y: Backdrop blur fallback ──────────────────────────────────────── */
+@supports not (backdrop-filter: blur(12px)) {
+  .glass {
+    background: rgba(14, 20, 40, 0.97) !important;
+  }
 }
 
-:root:not(.dark) .text-cyan-600 {
-  color: #0891b2 !important; /* Cyan 700 */
+/* ─── Light Mode Refinements ─────────────────────────────────────────────── */
+:root:not(.dark) .skill-card {
+  background: #FFFFFF;
+  border-color: rgba(0, 0, 0, 0.07);
 }
 
-:root:not(.dark) .text-slate-600 {
-  color: #334155 !important; /* Slate 700 */
+:root:not(.dark) .differential-card {
+  background: #FFFFFF;
+  border-color: rgba(0, 0, 0, 0.07);
 }
 
-:root:not(.dark) .text-slate-700 {
-  color: #1e293b !important; /* Slate 800 */
+:root:not(.dark) .project-card {
+  background: #FFFFFF;
+  border-color: rgba(0, 0, 0, 0.07);
 }
+
+:root:not(.dark) .kpi-card {
+  background: #FFFFFF;
+}
+
+:root:not(.dark) .qual-card {
+  background: #FFFFFF;
+  border-color: rgba(0, 0, 0, 0.07);
+}
+
+:root:not(.dark) .tech-badge {
+  background: rgba(6, 182, 212, 0.06);
+  border-color: rgba(6, 182, 212, 0.2);
+}
+
+/* ─── Responsive ─────────────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .project-card:hover {
+    transform: none;
+  }
+
+  .differential-card:hover {
+    transform: none;
+  }
+
+  h1 {
+    font-size: 14vw !important;
+  }
+}
+
+/* Dark mode specific tweaks */
+:root.dark .accordion-item {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+:root.dark .impact-card {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+/* ─── Mobile Menu Overlay Fix ────────────────────────────────────────────── */
+#mobile-menu {
+  background-color: #FFFFFF !important;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  opacity: 1 !important;
+}
+
+:root.dark #mobile-menu {
+  background-color: #080C18 !important;
+}
+
 
