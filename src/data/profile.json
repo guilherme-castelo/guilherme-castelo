@@ -2,10 +2,10 @@
   "site": {
     "title": "Guilherme Castelo",
     "cta": "Guilherme Castelo",
-    "ctaSub": "Desenvolvedor de Software Web com foco em Integração de Sistemas, APIs e Banco de Dados",
+    "ctaSub": "Sustento ambientes corporativos e construo as ferramentas que os operam — de redes e servidores a APIs e integrações ERP.",
     "skipLink": "Pular para o conteúdo principal",
     "contactBtn": "Contato",
-    "footerCopyright": "Guilherme Castelo © 2026 • solution developer",
+    "footerCopyright": "Guilherme Castelo © 2026 • infrastructure & backend developer",
     "nav": [
       {
         "label": "Sobre",
@@ -45,13 +45,9 @@
         "number": "04",
         "title": "Projetos"
       },
-      "education-section": {
+      "qualifications": {
         "number": "05",
-        "title": "Formação Acadêmica"
-      },
-      "certification-section": {
-        "number": "06",
-        "title": "Certificações / Cursos"
+        "title": "Formação & Certificações"
       }
     }
   },
@@ -59,10 +55,11 @@
     "name": "Guilherme Castelo",
     "avatar": "/src/assets/perfil.jpg",
     "nickname": "GC",
-    "title": "Desenvolvedor de Software Web com foco em Integração de Sistemas, APIs e Banco de Dados",
-    "heroEyebrow": "Backend, Frontend, ERPs e Automação de Processos",
+    "title": "Sustento ambientes corporativos e construo as ferramentas que os operam — de redes e servidores a APIs e integrações ERP.",
+    "heroEyebrow": "Infraestrutura · Backend · Integrações",
+    "cvUrl": "/src/assets/Desenvolvedor Backend - Guilherme Castelo.pdf",
     "location": "Brasil - Remoto",
-    "summary": "Atuo no desenvolvimento de sistemas voltados para negócio, com foco em backend, integrações com ERP, APIs REST e banco de dados SQL. Tenho experiência prática na modernização e manutenção de sistemas legados, automação de rotinas internas e construção de aplicações web utilizando Angular no frontend e Node.js no backend. Gosto de resolver problemas reais da operação, transformando processos manuais em soluções digitais mais rápidas, seguras e organizadas.",
+    "summary": "Atuo na interseção entre infraestrutura e desenvolvimento. Sustento ambientes corporativos — AD, redes, Winthor — e construo as ferramentas que os operam: APIs, sistemas internos e integrações.\n\nFoco em resolver problemas reais onde suporte técnico e desenvolvimento se cruzam, garantindo alta disponibilidade e eliminação de retrabalho.",
     "contacts": [
       {
         "type": "email",
@@ -73,11 +70,6 @@
         "type": "whatsapp",
         "label": "WhatsApp",
         "value": "5569999071519"
-      },
-      {
-        "type": "instagram",
-        "label": "Instagram",
-        "value": "guilherme_castelo"
       }
     ],
     "socials": [
@@ -100,33 +92,27 @@
   },
   "heroHighlights": [
     {
-      "label": "Foco Principal",
-      "value": "Integração com ERP Automação de Processos",
+      "label": "Experiência",
+      "value": "5+ anos em ambiente corporativo",
       "color": "blue"
     },
     {
-      "label": "Stack Base",
-      "value": "Angular + Node.js + SQL",
+      "label": "Especialidade",
+      "value": "ERP Winthor + Oracle + APIs",
       "color": "purple"
     },
     {
       "label": "Atuação",
-      "value": "Sistemas Internos, Dashboards e APIs",
+      "value": "Suporte N1/N2 → Dev Backend",
       "color": "emerald"
     }
   ],
   "skills": {
     "featured": {
       "eyebrow": "Stack Principal",
-      "title": "Node.js + Angular",
-      "description": "Construção de APIs REST, integração com bancos SQL e desenvolvimento de aplicações web com Angular.",
-      "principals": [
-        "angular",
-        "typescript",
-        "node.js",
-        "mysql",
-        "html+css"
-      ]
+      "title": "Infraestrutura + Backend",
+      "description": "Projeto sistemas que integram a camada de infraestrutura com o software — do servidor à interface.",
+      "principals": ["Active Directory", "Node.js", "Angular", "MySQL", "Linux"]
     },
     "backend": [
       "Node.js (NestJS / Express)",
@@ -148,6 +134,12 @@
       "Modelagem de Banco de Dados"
     ],
     "others": [
+      "Active Directory",
+      "GPO",
+      "DHCP e DNS",
+      "Windows Server",
+      "Linux",
+      "Microsoft 365",
       "Automação com Python",
       "Docker",
       "CI/CD",
@@ -157,111 +149,84 @@
   },
   "experience": [
     {
-      "role": "Analista de Sistemas",
+      "role": "Analista de Sistemas e Infraestrutura",
       "company": "Brasil Super Atacado",
       "period": "2020 - Atual",
-      "description": "Atuação voltada à integração do ERP Winthor com aplicações web, desenvolvimento de dashboards e automação de processos internos.",
+      "description": "Atuação híbrida com sustentação de infraestrutura, suporte a usuários e desenvolvimento de soluções internas para integração do ERP Winthor com aplicações web e bancos de dados SQL.",
       "achievements": [
-        "Desenvolvimento de dashboards web para apoio à gestão, reduzindo o tempo de geração de relatórios e facilitando a tomada de decisão.",
-        "Criação de APIs em Spring Boot para interligar o banco Oracle do ERP a aplicações modernas.",
-        "Automação de processos de conferência e conciliação de dados utilizando scripts em Python.",
-        "Manutenção e modernização de sistemas legados em PHP, melhorando segurança e organização do código."
+        "Operei sustentação N1/N2 em ambiente corporativo multi-usuário, garantindo continuidade de serviços críticos de rede e aplicações.",
+        "Desenvolvi aplicações internas com Angular e Node.js que automatizaram tarefas manuais, eliminando retrabalho operacional.",
+        "Projetei e mantive APIs REST integrando Oracle e ERP Winthor, eliminando a troca manual de dados entre plataformas.",
+        "Refatorei e evoluí sistemas legados em PHP, automatizando rotinas operacionais e aumentando a estabilidade dos processos."
       ]
     }
   ],
   "projects": [
     {
-      "id": "album-platform-saas",
-      "title": "Album Platform SaaS",
-      "context": "Plataforma web para artistas e bandas gerenciarem projetos de lançamento de álbuns e músicas, com páginas públicas personalizadas para fãs.",
-      "tech_stack": [
-        "Node.js",
-        "Express",
-        "JavaScript",
-        "MongoDB",
-        "Vercel",
-        "Tailwind",
-        "HTML",
-        "JWT Auth"
-      ],
+      "id": "integracao-erp-winthor",
+      "title": "Integração ERP Winthor",
+      "context": "Processos manuais entre o ERP e a web geravam erros diários. Desenvolvi uma integração em Spring Boot + Oracle para automatizar fluxos e centralizar dados.",
+      "tech_stack": ["Spring Boot", "Oracle", "Angular", "Tailwind", "SQL"],
       "business_impact": [
-        "Centralização da divulgação de álbuns e músicas em páginas personalizadas.",
-        "Aumento do engajamento dos fãs com curtidas e avaliações.",
-        "Facilidade de gerenciamento de conteúdo musical por artistas e bandas.",
-        "Coleta de dados analíticos sobre comportamento dos usuários."
+        "Eliminação de entrada manual de dados",
+        "Integração bidirecional ERP-Web",
+        "Redução de inconsistências de dados",
+        "Base técnica para novos módulos internos"
       ],
       "links": {
-        "live": "https://album-passagem.vercel.app/",
-        "github": "https://github.com/guilherme-castelo/album-passagem"
+        "live": "",
+        "github": ""
       },
-      "images": [
-        "/src/assets/projects/album-platform-saas.png"
-      ]
+      "images": []
     },
     {
       "id": "sistema-para-refeitorio",
       "title": "Sistema para Refeitório",
-      "context": "Sistema web para controlar refeições diárias de funcionários com integração ao módulo Folha do Domínio Web. Dificuldade em gerenciar registros de refeitórios e falta de automação para um este processo que facilite a operação no DP.",
-      "tech_stack": [
-        "Angular",
-        "Node.js",
-        "Prisma"
-      ],
+      "context": "Sistema web para controle de refeições diárias de funcionários, integrado ao módulo Folha do Domínio Web para automatizar um processo antes manual.",
+      "tech_stack": ["Angular", "Node.js", "Prisma"],
       "business_impact": [
-        "Maior agilidade.",
-        "Centralização das informações.",
-        "Automação.",
-        "Redução do tempo gasto em tarefas operacionais exportando arquivo de integração para o Domínio Folha."
+        "Maior agilidade operacional",
+        "Centralização das informações",
+        "Automação do processo",
+        "Redução do tempo gasto com integração de dados"
       ],
       "links": {
         "live": "https://github.com/guilherme-castelo/elementar-admin",
         "github": "https://github.com/guilherme-castelo/elementar-admin"
-      },
-      "images": [
-        "/src/assets/projects/sistema-para-refeitorio-1.png",
-        "/src/assets/projects/sistema-para-refeitorio-2.png",
-        "/src/assets/projects/sistema-para-refeitorio-3.png"
-      ]
-    },
-    {
-      "id": "controle-financeiro",
-      "title": "Controle Financeiro",
-      "context": "Painel web para controle financeiro em grupo. Com diversos aplicativos e sites de controle financeiro, decidi criar o meu próprio.",
-      "tech_stack": [
-        "PHP",
-        "Bootstrap",
-        "Wamp"
-      ],
-      "business_impact": [
-        "Controle de gastos.",
-        "Contas.",
-        "Categorias de despesas.",
-        "Usuários."
-      ],
-      "links": {
-        "live": "https://github.com/guilherme-castelo/financeiro",
-        "github": "https://github.com/guilherme-castelo/financeiro"
       },
       "images": []
     },
     {
       "id": "backend-almoxarifado",
       "title": "Backend Almoxarifado",
-      "context": "Um backend REST API para a equipes de RH gerenciar as entradas e saídas de EPIs e Uniformes de seus funcionários. Falta de controle e gerenciamento de estoque em almoxarifados com grande fluxo de movimentação.",
-      "tech_stack": [
-        "Node.js",
-        "TypeScript",
-        "TypeORM",
-        "Docker"
-      ],
+      "context": "API REST para controle de entradas e saídas de EPIs e uniformes, com foco em organização, rastreabilidade e apoio à operação de RH.",
+      "tech_stack": ["Node.js", "TypeScript", "TypeORM", "Docker"],
       "business_impact": [
-        "Controle de estoque em almoxarifados.",
-        "Controle de movimentações de entrada.",
-        "Saída."
+        "Controle de estoque em almoxarifados",
+        "Controle de movimentações de entrada e saída",
+        "Organização das operações",
+        "Rastreabilidade dos dados"
       ],
       "links": {
         "live": "https://github.com/guilherme-castelo/backend-almoxarifado",
         "github": "https://github.com/guilherme-castelo/backend-almoxarifado"
+      },
+      "images": []
+    },
+    {
+      "id": "controle-financeiro",
+      "title": "Controle Financeiro",
+      "context": "Painel web para controle financeiro em grupo, desenvolvido como solução pessoal para organizar contas, categorias e usuários.",
+      "tech_stack": ["PHP", "Bootstrap", "Wamp"],
+      "business_impact": [
+        "Controle de gastos",
+        "Controle de contas",
+        "Organização por categorias",
+        "Gestão de usuários"
+      ],
+      "links": {
+        "live": "https://github.com/guilherme-castelo/financeiro",
+        "github": "https://github.com/guilherme-castelo/financeiro"
       },
       "images": []
     }
@@ -289,7 +254,7 @@
       "institution": "Alura / Udemy",
       "period": "Jan 2023 - Set 2023",
       "hours": "18.5h",
-      "description": "Desenvolvimento de aplicações escaláveis com Angular, Angular Material e PrimeNg. Arquitetura modular, Lazy Loading, Guards, JWT Authentication."
+      "description": "Desenvolvimento de aplicações escaláveis com Angular, Angular Material e PrimeNG. Arquitetura modular, Lazy Loading, Guards, JWT Authentication."
     },
     {
       "name": "Formação Vue.js",

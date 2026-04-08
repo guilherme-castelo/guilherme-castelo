@@ -89,7 +89,6 @@
   </header>
 
   <section id="hero" class="w-full bg-slate-50 dark:bg-[#0A0F1C] bg-gradient-to-b from-slate-50 dark:from-[#0A0F1C] to-[transparent] pt-24 pb-14 md:pt-48 md:pb-36 hidden reveal relative border-b border-slate-200 dark:border-white/5" aria-label="Hero">
-    <div id="bg-terminal" aria-hidden="true" class="absolute inset-0 z-0 opacity-10 mix-blend-screen overflow-hidden pointer-events-none text-xs font-mono flex flex-col justify-end p-6"></div>
     <div class="max-w-7xl p-4 mx-auto relative z-10 space-y-8">
       <div class="flex flex-col md:flex-row items-center md:items-start gap-8 md:gap-16">
         <div id="user-img" class="shrink-0 z-10 w-24 h-24 sm:w-32 sm:h-32 md:w-48 md:h-48 relative overflow-visible"></div>
@@ -108,7 +107,7 @@
       </div>
 
       <div id="hero-highlights-grid" class="grid grid-cols-1 sm:grid-cols-2 md:flex md:flex-row gap-6 pt-6 border-t border-slate-200 dark:border-white/5"></div>
-      <div class="flex flex-wrap gap-4 pt-8"></div>
+      <div id="hero-social-links" class="flex flex-wrap gap-4 pt-8"></div>
     </div>
   </section>
 
@@ -158,38 +157,24 @@
         <div class="h-[1px] flex-1 bg-slate-200 dark:bg-white/10"></div>
       </header>
       
-      <div id="projects-carousel" class="relative w-full overflow-hidden py-4 flex flex-col items-center justify-center min-h-[560px] group">
-        <!-- Virtual Track -->
-        <div id="projects-track" class="relative w-full max-w-5xl min-h-[600px] flex items-stretch justify-center perspective-[1000px] touch-pan-y" aria-live="polite" aria-roledescription="carousel">
+      <div id="projects-grid" class="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch pt-8"></div>
+    </section>
+
+    <section id="qualifications" class="reveal space-y-16">
+      <header class="flex items-center gap-8">
+        <h2 class="text-xl sm:text-3xl font-black text-slate-900 dark:text-white tracking-tighter shrink-0"></h2>
+        <div class="h-[1px] flex-1 bg-slate-200 dark:bg-white/10"></div>
+      </header>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-12 pt-4">
+        <div class="space-y-6">
+          <h3 class="text-sm font-semibold uppercase tracking-widest text-cyan-500 opacity-80 pl-4 border-l-2 border-cyan-500/20">Formação Acadêmica</h3>
+          <div id="education-list" class="glass rounded-[2rem] overflow-hidden"></div>
         </div>
-        
-        <!-- Controls -->
-        <button id="slider-prev" class="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 z-30 w-10 md:w-14 h-10 md:h-14 flex items-center justify-center bg-slate-100 hover:bg-slate-200 border-slate-300 dark:bg-white/5 dark:hover:bg-white/10 border dark:border-white/10 rounded-full text-slate-800 dark:text-white backdrop-blur-md transition-all opacity-0 group-hover:opacity-100 focus:opacity-100 shadow-xl" aria-label="Projeto anterior">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
-        </button>
-        <button id="slider-next" class="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 z-30 w-10 md:w-14 h-10 md:h-14 flex items-center justify-center bg-slate-100 hover:bg-slate-200 border-slate-300 dark:bg-white/5 dark:hover:bg-white/10 border dark:border-white/10 rounded-full text-slate-800 dark:text-white backdrop-blur-md transition-all opacity-0 group-hover:opacity-100 focus:opacity-100 shadow-xl" aria-label="Próximo projeto">
-           <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
-        </button>
-        
-        <!-- Indicators -->
-        <div id="slider-indicators" class="absolute bottom-0 left-1/2 -translate-x-1/2 flex gap-3 z-30 pb-4"></div>
+        <div class="space-y-6">
+          <h3 class="text-sm font-semibold uppercase tracking-widest text-cyan-500 opacity-80 pl-4 border-l-2 border-cyan-500/20">Certificações / Cursos</h3>
+          <div id="certification-list" class="glass rounded-[2rem] overflow-hidden"></div>
+        </div>
       </div>
-    </section>
-
-    <section id="education-section" class="reveal space-y-16">
-      <header class="flex items-center gap-8">
-        <h2 class="text-xl sm:text-3xl font-black text-slate-900 dark:text-white uppercase tracking-tighter shrink-0"></h2>
-        <div class="h-[1px] flex-1 bg-slate-200 dark:bg-white/10"></div>
-      </header>
-      <div id="education-list" class="glass rounded-[2rem] overflow-hidden"></div>
-    </section>
-
-    <section id="certification-section" class="reveal space-y-16">
-      <header class="flex items-center gap-8">
-        <h2 class="text-xl sm:text-3xl font-black text-slate-900 dark:text-white uppercase tracking-tighter shrink-0"></h2>
-        <div class="h-[1px] flex-1 bg-slate-200 dark:bg-white/10"></div>
-      </header>
-      <div id="certification-list" class="glass rounded-[2rem] overflow-hidden"></div>
     </section>
 
   </main>
@@ -208,7 +193,7 @@
     <svg class="w-5 h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
     </svg>
-    <span class="hidden md:inline">Let's Talk</span>
+    <span class="hidden md:inline">Fale Comigo</span>
   </a>
 
   <script type="module" src="src/scripts/main.js" defer></script>

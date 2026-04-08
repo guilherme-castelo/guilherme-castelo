@@ -23,8 +23,7 @@ const SECTION_IDS = Object.freeze([
   "skills",
   "experience",
   "projects",
-  "education-section",
-  "certification-section",
+  "qualifications",
   "contact",
 ]);
 
@@ -108,7 +107,7 @@ async function bootstrap() {
 
     // Business Content Rendering
     renderProfile(data.profile);
-    renderSocials(data.profile.socials);
+    renderSocials(data.profile.socials, data.profile.cvUrl);
     renderHeroHighlights(data.heroHighlights);
     renderSkills(data.skills);
     renderExperience(data.experience || data.experiences || data.profile?.experience);

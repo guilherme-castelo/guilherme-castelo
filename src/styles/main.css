@@ -236,3 +236,63 @@ section {
   transition: box-shadow 0.2s ease;
 }
 
+/* Project Grid & Featured Card */
+#projects-grid {
+  display: grid;
+  gap: 2rem;
+}
+
+@media (min-width: 768px) {
+  .md\:col-span-2 {
+    grid-column: span 2 / span 2;
+  }
+}
+
+.featured-project-card {
+  background: linear-gradient(135deg, rgba(6, 182, 212, 0.05) 0%, rgba(59, 130, 246, 0.05) 100%);
+  border: 1px solid rgba(6, 182, 212, 0.2) !important;
+}
+
+/* Qualifications Section Polish */
+#qualifications .glass {
+  transition: all 0.3s ease;
+}
+
+#qualifications .glass:hover {
+  border-color: rgba(6, 182, 212, 0.3);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+/* Header standardizing (overriding forced uppercase in some places) */
+h2 {
+  text-transform: none !important;
+}
+
+/* Light Mode Chip & Card Contrast Refinements */
+:root:not(.dark) .spotlight-card {
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+  border-color: rgba(0, 0, 0, 0.1) !important;
+}
+
+:root:not(.dark) .featured-project-card {
+  box-shadow: 0 20px 40px -15px rgba(6, 182, 212, 0.15) !important;
+  border-color: rgba(6, 182, 212, 0.25) !important;
+}
+
+:root:not(.dark) .bg-cyan-500\/10 {
+  background-color: rgba(6, 182, 212, 0.08) !important;
+  border-color: rgba(6, 182, 212, 0.4) !important;
+}
+
+:root:not(.dark) .text-cyan-600 {
+  color: #0891b2 !important; /* Cyan 700 */
+}
+
+:root:not(.dark) .text-slate-600 {
+  color: #334155 !important; /* Slate 700 */
+}
+
+:root:not(.dark) .text-slate-700 {
+  color: #1e293b !important; /* Slate 800 */
+}
+
